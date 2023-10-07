@@ -11,7 +11,7 @@ function SubirArchivo() {
         </div>
       </div>
       <div className="containerBtnSubir">
-        <button className="btnSubir">Subir</button>
+        <button className="btnSubir">Subir Diseño</button>
       </div>
     </div>
   );
