@@ -1,4 +1,29 @@
-.container {
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh
+}
+
+.drag-area{
+  border: 5px dashed #797979;
+  height: 500px;
+  width: 700px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* .container {
   margin: 30px 150px;
 }
 
@@ -6,9 +31,9 @@
   width: 100%;
   height: 300px;
   background-color: gray;
-}
+} */
 
-.textoArchivo {
+/* .textoArchivo {
   color: white;
   text-align: center;
   padding-top: 1%;
@@ -22,16 +47,16 @@
   align-items: flex-end;
   padding-right: 20px;
   height: 100%;
-}
+} */
 
-.btnSubir {
+/* .btnSubir {
   height: 60px;
   width: 200px;
-  background-color: #007bff; /* Color de fondo del botón */
-  color: #fff; /* Color del texto del botón */
-  padding: 10px 20px; /* Ajusta el tamaño del botón */
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
   border: none;
   cursor: pointer;
   border-radius: 10px;
   font-size: 30px;
-}
+} */
