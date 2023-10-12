@@ -1,4 +1,4 @@
-import "./styles/SubirArchivo.css";
+import "../styles/SubirArchivo.css";
 import Axios from "axios";
 import React, { useRef, useState } from "react";
 
@@ -31,7 +31,6 @@ function SubirArchivo() {
   };
 
   const [files, setFiles] = useState(null);
-  const inputRef = useRef();
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -55,8 +54,21 @@ function SubirArchivo() {
     // )
   };
 
+  if (files) return (
+    <div className="uploads">
+        <ul>
+            {Array.from(files).map((file, idx) => <li key={idx}>{file.name}</li> )}
+        </ul>
+        <div className="actions">
+            <button onClick={() => setFiles(null)}>Cancel</button>
+            <button onClick={handleUpload}>Upload</button>
+        </div>
+    </div>
+  )
+
   return (
-    <div className="drag-area">
+    <div className="drag-area" onDragOver={handleDragOver}
+    onDrop={handleDrop}>
       <input
         type="file"
         file
