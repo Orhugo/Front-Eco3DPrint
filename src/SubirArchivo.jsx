@@ -15,14 +15,14 @@ function SubirArchivo() {
       const fileName = selectedFile.name.toLowerCase();
       if (fileName.endsWith(".stl")) {
         const formData = new FormData();
-        formData.append("stlFile", selectedFile);
+        formData.append("file", selectedFile);
 
-        Axios.post("/api/upload-stl", formData)
+        axios.post("/api/upload-stl", formData)
           .then((response) => {
-            console.log("Archivo subido con éxito:", response.data);
+            alert("Archivo subido con éxito:", response.data);
           })
           .catch((error) => {
-            console.error("Error al subir el archivo:", error);
+            alert("Error al subir el archivo:", error);
           });
       } else {
         alert("Por favor, seleccione un archivo .stl para subir tu modelo");
