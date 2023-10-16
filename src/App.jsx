@@ -1,17 +1,27 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
-import UserRegistration from './components/UserRegistration';
-
+import React from "react";
+import Home from "./views/Home";
+import VisualizarSTL from "./views/STLVisualizer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UploadFile from "./views/UploadFile";
+import UserRegistration from "./components/UserRegistration";
+import ProfileConfig from "./components/ProfileConfig";
+import BarraNav from "./components/NavBar";
 
 function App() {
-
   return (
     <>
-      <div>
-        <UserRegistration> </UserRegistration>
-      </div>
+      <BarraNav />
+      <Router>
+        <div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/subirArchivo" element={<UploadFile />} />
+            <Route path="/visualizarSTL" element={<VisualizarSTL />} />
+            <Route path="/UserRegistration" element={<UserRegistration />} />
+            <Route path="/ProfileConfig" element={<ProfileConfig />} />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
