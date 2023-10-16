@@ -3,7 +3,7 @@ import { useDropzone } from "react-dropzone";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import "../styles/SubirArchivo.css";
+import "../styles/UploadFile.css";
 
 /* The `Dropzone` function is a React component that allows users to drag and drop files or click to
 select files. It uses the `useDropzone` hook from the `react-dropzone` library to handle the file

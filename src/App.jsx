@@ -1,14 +1,14 @@
 import React from "react";
 import Home from "./views/Home";
-import VisualizarSTL from "./views/VisualizarSTL";
+import VisualizarSTL from "./views/STLVisualizer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UploadFile from "./views/UploadFile";
-import BarraNav from "./components/BarraNav";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <>
-      <BarraNav />
+      <NavBar />
       <Router>
         <div>
           <Routes>
