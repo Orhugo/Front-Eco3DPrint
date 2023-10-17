@@ -12,11 +12,11 @@ function App() {
       <BarraNav />
       <Router>
         <div>
-          <Routes>
+          <Routes>{/*
             <Route path="/" element={<Home />} />
             <Route path="/subirArchivo" element={<UploadFile />} />
-            <Route path="/visualizarSTL" element={<VisualizarSTL />} />
-            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/visualizarSTL" element={<VisualizarSTL />} />*/}
+            <Route path="/" element={<Catalog />} />
           </Routes>
         </div>
       </Router>
