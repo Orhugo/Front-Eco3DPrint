@@ -1,9 +1,9 @@
 import React from "react";
 import Home from "./views/Home";
-import VisualizarSTL from "./views/VisualizarSTL";
+import VisualizarSTL from "./views/STLVisualizer.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UploadFile from "./views/UploadFile";
-import BarraNav from "./components/BarraNav";
+import BarraNav from "./components/NavBar.jsx";
 
 function App() {
   return (
