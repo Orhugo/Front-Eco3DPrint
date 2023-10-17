@@ -15,6 +15,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from 'react-router-dom';
 
 const pages = ["Catalogo", "Subir Diseños", "Visualizar Diseños"];
 const referencias = ["/catalogo", "/subirArchivo", "visualizarSTL"];
