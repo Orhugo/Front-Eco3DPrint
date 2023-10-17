@@ -35,6 +35,7 @@ function Dropzone() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     maxSize: 1024 * 1000,
+    accept: {"stl/*": ['.stl']}
   });
 
   /**
