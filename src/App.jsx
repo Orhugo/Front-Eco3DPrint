@@ -1,9 +1,11 @@
 import React from "react";
 import Home from "./views/Home";
-import VisualizarSTL from "./views/STLVisualizer";
+import STLVisualizer from "./views/STLVisualizer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UploadFile from "./views/UploadFile";
-import NavBar from "./components/NavBar";
+import UserRegistration from "./views/UserRegistration";
+import ProfileConfig from "./views/ProfileConfig";
+
 
 function App() {
   return (
@@ -14,7 +16,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/subirArchivo" element={<UploadFile />} />
-            <Route path="/visualizarSTL" element={<VisualizarSTL />} />
+            <Route path="/visualizarSTL" element={<STLVisualizer />} />
+            <Route path="/UserRegistration" element={<UserRegistration />} />
+            <Route path="/ProfileConfig" element={<ProfileConfig />} />
           </Routes>
         </div>
       </Router>

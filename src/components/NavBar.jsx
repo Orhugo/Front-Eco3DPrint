@@ -15,6 +15,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from 'react-router-dom';
 
 const pages = ["Catalogo", "Subir Diseños", "Visualizar Diseños"];
 const referencias = ["/catalogo", "/subirArchivo", "visualizarSTL"];
@@ -80,6 +81,23 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleMenuClick = (setting) => {
+    switch (setting) {
+      case "Profile":
+        break;
+      case "Account":
+        break;
+      case "Dashboard":
+        break;
+      case "Logout":
+        break;
+      default:
+        break;
+    }
+    handleCloseUserMenu();
+  };
+  
 
   return (
     <AppBar position="absolute">
@@ -205,7 +223,7 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleMenuClick}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
