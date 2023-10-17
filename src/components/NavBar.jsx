@@ -81,6 +81,23 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const handleMenuClick = (setting) => {
+    switch (setting) {
+      case "Profile":
+        break;
+      case "Account":
+        break;
+      case "Dashboard":
+        break;
+      case "Logout":
+        break;
+      default:
+        break;
+    }
+    handleCloseUserMenu();
+  };
+  
+
   return (
     <AppBar position="absolute">
       <Container maxWidth="x2">
@@ -205,7 +222,7 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleMenuClick}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

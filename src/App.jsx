@@ -1,20 +1,24 @@
 import React from "react";
 import Home from "./views/Home";
-import STLVisualizer from "./views/STLVisualizer.jsx";
+import STLVisualizer from "./views/STLVisualizer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UploadFile from "./views/UploadFile";
-import NavBar from "./components/NavBar.jsx";
+import UserRegistration from "./components/UserRegistration";
+import ProfileConfig from "./components/ProfileConfig";
+import BarraNav from "./components/NavBar";
 
 function App() {
   return (
     <>
-      <NavBar />
+      <BarraNav />
       <Router>
         <div>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/subirArchivo" element={<UploadFile />} />
             <Route path="/visualizarSTL" element={<STLVisualizer />} />
+            <Route path="/UserRegistration" element={<UserRegistration />} />
+            <Route path="/ProfileConfig" element={<ProfileConfig />} />
           </Routes>
         </div>
       </Router>
