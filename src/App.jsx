@@ -3,8 +3,8 @@ import Home from "./views/Home";
 import STLVisualizer from "./views/STLVisualizer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UploadFile from "./views/UploadFile";
-import UserRegistration from "./components/UserRegistration";
-import ProfileConfig from "./components/ProfileConfig";
+import UserRegistration from "./views/UserRegistration";
+import ProfileConfig from "./views/ProfileConfig";
 import BarraNav from "./components/NavBar";
 
 function App() {
