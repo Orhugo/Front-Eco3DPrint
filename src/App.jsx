@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UploadFile from "./views/UploadFile";
 import UserRegistration from "./views/UserRegistration";
 import ProfileConfig from "./views/ProfileConfig";
-
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
