@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from "react";
 import { StlViewer } from "react-stl-viewer";
 
-const url = "https://storage.googleapis.com/bucket-modelos-pin/Face.stl";
+const url = "./Face.stl";
 
 const style = {
   top: 0,
