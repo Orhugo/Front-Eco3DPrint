@@ -12,7 +12,7 @@ function App() {
     <>
       <Router>
       <NavBar />
-        <div>
+        <div style={{marginTop:"100px"}}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/subirArchivo" element={<UploadFile />} />
