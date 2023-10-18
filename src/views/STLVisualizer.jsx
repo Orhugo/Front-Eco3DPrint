@@ -3,7 +3,6 @@ import React from "react";
 import { StlViewer } from "react-stl-viewer";
 import { useLocation } from 'react-router-dom';
 
-const url = "/Face.stl";
 
 const style = {
   top: 0,
@@ -13,15 +12,18 @@ const style = {
 };
 
 export function VisualizarSTL() {
+
   const { state } = useLocation();
-  const url2 = state +".stl"
-  console.log(url2);
+  const url = state +".stl"
+  //Se necesita un filtro. Si no se da el nombre en específico, peta
+  //Este componente solo te deja ver un modelo a la vez, no puedo listar varios modelos
+  //¿Se pueden convertir a json los .stl?
   return (
     <StlViewer 
       style={style} 
       orbitControls 
       shadows 
-      url={url2}
+      url={url}
       modelProps={{
         color: "#0a6bc1",
         positionX: 0,
