@@ -11,6 +11,7 @@ function Home() {
       <button onClick={() => {navigate('/subirArchivo')}}>Subir Archivo</button>
       <button onClick={() => {navigate('/visualizarSTL')}}>Visualizar STL</button>
       <button onClick={() => {navigate('/UserRegistration')}}>Registrate</button>
+      <button onClick={() => {navigate('/UserLogin')}}>Iniciar Sesión</button>
       <button onClick={() => {navigate('/ProfileConfig')}}>ModifyProfile</button>
     </div>
     </>
