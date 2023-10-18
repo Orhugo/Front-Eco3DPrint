@@ -22,20 +22,20 @@ function UserLogin(props) {
 
             if (response.status === 200) {
                 const { message, status, user } = response.data;
-                console.log('message:', message);
-                console.log('status:', status);
-                console.log('user:', user);
-                console.log('login', user.email);
+                // console.log('message:', message);
+                // console.log('status:', status);
+                // console.log('user:', user);
+                // console.log('login', user.email);
 
                 if (status) {
                     setUser(user);
                     navigate('/', {state: {user: user}});
                 } else {
-                    setLoginError(message);
+                    setLoginError('Mail or/and password incorrect. Try again');
                 }
             } else {
                 console.log('Login failed:', response.data);
-                setLoginError('Login failed');
+                setLoginError('Mail or/and password incorrect');
             }
         } catch (error) {
             console.error('Error:', error);
