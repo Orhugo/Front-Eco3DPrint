@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,6 +16,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Catalogo", "Subir Diseños", "Visualizar Diseños"];
 const referencias = ["/catalogo", "/subirArchivo", "visualizarSTL"];
@@ -97,6 +99,16 @@ function ResponsiveAppBar() {
     handleCloseUserMenu();
   };
   
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const navigate = useNavigate()
+
+  function handleKeyPress(e) {
+    if (e.key === "Enter" && searchTerm.trim() !== "") {
+     navigate("/visualizarSTL", {
+      state: searchTerm
+     });
+    }
+  }
 
   return (
     <AppBar position="absolute">
@@ -194,8 +206,11 @@ function ResponsiveAppBar() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              onKeyPress={handleKeyPress}
             />
           </Search>
 

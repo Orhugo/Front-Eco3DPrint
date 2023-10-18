@@ -10,8 +10,9 @@ import BarraNav from "./components/NavBar";
 function App() {
   return (
     <>
-      <BarraNav />
+      
       <Router>
+      <BarraNav />
         <div>
           <Routes>
             <Route path="/" element={<Home />} />

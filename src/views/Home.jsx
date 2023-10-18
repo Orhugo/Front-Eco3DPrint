@@ -9,7 +9,7 @@ function Home() {
     <div>
       <h1>Página de inicio</h1>
       <button onClick={() => {navigate('/subirArchivo')}}>Subir Archivo</button>
-      <button onClick={() => {navigate('/visualizarSTL')}}>Visualizar STL</button>
+      {/* <button onClick={() => {navigate('/visualizarSTL')}}>Visualizar STL</button> */}
       <button onClick={() => {navigate('/UserRegistration')}}>Registrate</button>
       <button onClick={() => {navigate('/ProfileConfig')}}>ModifyProfile</button>
     </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import { StlViewer } from "react-stl-viewer";
+import { useLocation } from 'react-router-dom';
 
 const url = "/Face.stl";
 
@@ -12,12 +13,15 @@ const style = {
 };
 
 export function VisualizarSTL() {
+  const { state } = useLocation();
+  const url2 = state +".stl"
+  console.log(url2);
   return (
     <StlViewer 
       style={style} 
       orbitControls 
       shadows 
-      url={url}
+      url={url2}
       modelProps={{
         color: "#0a6bc1",
         positionX: 0,
