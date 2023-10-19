@@ -11,6 +11,7 @@ import UserLogin from "./views/UserLogin";
 function App() {
   return (
     <>
+      
       <Router>
       <NavBar />
         <div style={{marginTop:"100px"}}>
