@@ -14,7 +14,7 @@ const style = {
 export function VisualizarSTL() {
 
   const { state } = useLocation();
-  const url = state +".stl"
+  const url = state ? state + ".stl" : "Face.stl";
   //Se necesita un filtro. Si no se da el nombre en específico, peta
   //Este componente solo te deja ver un modelo a la vez, no puedo listar varios modelos
   //¿Se pueden convertir a json los .stl?
