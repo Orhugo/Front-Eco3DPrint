@@ -63,7 +63,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function ResponsiveAppBar() {
+function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -82,22 +82,24 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
-  const handleMenuClick = (setting) => {
+  const navigate = useNavigate();
+
+  const handleClickOnItem = (setting) => {
     switch (setting) {
       case "Profile":
+        navigate('/ProfileConfig')
         break;
       case "Account":
+        navigate('/Account')
         break;
       case "Dashboard":
+        navigate('/Dashboard')
         break;
       case "Logout":
         break;
-      default:
-        break;
     }
     handleCloseUserMenu();
-  };
-  
+  }
 
   return (
     <AppBar position="absolute">
@@ -119,7 +121,7 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            VOLUME
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -175,7 +177,7 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            VOLUME
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -203,7 +205,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0}}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -223,7 +225,7 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleMenuClick}>
+                <MenuItem key={setting} onClick={() => handleClickOnItem(setting)}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
@@ -234,4 +236,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default NavBar;
