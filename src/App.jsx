@@ -15,12 +15,12 @@ function App() {
       <NavBar />
         <div style={{marginTop:"100px"}}>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/subirArchivo" element={<UploadFile />} />
-            <Route path="/visualizarSTL" element={<STLVisualizer />} />
-            <Route path="/UserRegistration" element={<UserRegistration />} />
-            <Route path="/UserLogin" element={<UserLogin />} />
-            <Route path="/ProfileConfig" element={<ProfileConfig />} />
+            <Route path="/Front-Eco3DPrint" element={<Home />} />
+            <Route path="/Front-Eco3DPrint/subirArchivo" element={<UploadFile />} />
+            <Route path="/Front-Eco3DPrint/visualizarSTL" element={<STLVisualizer />} />
+            <Route path="/Front-Eco3DPrint/UserRegistration" element={<UserRegistration />} />
+            <Route path="/Front-Eco3DPrint/UserLogin" element={<UserLogin />} />
+            <Route path="/Front-Eco3DPrint/ProfileConfig" element={<ProfileConfig />} />
           </Routes>
         </div>
       </Router>

@@ -50,19 +50,19 @@ function Home() {
           <div>
             <p>{userInfo.name}</p>
             <p>{userInfo.lastname}</p>
-            <button onClick={() => {navigate('/subirArchivo')}}>Subir Archivo</button>
-            <button onClick={() => {navigate('/visualizarSTL')}}>Visualizar STL</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/subirArchivo')}}>Subir Archivo</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/visualizarSTL')}}>Visualizar STL</button>
             <button onClick={handleLogout}>Sign out</button>
-            <button onClick={() => {navigate('/ProfileConfig')}}>ModifyProfile</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/ProfileConfig')}}>ModifyProfile</button>
           </div>
       )}
       {!isLoggedIn && (
           <div>
-            <button onClick={() => {navigate('/subirArchivo')}}>Subir Archivo</button>
-            <button onClick={() => {navigate('/visualizarSTL')}}>Visualizar STL</button>
-            <button onClick={() => {navigate('/UserRegistration')}}>Registrate</button>
-            <button onClick={() => {navigate('/UserLogin')}}>Sign in</button>
-            <button onClick={() => {navigate('/ProfileConfig')}}>ModifyProfile</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/subirArchivo')}}>Subir Archivo</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/visualizarSTL')}}>Visualizar STL</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/UserRegistration')}}>Registrate</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/UserLogin')}}>Sign in</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/ProfileConfig')}}>ModifyProfile</button>
           </div>
       )}
     </>
