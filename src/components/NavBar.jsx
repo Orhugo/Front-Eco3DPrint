@@ -18,7 +18,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from 'react-router-dom';
 
 const pages = ["Catalogo", "Subir Diseños", "Visualizar Diseños"];
-const referencias = ["/catalogo", "/subirArchivo", "visualizarSTL"];
+const referencias = ["/Front-Eco3DPrint/catalogo", "/Front-Eco3DPrint/subirArchivo", "/Front-Eco3DPrint/visualizarSTL"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Search = styled("div")(({ theme }) => ({
@@ -87,7 +87,7 @@ function NavBar() {
   const handleClickOnItem = (setting) => {
     switch (setting) {
       case "Profile":
-        navigate('/ProfileConfig')
+        navigate('/Front-Eco3DPrint/ProfileConfig')
         break;
       case "Account":
         navigate('/Account')
@@ -110,7 +110,7 @@ function NavBar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/Front-Eco3DPrint"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -165,7 +165,7 @@ function NavBar() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/Front-Eco3DPrint"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
