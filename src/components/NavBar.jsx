@@ -103,11 +103,10 @@ function NavBar() {
   };
   
   const [searchTerm, setSearchTerm] = useState(""); 
-  const navigate = useNavigate()
 
   function handleKeyPress(e) {
     if (e.key === "Enter" && searchTerm.trim() !== "") {
-     navigate("/visualizarSTL", {
+     navigate("/Front-Eco3DPrint/visualizarSTL", {
       state: searchTerm
      });
     }
