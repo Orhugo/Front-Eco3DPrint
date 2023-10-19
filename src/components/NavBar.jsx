@@ -16,10 +16,10 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const pages = ["Catalogo", "Subir Diseños", "Visualizar Diseños"];
-const referencias = ["/catalogo", "/subirArchivo", "visualizarSTL"];
+const referencias = ["/Front-Eco3DPrint/catalogo", "/Front-Eco3DPrint/subirArchivo", "/Front-Eco3DPrint/visualizarSTL"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Search = styled("div")(({ theme }) => ({
@@ -64,7 +64,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function ResponsiveAppBar() {
+function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -83,17 +83,20 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
-  const handleMenuClick = (setting) => {
+  const navigate = useNavigate();
+
+  const handleClickOnItem = (setting) => {
     switch (setting) {
       case "Profile":
+        navigate('/Front-Eco3DPrint/ProfileConfig')
         break;
       case "Account":
+        navigate('/Account')
         break;
       case "Dashboard":
+        navigate('/Dashboard')
         break;
       case "Logout":
-        break;
-      default:
         break;
     }
     handleCloseUserMenu();
@@ -119,7 +122,7 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/Front-Eco3DPrint"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -130,7 +133,7 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            VOLUME
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -174,7 +177,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/Front-Eco3DPrint"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -186,7 +189,7 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            VOLUME
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -217,7 +220,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0}}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -237,7 +240,7 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleMenuClick}>
+                <MenuItem key={setting} onClick={() => handleClickOnItem(setting)}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
@@ -248,4 +251,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default NavBar;

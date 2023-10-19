@@ -1,21 +1,21 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-body{
+body {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
-  min-height: 100vh
+  min-height: 100vh;
 }
 
-.drag-area{
+.drag-area {
   border: 5px dashed #ddd;
-  height: 500px;
-  width: 700px;
+  height: 300px;
+  width: 1000px;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -26,8 +26,17 @@ body{
   color: #000;
 }
 
-.drag-area.active{
+.drag-area.active {
   background-color: #b8d4fe;
-  color:black;
+  color: black;
   border: 5px dashed #618ac9;
+}
+
+.li{
+  list-style: none; /* Para quitar los puntos de lista */
+}
+
+.inline-div {
+  display: inline-block; /* Hace que los elementos div se muestren uno al lado del otro */
+  margin-right: 50px; /* Agrega un margen entre los elementos div */
 }
