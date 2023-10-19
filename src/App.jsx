@@ -6,6 +6,7 @@ import UploadFile from "./views/UploadFile";
 import UserRegistration from "./views/UserRegistration";
 import ProfileConfig from "./views/ProfileConfig";
 import NavBar from "./components/NavBar";
+import UserLogin from "./views/UserLogin";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/subirArchivo" element={<UploadFile />} />
             <Route path="/visualizarSTL" element={<STLVisualizer />} />
             <Route path="/UserRegistration" element={<UserRegistration />} />
+            <Route path="/UserLogin" element={<UserLogin />} />
             <Route path="/ProfileConfig" element={<ProfileConfig />} />
           </Routes>
         </div>
