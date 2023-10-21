@@ -1,0 +1,31 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px); /* 60px è l'altezza presumibile della barra di navigazione, aggiusta se necessario */
+}
+
+.title {
+  font-weight: bold;
+  text-align: center;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 50%;
+  margin-top: 0;
+}
+
+.table td, .table th {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tr:hover {
+  background-color: #ddd;
+}
