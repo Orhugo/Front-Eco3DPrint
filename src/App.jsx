@@ -6,6 +6,7 @@ import UploadFile from "./views/UploadFile";
 import UserRegistration from "./views/UserRegistration";
 import ProfileConfig from "./views/ProfileConfig";
 import UserLogin from "./views/UserLogin";
+import Comment from "./views/Comment";
 import BarraNav from "./components/NavBar";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/UserRegistration" element={<UserRegistration />} />
             <Route path="/UserLogin" element={<UserLogin />} />
             <Route path="/ProfileConfig" element={<ProfileConfig />} />
+            <Route path="/Comment" element={<Comment />} />
           </Routes>
         </div>
       </Router>

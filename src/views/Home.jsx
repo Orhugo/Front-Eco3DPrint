@@ -52,6 +52,7 @@ function Home() {
             <p>{userInfo.lastname}</p>
             <button onClick={() => {navigate('/subirArchivo')}}>Subir Archivo</button>
             <button onClick={() => {navigate('/visualizarSTL')}}>Visualizar STL</button>
+            <button onClick={() => {navigate('/comment', { userId: 12, modelId:2})}}>Comentar</button>            
             <button onClick={handleLogout}>Sign out</button>
             <button onClick={() => {navigate('/ProfileConfig')}}>ModifyProfile</button>
           </div>
@@ -60,6 +61,7 @@ function Home() {
           <div>
             <button onClick={() => {navigate('/subirArchivo')}}>Subir Archivo</button>
             <button onClick={() => {navigate('/visualizarSTL')}}>Visualizar STL</button>
+            <button onClick={() => {navigate('/comment', { userId: 12, modelId: 2})}}>Comentar</button>            
             <button onClick={() => {navigate('/UserRegistration')}}>Registrate</button>
             <button onClick={() => {navigate('/UserLogin')}}>Sign in</button>
             <button onClick={() => {navigate('/ProfileConfig')}}>ModifyProfile</button>
