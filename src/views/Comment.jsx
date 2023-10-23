@@ -64,18 +64,53 @@ function Comment(){
             .catch((error) => {
                 console.error("Error deleting comment:", error);
             });
-    };  
+    };
+
+    const likeComment = (commentId) => {
+        // Make an API request to increment the like_counter on the server
+        axios
+        .post(`http://localhost:8080/comments/like/${commentId}`)
+        .then((response) => {
+        const updatedComments = comments.map((c) => {
+            if (c.id === commentId) {
+            return { ...c, like_counter: response.data.like_counter, liked: true };
+            }
+            return c;
+        });
+        setComments(updatedComments);
+        })
+        .catch((error) => {
+        console.error("Error liking comment:", error);
+        });
+    };
+    
+    const dislikeComment = (commentId) => {
+        axios
+        .post(`http://localhost:8080/comments/dislike/${commentId}`)
+        .then((response) => {
+        const updatedComments = comments.map((c) => {
+            if (c.id === commentId) {
+            return { ...c, like_counter: response.data.like_counter, disliked: true };
+            }
+            return c;
+        });
+        setComments(updatedComments);
+        })
+        .catch((error) => {
+        console.error("Error disliking comment:", error);
+        });
+    };
 
     useEffect(() => {
         axios
-        .get("http://localhost:8080/comments/getAll")
+        .get(`http://localhost:8080/comments/get/${modelId}`)
         .then((response) => {
             setComments(response.data);
         })
         .catch((error) => {
             console.error("Error fetching comments:", error);
         });
-    }, []); 
+    }, []);
 
     return (
         <div className="comment-container">
@@ -104,7 +139,21 @@ function Comment(){
                     <button onClick={() => updateComment(c.id)}>Update</button>
                     </div>
                 ) : (
-                    <p>{c.content}</p>
+                    <div>
+                        <p>
+                        <strong>{c.user.name}</strong>&nbsp;
+                        <strong>{c.user.lastname}</strong>
+                        <br />
+                        {c.content}
+                        </p>
+                        <p> Like Counter: {c.likeCounter}</p>
+                        <button onClick={() => likeComment(c.id)} disabled={c.liked}>
+                            Like
+                        </button>
+                        <button onClick={() => dislikeComment(c.id)} disabled={c.disliked}>
+                            Dislike
+                        </button>
+                    </div>
                 )}
                 <button onClick={() => editComment(c.id)}>Edit</button>
                 <button onClick={() => deleteComment(c.id)}>Delete</button>
