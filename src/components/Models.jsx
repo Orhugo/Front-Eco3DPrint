@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Model = () => {
+const Model = ({ onClick }) => {
     const colors = ['red', 'blue', 'green', "orange", "black", "gray"]; // Define los colores que deseas utilizar.
   const [backgroundColor, setBackgroundColor] = useState('');
 
@@ -16,7 +16,7 @@ const Model = () => {
         margin: '10px' };
 
   return (
-    <div style={modelStyle}>
+    <div style={modelStyle} onClick={onClick} >
     </div>
   );
 };

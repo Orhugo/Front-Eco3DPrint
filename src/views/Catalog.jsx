@@ -2,11 +2,12 @@ import { useState } from "react";
 import React from "react";
 import { useLocation } from 'react-router-dom';
 import Models from "../components/Models";
+import { useNavigate } from 'react-router-dom';
 
 export function showCatalog() {
 //   const { state } = useLocation();
 //   const url = state ? state + ".stl" : "thinker.stl";
-  const [models, setModels] = useState([]);
+  //const [catalogModels, setModels] = useState([]);
 
 // useEffect(() => {
 //     axios.get('/models/getAll')
@@ -19,8 +20,8 @@ export function showCatalog() {
 //   }, []);
 
     const catalogModels = [];
-    for (let i = 0; i < 29; i++) {
-        catalogModels.push(<Models key={i} style={{color:'blue'}} />);
+    for (let i = 0; i < 3; i++) {
+        catalogModels.push(<Models key={i} />);
     }
 
     const containerStyle = {
@@ -32,13 +33,33 @@ export function showCatalog() {
     const modelStyle = {
         width: '30%', // Asegura que haya tres modelos por fila
         marginBottom: '20px',
-      };
+    };
+
+    const navigate = useNavigate();
+
+       // console.log(`Model with ID ${modelId} clicked.`);      
+
+    const handleModelClick = (modelId) => {
+        if (modelId == 0) {
+            navigate("/Front-Eco3DPrint/visualizarSTL", {
+            state: "Face"
+            });
+        }else if(modelId == 1){
+            navigate("/Front-Eco3DPrint/visualizarSTL", {
+                state: "Graisseur"
+            });
+        } else{
+            navigate("/Front-Eco3DPrint/visualizarSTL", {
+                state: "thinker"
+            });
+        }
+    }
 
   return (
     <div>
         <div style={containerStyle}>
-            {catalogModels.map((model) => (
-             <Models key={model.id} style={modelStyle} />
+            {catalogModels.map((model, index) => (
+             <Models key={model.id} style={modelStyle} onClick={() => handleModelClick(index)} />
         ))}
         </div>
      </div>
