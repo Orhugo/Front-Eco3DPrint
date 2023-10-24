@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function Comment(){
-    const userId = 12;
-    const modelId = 2;
+function Comment(props){
+    // TO DO:
+    // There should be implemented sending the user id and model id as props
+
+    const userId = 13;
+    const modelId = 3;
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
     const [updatedComment, setUpdatedComment] = useState("");
     const [isEditing, setIsEditing] = useState(false);
     const [editCommentId, setEditCommentId] = useState(null);
+    const [newReply, setNewReply] = useState("");
+    const [repliesForCommentId, setRepliesForCommentId] = useState(null);
+    const [likedComments, setLikedComments] = useState([]);
 
     const handleCommentChange = (e) => {
         setComment(e.target.value);
@@ -16,6 +22,10 @@ function Comment(){
 
     const handleUpdatedCommentChange = (e) => {
         setUpdatedComment(e.target.value);
+    };
+
+    const handleNewReplyChange = (e) => {
+        setNewReply(e.target.value);
     };
 
     const postComment = () => {
@@ -41,7 +51,9 @@ function Comment(){
 
     const updateComment = (commentId) => {
         axios
-        .put(`http://localhost:8080/comments/update/${commentId}`, { updatedContent: updatedComment })
+        .put(`http://localhost:8080/comments/update/${commentId}`, {
+            content: updatedComment,
+        })
         .then((response) => {
             const updatedComments = comments.map((c) =>
             c.id === commentId ? { ...c, content: response.data.content } : c
@@ -67,37 +79,72 @@ function Comment(){
     };
 
     const likeComment = (commentId) => {
-        // Make an API request to increment the like_counter on the server
-        axios
-        .post(`http://localhost:8080/comments/like/${commentId}`)
+        axios.post(`http://localhost:8080/comments/like/${commentId}?userId=${userId}`)
         .then((response) => {
-        const updatedComments = comments.map((c) => {
-            if (c.id === commentId) {
-            return { ...c, like_counter: response.data.like_counter, liked: true };
-            }
-            return c;
-        });
-        setComments(updatedComments);
+            setLikedComments([...likedComments, commentId]);
         })
         .catch((error) => {
-        console.error("Error liking comment:", error);
+            console.error("Error liking comment:", error);
         });
     };
-    
+
     const dislikeComment = (commentId) => {
-        axios
-        .post(`http://localhost:8080/comments/dislike/${commentId}`)
+        axios.delete(`http://localhost:8080/comments/dislike/${commentId}?userId=${userId}`)
         .then((response) => {
-        const updatedComments = comments.map((c) => {
-            if (c.id === commentId) {
-            return { ...c, like_counter: response.data.like_counter, disliked: true };
-            }
-            return c;
-        });
-        setComments(updatedComments);
+            setLikedComments(likedComments.filter((id) => id !== commentId));
         })
         .catch((error) => {
-        console.error("Error disliking comment:", error);
+            console.error("Error disliking comment:", error);
+        });
+    };
+
+    const toggleReplies = (commentId) => {
+        if (repliesForCommentId === commentId) {
+            setRepliesForCommentId(null); // Close the replies
+        } else {
+            axios
+                .get(`http://localhost:8080/comments/replies/${commentId}`)
+                .then((response) => {
+                    const updatedComments = comments.map((c) => {
+                        if (c.id === commentId) {
+                            return { ...c, replies: response.data };
+                        }
+                        return c;
+                    });
+                    setComments(updatedComments);
+                    setRepliesForCommentId(commentId); // Open the replies
+                })
+                .catch((error) => {
+                    console.error("Error fetching replies:", error);
+                });
+        }
+    };
+
+    const getReplies = (parentCommentId) => {
+        return comments.filter((c) => c.parentComment && c.parentComment.id === parentCommentId);
+    };
+
+    const addReply = (parentCommentId) => {
+        axios.post(`http://localhost:8080/comments/reply/${parentCommentId}`, {
+            user: { id: userId },
+            model: { id: modelId },
+            content: newReply,
+        })
+        .then((response) => {
+            const updatedComments = comments.map((c) => {
+                if (c.id === parentCommentId) {
+                    return {
+                        ...c,
+                        replies: [...(c.replies || []), response.data],
+                    };
+                }
+                return c;
+            });
+            setComments(updatedComments);
+            setNewReply("");
+        })
+        .catch((error) => {
+            console.error("Error adding reply:", error);
         });
     };
 
@@ -105,12 +152,30 @@ function Comment(){
         axios
         .get(`http://localhost:8080/comments/get/${modelId}`)
         .then((response) => {
-            setComments(response.data);
+            const rootComments = response.data.filter((comment) => comment.parentComment === null);
+            
+            // Fetch liked comments for the current user
+            axios.get(`http://localhost:8080/comments/liked/${userId}`)
+                .then((likedResponse) => {
+                    setLikedComments(likedResponse.data);
+                    
+                    // Update comments, including whether they are liked by the user
+                    const updatedComments = rootComments.map((comment) => {
+                        const isLiked = likedResponse.data.includes(comment.id);
+                        return { ...comment, isLiked };
+                    });
+    
+                    setComments(updatedComments);
+                })
+                .catch((error) => {
+                    console.error("Error fetching liked comments:", error);
+                });
         })
         .catch((error) => {
             console.error("Error fetching comments:", error);
         });
-    }, []);
+    }, [modelId, userId]);
+    
 
     return (
         <div className="comment-container">
@@ -126,40 +191,75 @@ function Comment(){
     
             <h2>Comments</h2>
             <ul>
-            {comments.map((c) => (
-                <li key={c.id}>
-                {isEditing && editCommentId === c.id ? (
-                    <div>
-                    <textarea
-                        rows="4"
-                        cols="50"
-                        value={updatedComment}
-                        onChange={handleUpdatedCommentChange}
-                    />
-                    <button onClick={() => updateComment(c.id)}>Update</button>
-                    </div>
-                ) : (
-                    <div>
-                        <p>
-                        <strong>{c.user.name}</strong>&nbsp;
-                        <strong>{c.user.lastname}</strong>
-                        <br />
-                        {c.content}
-                        </p>
-                        <p> Like Counter: {c.likeCounter}</p>
-                        <button onClick={() => likeComment(c.id)} disabled={c.liked}>
-                            Like
+                {comments.map((c) => (
+                    <li key={c.id}>
+                        {isEditing && editCommentId === c.id ? (
+                            <div>
+                                <textarea
+                                    rows="4"
+                                    cols="50"
+                                    value={updatedComment}
+                                    onChange={handleUpdatedCommentChange}
+                                />
+                                <button onClick={() => updateComment(c.id)}>Update</button>
+                            </div>
+                        ) : (
+                            <div>
+                                <p>
+                                    <strong>{c.user.name}</strong>&nbsp;
+                                    <strong>{c.user.lastname}</strong>
+                                    <br />
+                                    {c.content}
+                                </p>
+                                <p>Like Counter: {c.likeCounter}</p>
+
+                            </div>
+                        )}
+                        {userId === c.user.id && (
+                        <div>
+                            <button onClick={() => editComment(c.id)}>Edit</button>
+                            <button onClick={() => deleteComment(c.id)}>Delete</button>
+                        </div>
+                        )}
+                        <button onClick={() => toggleReplies(c.id)}>
+                            {repliesForCommentId === c.id ? "Hide Replies" : "View Replies"}
                         </button>
-                        <button onClick={() => dislikeComment(c.id)} disabled={c.disliked}>
-                            Dislike
-                        </button>
-                    </div>
-                )}
-                <button onClick={() => editComment(c.id)}>Edit</button>
-                <button onClick={() => deleteComment(c.id)}>Delete</button>
-                </li>
-            ))}
+                        {!likedComments.includes(c.id) ? (
+                            <button onClick={() => likeComment(c.id)}>Like</button>
+                        ) : (
+                            <button onClick={() => dislikeComment(c.id)}>Dislike</button>
+                        )}
+                        {repliesForCommentId === c.id && (
+                            <div>
+                                {c.replies && c.replies.length > 0 && (
+                                    <div>
+                                        {c.replies.map((reply) => (
+                                            <div key={reply.id}>
+                                                <p>
+                                                    <strong>{reply.user.name}</strong>&nbsp;
+                                                    <strong>{reply.user.lastname}</strong>
+                                                    <br />
+                                                    {reply.content}
+                                                </p>
+                                                <button onClick={() => deleteComment(reply.id)}>Delete Reply</button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                                <textarea
+                                    rows="4"
+                                    cols="50"
+                                    placeholder="Enter your reply here..."
+                                    value={newReply}
+                                    onChange={handleNewReplyChange}
+                                />
+                                <button onClick={() => addReply(c.id)}>Add Reply</button>
+                            </div>
+                        )}
+                    </li>
+                ))}
             </ul>
+
         </div>
     );
 }
