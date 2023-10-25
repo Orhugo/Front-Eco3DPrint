@@ -6,6 +6,7 @@ import UploadFile from "./views/UploadFile";
 import UserRegistration from "./views/UserRegistration";
 import ProfileConfig from "./views/ProfileConfig";
 import NavBar from "./components/NavBar";
+import Catalog from "./views/Catalog";
 import UserLogin from "./views/UserLogin";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/Front-Eco3DPrint" element={<Home />} />
             <Route path="/Front-Eco3DPrint/subirArchivo" element={<UploadFile />} />
             <Route path="/Front-Eco3DPrint/visualizarSTL" element={<STLVisualizer />} />
+            <Route path="/Front-Eco3DPrint/catalogo" element={<Catalog />} />
             <Route path="/Front-Eco3DPrint/UserRegistration" element={<UserRegistration />} />
             <Route path="/Front-Eco3DPrint/UserLogin" element={<UserLogin />} />
             <Route path="/Front-Eco3DPrint/ProfileConfig" element={<ProfileConfig />} />
