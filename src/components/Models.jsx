@@ -1,24 +1,59 @@
 import React, { useState, useEffect } from 'react';
+import './Models.css'
 
 const Model = ({ onClick }) => {
-    const colors = ['red', 'blue', 'green', "orange", "black", "gray"]; // Define los colores que deseas utilizar.
-  const [backgroundColor, setBackgroundColor] = useState('');
-
-  useEffect(() => {
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    setBackgroundColor(randomColor);
-  }, []);
+    const [hovered, setHovered] = useState(false);
 
     const modelStyle = {
-        width: '300px', 
-        height: '300px', 
-        backgroundColor: backgroundColor, 
-        margin: '10px' };
+        width: '300px',
+        height: '300px',
 
-  return (
-    <div style={modelStyle} onClick={onClick} >
-    </div>
-  );
+        margin: '10px',
+        borderRadius: '15px',
+        boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.7)',
+        transition: 'transform 0.3s'
+    }
+
+    const imgModelStyle = {
+        width: parent,
+        height: '70%',
+        borderRadius: '15px 15px 0px 0px',
+        backgroundColor: 'rgba(255,255,255,1)'
+    }
+
+    const infoModelStyle={
+        width: parent,
+        height: '30%',
+        borderRadius: '0px 0px 15px 15px',
+        backgroundColor: hovered ? 'rgba(230,230,230,1)':'rgba(200,200,200,1)',
+        transition: 'background-color 0.3s',
+
+    }
+
+    const infoModelTitleBar ={
+        width: parent,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '10px 10px 0px 10px'
+    }
+
+    const handleModelInfoEnter = ()=> {
+        setHovered(true)
+    }
+    const handleModelInfoLeave = ()=> {
+        setHovered(false)
+    }
+
+    return (
+        <div style={modelStyle} onClick={onClick} className='modelClass' onMouseEnter={handleModelInfoEnter} onMouseLeave={handleModelInfoLeave}>
+            <div style={imgModelStyle}></div>
+            <div style={infoModelStyle} className='infoModelClass'>
+                <div style={infoModelTitleBar}> Titulo del archivo STL overflow overflow overflow </div>
+                <div></div>
+            </div>
+        </div>
+    );
 };
 
 export default Model;
