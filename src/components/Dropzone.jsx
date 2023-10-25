@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "../styles/UploadFile.css";
+import axios from "axios";
+import ButtonUploadFiles from "./ButtonUploadFiles";
 
 /* The `Dropzone` function is a React component that allows users to drag and drop files or click to
 select files. It uses the `useDropzone` hook from the `react-dropzone` library to handle the file
@@ -34,8 +36,8 @@ function Dropzone() {
   dropzone functionality. */
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    maxSize: 1024 * 1000,
-    accept: { "stl/*": [".stl"] },
+    maxSize: 1024 * 100000,
+    accept: { "model/stl": [".stl"] },
   });
 
   /**
@@ -136,7 +138,14 @@ function Dropzone() {
         ))}
       </ul>
 
-      <button style={{fontSize: "large", fontWeight:"bold"}}>Subir Archivos</button>
+      {/* <button
+        style={{ fontSize: "large", fontWeight: "bold" }}
+        onClick={uploadFiles}
+      >
+        Subir Archivos
+      </button> */}
+
+      <ButtonUploadFiles files = {files}/>
     </>
   );
 }
