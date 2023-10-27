@@ -14,7 +14,6 @@ const name = state;
  useEffect(() => {
      axios.get('http://localhost:8080/models/getAll')
        .then((response) => {
-        console.log(name);
         if(name == null){
             const filteredModels = response.data;
             setModels(filteredModels);
