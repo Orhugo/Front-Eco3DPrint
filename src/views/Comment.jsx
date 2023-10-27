@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
-function Comment(props){
-    // TO DO:
-    // There should be implemented sending the user id and model id as props
+function Comment(){
 
-    const userId = 13;
-    const modelId = 3;
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
+    const [modelData, setModelData] = useState([]);
     const [updatedComment, setUpdatedComment] = useState("");
     const [isEditing, setIsEditing] = useState(false);
     const [editCommentId, setEditCommentId] = useState(null);
     const [newReply, setNewReply] = useState("");
     const [repliesForCommentId, setRepliesForCommentId] = useState(null);
     const [likedComments, setLikedComments] = useState([]);
-
+    const urlParams = new URLSearchParams(window.location.search);
+    const location = useLocation();
+    const modelId = urlParams.get('id');
+    const userId = location.state.userInfo.id;
     const handleCommentChange = (e) => {
         setComment(e.target.value);
     };
@@ -29,8 +30,6 @@ function Comment(props){
     };
 
     const postComment = () => {
-        console.log("userId", userId);
-        console.log("modelId", modelId);
         axios
         .post("http://localhost:8080/comments/create", {
             user: { id: userId },
@@ -77,6 +76,7 @@ function Comment(props){
                 console.error("Error deleting comment:", error);
             });
     };
+    
 
     const likeComment = (commentId) => {
         axios.post(`http://localhost:8080/comments/like/${commentId}?userId=${userId}`)
@@ -149,32 +149,34 @@ function Comment(props){
     };
 
     useEffect(() => {
-        axios
-        .get(`http://localhost:8080/comments/get/${modelId}`)
-        .then((response) => {
-            const rootComments = response.data.filter((comment) => comment.parentComment === null);
-            
-            // Fetch liked comments for the current user
-            axios.get(`http://localhost:8080/comments/liked/${userId}`)
-                .then((likedResponse) => {
-                    setLikedComments(likedResponse.data);
-                    
-                    // Update comments, including whether they are liked by the user
-                    const updatedComments = rootComments.map((comment) => {
-                        const isLiked = likedResponse.data.includes(comment.id);
-                        return { ...comment, isLiked };
-                    });
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/comments/get/${modelId}`);
+                const jsonData = response.data;
+                const rootComments = jsonData.filter((comment) => comment.parentComment === null);
+                setModelData(jsonData);
     
-                    setComments(updatedComments);
-                })
-                .catch((error) => {
-                    console.error("Error fetching liked comments:", error);
-                });
-        })
-        .catch((error) => {
-            console.error("Error fetching comments:", error);
-        });
-    }, [modelId, userId]);
+                axios.get(`http://localhost:8080/comments/liked/${userId}`)
+                    .then((likedResponse) => {
+                        setLikedComments(likedResponse.data);
+    
+                        const updatedComments = rootComments.map((comment) => {
+                            const isLiked = likedResponse.data.includes(comment.id);
+                            return { ...comment, isLiked };
+                        });
+    
+                        setComments(updatedComments);
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching liked comments:", error);
+                    });
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+    
+        fetchData();
+    }, [modelId, userId]);    
     
 
     return (
@@ -241,7 +243,12 @@ function Comment(props){
                                                     <br />
                                                     {reply.content}
                                                 </p>
-                                                <button onClick={() => deleteComment(reply.id)}>Delete Reply</button>
+                                                {userId === reply.user.id && (
+                                                <div>
+                                                    <button onClick={() => editComment(reply.id)}>Edit Reply</button>
+                                                    <button onClick={() => deleteComment(reply.id)}>Delete Reply</button>
+                                                </div>
+                                                )}
                                             </div>
                                         ))}
                                     </div>
