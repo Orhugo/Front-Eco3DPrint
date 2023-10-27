@@ -1,8 +1,8 @@
 import { useState } from "react";
 import React from "react";
 import { StlViewer } from "react-stl-viewer";
+import { useLocation } from 'react-router-dom';
 
-const url = "/Face.stl";
 
 const style = {
   top: 0,
@@ -12,6 +12,12 @@ const style = {
 };
 
 export function VisualizarSTL() {
+
+  const { state } = useLocation();
+  const url = state ? state + ".stl" : "Face.stl";
+  //Se necesita un filtro. Si no se da el nombre en específico, peta
+  //Este componente solo te deja ver un modelo a la vez, no puedo listar varios modelos
+  //¿Se pueden convertir a json los .stl?
   return (
     <StlViewer 
       style={style} 

@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "../styles/UploadFile.css";
+import axios from "axios";
+import ButtonUploadFiles from "./ButtonUploadFiles";
 
 /* The `Dropzone` function is a React component that allows users to drag and drop files or click to
 select files. It uses the `useDropzone` hook from the `react-dropzone` library to handle the file
@@ -34,7 +36,8 @@ function Dropzone() {
   dropzone functionality. */
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    maxSize: 1024 * 1000,
+    maxSize: 1024 * 100000,
+    accept: { "model/stl": [".stl"] },
   });
 
   /**
@@ -74,58 +77,50 @@ function Dropzone() {
 
       {/* Preview */}
       <div>
-        <h2>Preview</h2>
-        <button
-          type="button"
-          onClick={removeAll}
-        >
+        <button type="button" onClick={removeAll}>
           Remove all files
         </button>
       </div>
 
       {/*Accepted files*/}
-      <h3>
-        Accepted Files
-      </h3>
+      <h3>Accepted Files</h3>
       <ul>
         {files.map((file) => (
-          <li key={file.name}>
-            <img
-              src={file.preview}
-              alt={file.name}
-              width={100}
-              height={100}
-              onLoad={() => {
-                URL.revokeObjectURL(file.preview);
-              }}
-            />
-            <IconButton
-              aria-label="delete"
-              onClick={() => {
-                removeFile(file.name);
-              }}
-            >
-              <DeleteIcon />
-            </IconButton>
-
-            <p>
-              {file.name}
-            </p>
+          <li key={file.name} className="li">
+            <div className="inline-div">
+              <img
+                src={"./stl_icon.png"}
+                width={40}
+                height={40}
+                onLoad={() => {
+                  URL.revokeObjectURL(file.preview);
+                }}
+              />
+            </div>
+            <div className="inline-div">
+              <p>{file.name}</p>
+            </div>
+            <div className="inline-div">
+              <IconButton
+                aria-label="delete"
+                onClick={() => {
+                  removeFile(file.name);
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </div>
           </li>
         ))}
       </ul>
 
       {/* Rejected Files */}
-      <h3>
-        Rejected Files
-      </h3>
+      <h3>Rejected Files</h3>
       <ul>
         {rejected.map(({ file, errors }) => (
           <li key={file.name}>
             <div>
-              <p>
-                {file.name}
-              </p>
+              <p>{file.name}</p>
               <ul>
                 {errors.map((error) => (
                   <li key={error.code}>{error.message}</li>
@@ -142,6 +137,15 @@ function Dropzone() {
           </li>
         ))}
       </ul>
+
+      {/* <button
+        style={{ fontSize: "large", fontWeight: "bold" }}
+        onClick={uploadFiles}
+      >
+        Subir Archivos
+      </button> */}
+
+      <ButtonUploadFiles files = {files}/>
     </>
   );
 }

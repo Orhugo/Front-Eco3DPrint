@@ -46,7 +46,7 @@ function Home() {
   };
 
   const handleComment = () => {
-    navigate(`/comment?id=${modelId}`, {state: {userInfo: userInfo}});
+    navigate(`/Front-Eco3DPrint/comment?id=${modelId}`, {state: {userInfo: userInfo}});
   };  
 
   return (
@@ -54,11 +54,11 @@ function Home() {
       <h1>Página de inicio</h1>
       {isLoggedIn && (
           <div>
-            <button onClick={() => {navigate('/subirArchivo')}}>Subir Archivo</button>
-            <button onClick={() => {navigate('/visualizarSTL')}}>Visualizar STL</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/subirArchivo')}}>Subir Archivo</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/visualizarSTL')}}>Visualizar STL</button>
             <button onClick={handleComment}>Comentar</button>
             <button onClick={handleLogout}>Sign out</button>
-            <button onClick={() => {navigate('/ProfileConfig')}}>ModifyProfile</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/ProfileConfig')}}>ModifyProfile</button>
           </div>
       )}
       {!isLoggedIn && (
@@ -67,6 +67,10 @@ function Home() {
             <button onClick={() => {navigate('/visualizarSTL')}}>Visualizar STL</button>
             <button onClick={() => {navigate('/UserRegistration')}}>Registrate</button>
             <button onClick={() => {navigate('/UserLogin')}}>Sign in</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/subirArchivo')}}>Subir Archivo</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/visualizarSTL')}}>Visualizar STL</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/UserRegistration')}}>Registrate</button>
+            <button onClick={() => {navigate('/Front-Eco3DPrint/UserLogin')}}>Sign in</button>
           </div>
       )}
     </>
