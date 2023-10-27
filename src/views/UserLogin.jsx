@@ -27,7 +27,7 @@ function UserLogin(props) {
                     setUser(user);
                     localStorage.setItem('user', JSON.stringify(user));
                     localStorage.setItem('isLoggedIn', true);
-                    navigate('/', {state: {user: user}});
+                    navigate('/Front-Eco3DPrint', {state: {user: user}});
                 } else {
                     setLoginError('Mail or/and password incorrect. Try again');
                 }

@@ -63,10 +63,6 @@ function Home() {
       )}
       {!isLoggedIn && (
           <div>
-            <button onClick={() => {navigate('/subirArchivo')}}>Subir Archivo</button>
-            <button onClick={() => {navigate('/visualizarSTL')}}>Visualizar STL</button>
-            <button onClick={() => {navigate('/UserRegistration')}}>Registrate</button>
-            <button onClick={() => {navigate('/UserLogin')}}>Sign in</button>
             <button onClick={() => {navigate('/Front-Eco3DPrint/subirArchivo')}}>Subir Archivo</button>
             <button onClick={() => {navigate('/Front-Eco3DPrint/visualizarSTL')}}>Visualizar STL</button>
             <button onClick={() => {navigate('/Front-Eco3DPrint/UserRegistration')}}>Registrate</button>
