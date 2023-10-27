@@ -2,10 +2,11 @@ import React from "react";
 import axios from "axios";
 import { Form } from "react-router-dom";
 
-function ButtonUploadFiles({ files }) {
+function ButtonUploadFiles({ files, title, description }) {
   const uploadFiles = () => {
     const formData = new FormData();
     let url = "";
+    let modelId;
 
     files.forEach((file) => {
       formData.append("file", file);
@@ -26,6 +27,33 @@ function ButtonUploadFiles({ files }) {
             .then((urlResponse) => {
               // Maneja la respuesta con la URL del archivo
               console.log("File URL:", urlResponse.data);
+              url = urlResponse.data;
+              axios
+                .post("http://localhost:8080/models/add", {
+                  category: "1",
+                  description: description,
+                  tags: "whatever",
+                  title: title,
+                  author_id: 10,
+                  print_setting_id: null,
+                })
+                .then((response) => {
+                  axios
+                    .get("http://localhost:8080/models/getLastModelId", {})
+                    .then((response) => {
+                      modelId = response.data;
+                      axios.post("http://localhost:8080/url/add", {
+                        id_model: modelId,
+                        url: url,
+                      });
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                    });
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
             })
             .catch((urlError) => {
               // Maneja errores en la obtención de la URL

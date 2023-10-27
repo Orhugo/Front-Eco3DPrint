@@ -10,7 +10,7 @@ import ButtonUploadFiles from "./ButtonUploadFiles";
 /* The `Dropzone` function is a React component that allows users to drag and drop files or click to
 select files. It uses the `useDropzone` hook from the `react-dropzone` library to handle the file
 drop functionality. */
-function Dropzone() {
+function Dropzone({title, description}) {
   const [files, setFiles] = useState([]);
   const [rejected, setRejected] = useState([]);
 
@@ -138,14 +138,11 @@ function Dropzone() {
         ))}
       </ul>
 
-      {/* <button
-        style={{ fontSize: "large", fontWeight: "bold" }}
-        onClick={uploadFiles}
-      >
-        Subir Archivos
-      </button> */}
+      <ButtonUploadFiles files = {files} title = {title} description = {description} />
 
-      <ButtonUploadFiles files = {files}/>
+      <div>
+        <p>{title},{description}</p>
+      </div>
     </>
   );
 }
