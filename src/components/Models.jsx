@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-const Model = ({ onClick }) => {
-    const colors = ['red', 'blue', 'green', "orange", "black", "gray"]; // Define los colores que deseas utilizar.
-  const [backgroundColor, setBackgroundColor] = useState('');
-
-  useEffect(() => {
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    setBackgroundColor(randomColor);
-  }, []);
+const Model = ({ onClick, modelName }) => {
 
     const modelStyle = {
         width: '300px', 
         height: '300px', 
-        backgroundColor: backgroundColor, 
+        backgroundColor: "blue", 
         margin: '10px' };
 
   return (
     <div style={modelStyle} onClick={onClick} >
+       <p>{modelName}</p>
     </div>
   );
 };

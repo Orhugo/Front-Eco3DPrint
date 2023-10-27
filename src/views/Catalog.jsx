@@ -1,33 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { useLocation } from 'react-router-dom';
 import Models from "../components/Models";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export function showCatalog() {
-//   const { state } = useLocation();
-//   const url = state ? state + ".stl" : "thinker.stl";
-  //const [catalogModels, setModels] = useState([]);
 
-// useEffect(() => {
-//     axios.get('/models/getAll')
-//       .then((response) => {
-//         setModels(response.data);
-//       })
-//       .catch((error) => {
-//         console.error('Error fetching data:', error);
-//       });
-//   }, []);
+const [catalogModels, setModels] = useState([]);
+const { state } = useLocation();
+const name = state;
 
-    const catalogModels = [];
-    for (let i = 0; i < 3; i++) {
-        catalogModels.push(<Models key={i} />);
-    }
+ useEffect(() => {
+     axios.get('http://localhost:8080/models/getAll')
+       .then((response) => {
+        console.log(name);
+        if(name == null){
+            const filteredModels = response.data;
+            setModels(filteredModels);
+        } else {
+            const filteredModels = response.data.filter((model) => model.title.toLowerCase().includes(name.toLowerCase()));
+            setModels(filteredModels);
+        }
+      })
+       .catch((error) => {
+         console.error('Error fetching data:', error);
+      });
+   }, [name]);
 
     const containerStyle = {
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'space-evenly', // Alinea los elementos en la última fila hacia la izquierda
+        justifyContent: 'space-evenly', 
       };
 
     const modelStyle = {
@@ -59,7 +63,7 @@ export function showCatalog() {
     <div>
         <div style={containerStyle}>
             {catalogModels.map((model, index) => (
-             <Models key={model.id} style={modelStyle} onClick={() => handleModelClick(index)} />
+             <Models key={model.id} style={modelStyle} onClick={() => handleModelClick(index)} modelName={model.title}/>
         ))}
         </div>
      </div>

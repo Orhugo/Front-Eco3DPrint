@@ -16,6 +16,7 @@
     "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "^5.14.13",
     "@mui/material": "^5.14.13",
+    "aws-sdk": "^2.1480.0",
     "axios": "^1.5.1",
     "gh-pages": "^6.0.0",
     "react": "^18.2.0",
