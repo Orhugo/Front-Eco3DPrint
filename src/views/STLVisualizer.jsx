@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { StlViewer } from "react-stl-viewer";
 import { useLocation } from 'react-router-dom';
-import AWS from 'aws-sdk';
 
 // AWS.config.update({
 //   accessKeyId: 'TU_ACCESS_KEY_ID',
