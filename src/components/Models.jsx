@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Models.css'
+import '../styles/Models.css'
 
 const Model = ({ onClick }) => {
     const [hovered, setHovered] = useState(false);

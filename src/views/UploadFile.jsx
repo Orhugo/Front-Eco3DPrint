@@ -9,7 +9,7 @@ function UploadFile() {
   const handleOnBlurTitle = (event) => {
     if (title !== event.target.value) {
       setTitle(event.target.value);
-      console.log(title);
+      //console.log(title);
     }
   };
 
