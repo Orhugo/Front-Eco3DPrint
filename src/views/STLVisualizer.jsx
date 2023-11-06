@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { StlViewer } from "react-stl-viewer";
 import { useLocation } from 'react-router-dom';
 
+// AWS.config.update({
+//   accessKeyId: 'TU_ACCESS_KEY_ID',
+//   secretAccessKey: 'TU_SECRET_ACCESS_KEY',
+// });
+
+// const s3 = new AWS.S3();
 
 const style = {
   top: 0,
@@ -15,9 +21,31 @@ export function VisualizarSTL() {
 
   const { state } = useLocation();
   const url = state ? state + ".stl" : "Face.stl";
-  //Se necesita un filtro. Si no se da el nombre en específico, peta
-  //Este componente solo te deja ver un modelo a la vez, no puedo listar varios modelos
-  //¿Se pueden convertir a json los .stl?
+  // const [url, setUrl] = useState(null);
+  
+  // useEffect(() => {
+  //   // Nombre del archivo en S3
+  //   const s3FileName = "1697792052233_Face.stl";
+
+  //   // Nombre del bucket en S3
+  //   const s3BucketName = "stl-models-bucket";
+
+  //   // Llama a getObject para obtener el archivo desde S3
+  //   s3.getObject({ Bucket: s3BucketName, Key: s3FileName }, (err, data) => {
+  //     if (err) {
+  //       console.error("Error al obtener el archivo desde S3:", err);
+  //     } else {
+  //       // URL del archivo en S3
+  //       const s3FileUrl = data.Location;
+  //       setUrl(s3FileUrl);
+  //     }
+  //   });
+  // }, []);
+
+  // if (!url) {
+  //   return <div>Cargando...</div>;
+  // }
+
   return (
     <StlViewer 
       style={style} 
