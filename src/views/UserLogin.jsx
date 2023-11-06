@@ -22,14 +22,12 @@ function UserLogin(props) {
 
             if (response.status === 200) {
                 const { message, status, user } = response.data;
-                // console.log('message:', message);
-                // console.log('status:', status);
-                // console.log('user:', user);
-                // console.log('login', user.email);
 
                 if (status) {
                     setUser(user);
-                    navigate('/', {state: {user: user}});
+                    localStorage.setItem('user', JSON.stringify(user));
+                    localStorage.setItem('isLoggedIn', true);
+                    navigate('/Front-Eco3DPrint', {state: {user: user}});
                 } else {
                     setLoginError('Mail or/and password incorrect. Try again');
                 }

@@ -36,7 +36,7 @@ function InfoModel() {
             <tbody>
               <tr>
                 <td><b>Categoría:</b></td>
-                <td>{modelData.category}</td>
+                <td>{modelData.cathegory}</td>
               </tr>
               <tr>
                 <td><b>Descripción:</b></td>

@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import React from "react";
 import { StlViewer } from "react-stl-viewer";
 import { useLocation, useNavigate } from 'react-router-dom';
+import '../styles/VisualizarSTL.css'; 
 
 const style = {
   position: "relative",
@@ -9,16 +10,6 @@ const style = {
   left: 0,
   width: "100vw",
   height: "100vh",
-};
-
-const buttonStyle = {
-  position: "absolute",
-  top: "80px",  
-  left: "50%",
-  transform: "translateX(-50%)",
-  padding: "15px 30px",
-  fontSize: "20px",
-  zIndex: 1,
 };
 
 export function VisualizarSTL() {
@@ -31,12 +22,19 @@ export function VisualizarSTL() {
     navigate(`/Front-Eco3DPrint/InfoModel?id=${modelId}`);
   };
 
+  const downloadSTL = () => {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = url.substring(url.lastIndexOf('/') + 1);
+    link.click();
+  };
+
   return (
-    <div style={style} >
-      <StlViewer 
-        style={style} 
-        orbitControls 
-        shadows 
+    <div style={style}>
+      <StlViewer
+        style={style}
+        orbitControls
+        shadows
         url={url}
         modelProps={{
           color: "#0a6bc1",
@@ -44,9 +42,14 @@ export function VisualizarSTL() {
           positionY: 0,
         }}
       />
-      <button style={buttonStyle} onClick={handleButtonClick}>
-        Visualizar Información
-      </button>
+      <div className="button-container">
+        <button className="button-style" onClick={handleButtonClick}>
+          Visualizar Información
+        </button>
+        <button className="button-style" onClick={downloadSTL}>
+          Descargar modelo
+        </button>
+      </div>
     </div>
   );
 }
