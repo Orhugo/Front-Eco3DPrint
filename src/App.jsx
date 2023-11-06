@@ -9,7 +9,6 @@ import NavBar from "./components/NavBar";
 import Catalog from "./views/Catalog";
 import UserLogin from "./views/UserLogin";
 import Comment from "./views/Comment";
-import Example from "./views/Example.jsx"
 
 
 function App() {
