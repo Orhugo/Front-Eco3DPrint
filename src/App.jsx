@@ -15,6 +15,7 @@ import Example from "./views/Example.jsx"
 function App() {
   return (
     <div className="h-screen w-full flex justify-center">
+
       <Router>
       <NavBar/>
         <div className="w-full h-screen flex justify-center items-center">

@@ -49,6 +49,7 @@ function Home() {
     navigate(`/Front-Eco3DPrint/comment?id=${modelId}`, {state: {userInfo: userInfo}});
   };  
 
+
   return (
     <div className="w-3/5 h-[60vh] p-[20px] rounded-2xl bg-cyan-200 drop-shadow-darker justify-items-center">
       <h1 className="flex justify-center text-[50px] font-ubuntu font-[1000]">INICIO</h1>
