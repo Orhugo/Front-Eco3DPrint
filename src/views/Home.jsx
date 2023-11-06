@@ -50,10 +50,10 @@ function Home() {
   };  
 
   return (
-    <>
-      <h1>Página de inicio</h1>
+    <div className="w-3/5 h-[60vh] p-[20px] rounded-2xl bg-white drop-shadow-darker justify-items-center">
+      <h1 className="flex justify-center text-[30px] font-ubuntu">INICIO</h1>
       {isLoggedIn && (
-          <div>
+          <div className="flex justify-center">
             <button onClick={() => {navigate('/Front-Eco3DPrint/subirArchivo')}}>Subir Archivo</button>
             <button onClick={() => {navigate('/Front-Eco3DPrint/visualizarSTL')}}>Visualizar STL</button>
             <button onClick={handleComment}>Comentar</button>
@@ -69,7 +69,7 @@ function Home() {
             <button onClick={() => {navigate('/Front-Eco3DPrint/UserLogin')}}>Sign in</button>
           </div>
       )}
-    </>
+    </div>
   );
 }
 
