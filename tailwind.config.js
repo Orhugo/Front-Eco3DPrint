@@ -17,6 +17,11 @@ export default {
         'content': '5px 0 15px rgba(0,0,0,0.75), -5px 0 15px rgba(0,0,0,0.75)',
         'dark-spread': '0 3px 20px rgba(0, 0, 0, 0.5)',
       },
+      scale:{
+        'small': '1.01',
+        'mid': '1.05',
+        'big': '1.1',
+      },
     },
     fontFamily: {
       'ubuntu': ['Ubuntu']

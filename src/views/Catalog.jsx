@@ -59,8 +59,8 @@ const name = state;
     }
 
   return (
-    <div>
-        <div style={containerStyle}>
+    <div className="w-[80%] h-screen inline-block justify-start">
+        <div className="w-full h-fit mt-[6%] flex flex-wrap box-border">
             {catalogModels.map((model, index) => (
              <Models key={model.id} style={modelStyle} onClick={() => handleModelClick(index)} modelName={model.title}/>
         ))}
