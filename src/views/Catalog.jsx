@@ -3,15 +3,17 @@ import React from "react";
 import { useLocation } from 'react-router-dom';
 import Models from "../components/Models";
 import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/joy/CircularProgress';
 import axios from 'axios';
 
 export function showCatalog() {
 
 const [catalogModels, setModels] = useState([]);
+const [showLoaderPrompt, setLoaderPrompt] = useState(true);
 const { state } = useLocation();
 const name = state;
 
- useEffect(() => {
+    useEffect(() => {
      axios.get('http://localhost:8080/models/getAll')
        .then((response) => {
         if(name == null){
@@ -25,22 +27,16 @@ const name = state;
        .catch((error) => {
          console.error('Error fetching data:', error);
       });
-   }, [name]);
+    }, [name]);
 
-    const containerStyle = {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-evenly', 
-      };
-
-    const modelStyle = {
-        width: '30%', // Asegura que haya tres modelos por fila
-        marginBottom: '20px',
-    };
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoaderPrompt(false);
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, []);
 
     const navigate = useNavigate();
-
-       // console.log(`Model with ID ${modelId} clicked.`);      
 
     const handleModelClick = (modelId) => {
         if (modelId == 0) {
@@ -59,12 +55,21 @@ const name = state;
     }
 
   return (
-    <div className="w-[80%] h-screen inline-block justify-start">
-        <div className="w-full h-fit mt-[6%] flex flex-wrap box-border">
-            {catalogModels.map((model, index) => (
-             <Models key={model.id} style={modelStyle} onClick={() => handleModelClick(index)} modelName={model.title}/>
-        ))}
-        </div>
+    <div className="w-[60%] h-screen inline-block justify-start">
+        {showLoaderPrompt?(
+            <div className="w-full h-full flex items-center text-center justify-center">
+                <div className="w-[200px] h-fit flex items-center justify-center">
+                    <CircularProgress variant="plain"/>
+                </div>
+            </div>
+
+        ):(
+            <div className="w-full h-fit mt-[6%] flex flex-wrap box-border animate-fade">
+                {catalogModels.map((model, index) => (
+                    <Models key={model.id} onClick={() => handleModelClick(index)} modelName={model.title}/>
+                ))}
+            </div>
+        )}
      </div>
   );
 }

@@ -27,7 +27,9 @@ export default {
       'ubuntu': ['Ubuntu']
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
 
 }
 
