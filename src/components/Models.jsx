@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Models.css'
+import { StlViewer } from "react-stl-viewer";
 
 const Model = ({ onClick, modelName }) => {
     const [hovered, setHovered] = useState(false);
@@ -15,6 +16,9 @@ const Model = ({ onClick, modelName }) => {
     }
 
     const imgModelStyle = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         width: parent,
         height: '70%',
         borderRadius: '15px 15px 0px 0px',
@@ -45,9 +49,24 @@ const Model = ({ onClick, modelName }) => {
         setHovered(false)
     }
 
+    const style = {
+        width: "55vw",
+        height: "55vh",
+    };
+
+    const url = "Face.stl";
+
     return (
         <div style={modelStyle} onClick={onClick} className='modelClass' onMouseEnter={handleModelInfoEnter} onMouseLeave={handleModelInfoLeave}>
-            <div style={imgModelStyle}></div>
+            <div style={imgModelStyle}>
+                <StlViewer 
+                    style={style} 
+                    url={url}
+                    modelProps={{
+                        color: "#0a6bc1"
+                    }}
+                />
+            </div>
             <div style={infoModelStyle} className='infoModelClass'>
                 <div style={infoModelTitleBar}> {modelName} </div>
                 <div></div>
