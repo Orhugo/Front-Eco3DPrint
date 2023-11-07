@@ -9,17 +9,15 @@ import NavBar from "./components/NavBar";
 import Catalog from "./views/Catalog";
 import UserLogin from "./views/UserLogin";
 import Comment from "./views/Comment";
-import BarraNav from "./components/NavBar";
-import Profile from "./views/Profile";
 
 
 function App() {
   return (
-    <>
-      
+    <div className="h-screen w-full flex justify-center">
+
       <Router>
-      <NavBar />
-        <div style={{marginTop:"100px"}}>
+      <NavBar/>
+        <div className="w-full h-screen flex justify-center items-center">
           <Routes>
             <Route path="/Front-Eco3DPrint" element={<Home />} />
             <Route path="/Front-Eco3DPrint/subirArchivo" element={<UploadFile />} />
@@ -33,7 +31,7 @@ function App() {
           </Routes>
         </div>
       </Router>
-    </>
+    </div>
   );
 }
 

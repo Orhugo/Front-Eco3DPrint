@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Models.css'
 
-const Model = ({ onClick }) => {
+const Model = ({ onClick, modelName }) => {
     const [hovered, setHovered] = useState(false);
 
     const modelStyle = {
@@ -49,7 +49,7 @@ const Model = ({ onClick }) => {
         <div style={modelStyle} onClick={onClick} className='modelClass' onMouseEnter={handleModelInfoEnter} onMouseLeave={handleModelInfoLeave}>
             <div style={imgModelStyle}></div>
             <div style={infoModelStyle} className='infoModelClass'>
-                <div style={infoModelTitleBar}> Titulo del archivo STL overflow overflow overflow </div>
+                <div style={infoModelTitleBar}> {modelName} </div>
                 <div></div>
             </div>
         </div>
