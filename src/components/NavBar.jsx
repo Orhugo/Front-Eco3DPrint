@@ -88,10 +88,10 @@ function NavBar() {
   const handleClickOnItem = (setting) => {
     switch (setting) {
       case "Profile":
-        navigate('/Front-Eco3DPrint/ProfileConfig')
+        navigate('/Front-Eco3DPrint/Profile')
         break;
       case "Account":
-        navigate('/Account')
+        navigate('/Front-Eco3DPrint/ProfileConfig')
         break;
       case "Dashboard":
         navigate('/Dashboard')

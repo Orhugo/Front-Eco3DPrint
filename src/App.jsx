@@ -10,6 +10,7 @@ import Catalog from "./views/Catalog";
 import UserLogin from "./views/UserLogin";
 import Comment from "./views/Comment";
 import BarraNav from "./components/NavBar";
+import Profile from "./views/Profile";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path="/Front-Eco3DPrint/UserLogin" element={<UserLogin />} />
             <Route path="/Front-Eco3DPrint/ProfileConfig" element={<ProfileConfig />} />
             <Route path="/Front-Eco3DPrint/Comment" element={<Comment />} />
+            <Route path="/Front-Eco3DPrint/Profile" element={<Profile />} />
           </Routes>
         </div>
       </Router>
