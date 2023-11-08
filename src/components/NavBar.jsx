@@ -56,7 +56,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "12ch",
+      width: "20ch",
       "&:focus": {
         width: "20ch",
       },
@@ -222,7 +222,7 @@ function NavBar() {
               <SearchIcon />
           </IconButton>
 
-          <Search sx={{ flexGrow: 1, marginRight: '1px' }}>
+          <Search sx={{ flexGrow: 1, marginRight: '10px' }}>
            
             <StyledInputBase
               value={searchTerm}

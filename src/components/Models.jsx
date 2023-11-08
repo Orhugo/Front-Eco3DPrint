@@ -19,10 +19,11 @@ const Model = ({ onClick, modelName }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: parent,
+        width: '100%',
         height: '70%',
         borderRadius: '15px 15px 0px 0px',
-        backgroundColor: 'rgba(255,255,255,1)'
+        backgroundColor: 'rgba(255,255,255,1)',
+        overflow: 'hidden'
     }
 
     const infoModelStyle={
@@ -50,8 +51,8 @@ const Model = ({ onClick, modelName }) => {
     }
 
     const style = {
-        width: "55vw",
-        height: "55vh",
+        width: "35vw",
+        height: "35vh",
     };
 
     const url = "Face.stl";
@@ -63,7 +64,12 @@ const Model = ({ onClick, modelName }) => {
                     style={style} 
                     url={url}
                     modelProps={{
-                        color: "#0a6bc1"
+                        color: "#0a6bc1",
+                        panEnabled: false, 
+                        zoomEnabled: false, 
+                        rotateEnabled: false, 
+                        orbitControls: false,
+                        enableDamping: false
                     }}
                 />
             </div>

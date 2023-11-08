@@ -34,7 +34,7 @@ const name = state;
       };
 
     const modelStyle = {
-        width: '30%', // Asegura que haya tres modelos por fila
+        width: '30%', 
         marginBottom: '20px',
     };
 
