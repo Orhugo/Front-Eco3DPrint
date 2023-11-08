@@ -77,7 +77,7 @@ function UserLogin(props) {
 
                 <p>
                     Don't have an account?{' '}
-                    <Link to="/UserRegistration">Sign up</Link>
+                    <Link to="/Front-Eco3DPrint/UserRegistration">Sign up</Link>
                 </p>
             </form>
         </div>

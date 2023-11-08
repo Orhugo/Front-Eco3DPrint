@@ -1,59 +1,57 @@
 import React from "react";
 import "../styles/Profile.css";
-import { green } from "@mui/material/colors";
+import Catalog from "../views/Catalog";
 
 function Profile() {
   return (
     <>
-      <div className="general" style={{display:'inline-block'}}>
-        <div
-          className="user-container"
-          style={{ position: "absolute", top: 125, left: 50, display: 'inline-block', verticalAlign: 'top' }}
-        >
-          <div className="user-panel" style={{ backgroundColor: "gray" }}>
-            <div className="user-info">
-              <img src="user-profile-image.jpg" alt="User Profile" />
-              <h2>Nombre de Usuario</h2>
-              <p>@nombredeusuario</p>
-              <button>Seguir</button>
-              <button>Dar propina</button>
-              <button>Enviar mensaje</button>
+      <div className="flex h-screen w-[90%] pt-[7%]">
+        {/*general*/}
+
+        <div className="flex-col mr-10">
+          {/*izq*/}
+          <div className="h-[375px] w-[300px] bg-green-500 mb-[10px] rounded-lg flex flex-col">
+            <div className="flex flex-col items-center justify-center mt-7">
+              <div className="rounded-full bg-white h-[150px] w-[150px] flex items-center justify-center">
+                <img
+                  className="w-[150px] h-[150px] rounded-full"
+                  src="/vite.svg"
+                ></img>
+              </div>
+              <div className="mt-5">Nombre De Usuario</div>
+              <div className="flex items-center justify-center mt-5">
+                <button className="bg-blue-400 border mr-1">Seguir</button>
+                <button className="bg-blue-400 border mr-1">Tip</button>
+                <button className="bg-blue-400 border">Mensaje</button>
+              </div>
             </div>
-            <div className="user-stats">
-              <div>
-                <p>Seguidores</p>
-                <span>1000</span>
-              </div>
-              <div>
-                <p>Siguiendo</p>
-                <span>500</span>
-              </div>
-              <div>
-                <p>Diseños</p>
-                <span>50</span>
+            <div className="flex">
+              <div className="flex items-center justify-center bg-blue-400 w-[300px] h-[80px] rounded-lg mt-[27px]">
+                <p className="w-1/3 text-center">1000</p>
+                <p className="w-1/3 text-center">22</p>
+                <p className="w-1/3 text-center">67</p>
               </div>
             </div>
           </div>
-          <div
-            className="user-about"
-            style={{ backgroundColor: "gray", marginTop: "10px" }}
-          >
-            <h3>Acerca de mí</h3>
-            <p>Descripción del usuario y sus intereses.</p>
+          <div className="h-[350px] bg-green-700 rounded-lg">Buenas</div>
+        </div>
+
+        <div className="flex w-[90%] w-[700px] h-[735px] bg-gray-400 flex-col">
+          {/*der*/}
+          <div className="flex bg-red-500 w-[100%] h-[75px]">
+            <button className="w-[120px] h-[75px] mr-10 bg-white border-solid border-2 border-sky-500">
+              Favoritos
+            </button>
+            <button className="w-[120px] h-[75px] mr-10 bg-white border-solid border-2 border-sky-500">
+              Diseños
+            </button>
+            <button className="w-[120px] h-[75px] mr-10 bg-white border-solid border-2 border-sky-500">
+              Colecciones
+            </button>
           </div>
-        </div>
-
-        <div
-          className="user-actions"
-          style={{ backgroundColor: "green", width: 1000 }}
-        >
-          <button>Likes</button>
-          <button>Diseños</button>
-          <button>Likes del usuario</button>
-        </div>
-
-        <div className="user-designs">
-          {/* Aquí se mostrarían los diseños del usuario */}
+          <div>
+            <Catalog />
+          </div>
         </div>
       </div>
     </>

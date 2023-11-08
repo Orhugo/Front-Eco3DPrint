@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 
 const pages = ["Catalogo", "Subir Diseños", "Visualizar Diseños"];
 const referencias = ["/Front-Eco3DPrint/catalogo", "/Front-Eco3DPrint/subirArchivo", "/Front-Eco3DPrint/visualizarSTL"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "Logout"];
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -92,9 +92,6 @@ function NavBar() {
         break;
       case "Account":
         navigate('/Front-Eco3DPrint/ProfileConfig')
-        break;
-      case "Dashboard":
-        navigate('/Dashboard')
         break;
       case "Logout":
         break;
