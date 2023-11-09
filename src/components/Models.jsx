@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Models.css'
+import { StlViewer } from "react-stl-viewer";
 
 const Model = ({ onClick, modelName }) => {
     const [hovered, setHovered] = useState(false);
@@ -15,10 +16,14 @@ const Model = ({ onClick, modelName }) => {
     }
 
     const imgModelStyle = {
-        width: parent,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
         height: '70%',
         borderRadius: '15px 15px 0px 0px',
-        backgroundColor: 'rgba(255,255,255,1)'
+        backgroundColor: 'rgba(255,255,255,1)',
+        overflow: 'hidden'
     }
 
     const infoModelStyle={
@@ -45,9 +50,31 @@ const Model = ({ onClick, modelName }) => {
         setHovered(false)
     }
 
+    const style = {
+        width: "35vw",
+        height: "35vh",
+    };
+
+    const url = "Face.stl";
+
     return (
+
         <div className="w-[18%] m-[1%] aspect-square hover:cursor-pointer transition hover:scale-[1.03] duration-300" onClick={onClick} onMouseEnter={handleModelInfoEnter} onMouseLeave={handleModelInfoLeave}>
-            <div className="w-full h-[70%] rounded-t-[15px] bg-white"></div>
+            <div className="w-full h-[70%] rounded-t-[15px] bg-white">
+            {/* <StlViewer 
+                    style={style} 
+                    url={url}
+                    modelProps={{
+                        color: "#0a6bc1",
+                        panEnabled: false, 
+                        zoomEnabled: false, 
+                        rotateEnabled: false, 
+                        orbitControls: false,
+                        enableDamping: false,
+                        scale: 1.5
+                    }}
+            />  */}
+            </div>
             <div className="w-full h-[30%] rounded-b-[15px] bg-gray-400">
                 <div className="w-full flex px-[10px] pt-[10px]"> {modelName} </div>
                 <div></div>
