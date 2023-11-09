@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-function Comment(){
+function Comment(props){
 
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
@@ -15,8 +15,10 @@ function Comment(){
     const [likedComments, setLikedComments] = useState([]);
     const urlParams = new URLSearchParams(window.location.search);
     const location = useLocation();
-    const modelId = urlParams.get('id');
-    const userId = location.state.userInfo.id;
+    // const modelId = urlParams.get('id');
+    const modelId = props.modelId;
+    const userFromLocalStorage = localStorage.getItem("user");
+    const userId = userFromLocalStorage ? JSON.parse(userFromLocalStorage).id : 0;    
     const handleCommentChange = (e) => {
         setComment(e.target.value);
     };
@@ -181,6 +183,7 @@ function Comment(){
 
     return (
         <div className="comment-container">
+            <h1>Comments</h1>
             <h2>Add Comment</h2>
             <textarea
             rows="4"
@@ -190,8 +193,7 @@ function Comment(){
             onChange={handleCommentChange}
             />
             <button onClick={postComment}>Post Comment</button>
-    
-            <h2>Comments</h2>
+
             <ul>
                 {comments.map((c) => (
                     <li key={c.id}>
@@ -245,7 +247,6 @@ function Comment(){
                                                 </p>
                                                 {userId === reply.user.id && (
                                                 <div>
-                                                    <button onClick={() => editComment(reply.id)}>Edit Reply</button>
                                                     <button onClick={() => deleteComment(reply.id)}>Delete Reply</button>
                                                 </div>
                                                 )}

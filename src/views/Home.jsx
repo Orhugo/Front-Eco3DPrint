@@ -57,7 +57,6 @@ function Home() {
           <div className="flex flex-wrap justify-center font-ubuntu text-white">
             <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/subirArchivo')}}>Subir Archivo</button>
             <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/visualizarSTL')}}>Visualizar STL</button>
-            <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={handleComment}>Comentar</button>
             <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/ProfileConfig')}}>ModifyProfile</button>
             <button className="px-14 py-8 w-[85%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={handleLogout}>Sign out</button>
           </div>
