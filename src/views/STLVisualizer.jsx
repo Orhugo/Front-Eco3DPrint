@@ -20,7 +20,7 @@ const style = {
 export function VisualizarSTL() {
 
   const { state } = useLocation();
-  const url = state ? state + ".stl" : "Face.stl";
+  const url = state ? state : "thinker.stl";
   // const [url, setUrl] = useState(null);
   
   // useEffect(() => {
