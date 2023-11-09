@@ -43,6 +43,7 @@ const [modelUrlFinded, setModelUrlFinded] = useState(null);
        .then((response) => {
             const urlList = response.data;
             setUrls(urlList);
+            //Optimizar cogiendo solo las url que se muestren en el catalogo 
       })
        .catch((error) => {
          console.error('Error fetching urls data:', error);
@@ -71,7 +72,7 @@ const [modelUrlFinded, setModelUrlFinded] = useState(null);
 
 
     const handleModelClick = (modelId) => {
-        const idUrl = urlList[1].id_model;
+        //const idUrl = urlList[1].id_model;
         const finded = urlList.find((url) => url.id_model === modelId);
         
         //console.log(`Model ${modelId}`);

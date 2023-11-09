@@ -61,7 +61,7 @@ const Model = ({ onClick, modelName }) => {
 
         <div className="w-[18%] m-[1%] aspect-square hover:cursor-pointer transition hover:scale-[1.03] duration-300" onClick={onClick} onMouseEnter={handleModelInfoEnter} onMouseLeave={handleModelInfoLeave}>
             <div className="w-full h-[70%] rounded-t-[15px] bg-white">
-            <StlViewer 
+            {/* <StlViewer 
                     style={style} 
                     url={url}
                     modelProps={{
@@ -73,7 +73,7 @@ const Model = ({ onClick, modelName }) => {
                         enableDamping: false,
                         scale: 1.5
                     }}
-            /> 
+            />  */}
             </div>
             <div className="w-full h-[30%] rounded-b-[15px] bg-gray-400">
                 <div className="w-full flex px-[10px] pt-[10px]"> {modelName} </div>
