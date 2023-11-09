@@ -46,10 +46,10 @@ const Model = ({ onClick, modelName }) => {
     }
 
     return (
-        <div style={modelStyle} onClick={onClick} className='modelClass' onMouseEnter={handleModelInfoEnter} onMouseLeave={handleModelInfoLeave}>
-            <div style={imgModelStyle}></div>
-            <div style={infoModelStyle} className='infoModelClass'>
-                <div style={infoModelTitleBar}> {modelName} </div>
+        <div className="w-[18%] m-[1%] aspect-square hover:cursor-pointer transition hover:scale-[1.03] duration-300" onClick={onClick} onMouseEnter={handleModelInfoEnter} onMouseLeave={handleModelInfoLeave}>
+            <div className="w-full h-[70%] rounded-t-[15px] bg-white"></div>
+            <div className="w-full h-[30%] rounded-b-[15px] bg-gray-400">
+                <div className="w-full flex px-[10px] pt-[10px]"> {modelName} </div>
                 <div></div>
             </div>
         </div>
