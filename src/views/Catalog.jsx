@@ -56,21 +56,20 @@ const [modelUrlFinded, setModelUrlFinded] = useState(null);
     };
 
     const navigate = useNavigate();
-
-       // console.log(`Model with ID ${modelId} clicked.`);      
+    
 
     const handleModelClick = (modelId) => {
         const idUrl = urlList[1].id_model;
         const finded = urlList.find((url) => url.id_model === modelId);
         
-        console.log(`Model ${modelId}`);
-        console.log(`Model-URL ${idUrl}`);
+        //console.log(`Model ${modelId}`);
+        //console.log(`Model-URL ${idUrl}`);
         if(finded == null){
             navigate("/Front-Eco3DPrint/visualizarSTL", {
             state: finded
             });
         } else {
-            console.log(`URL ${finded.url}`);
+            //console.log(`URL ${finded.url}`);
             navigate("/Front-Eco3DPrint/visualizarSTL", {
             state: finded.url
             });

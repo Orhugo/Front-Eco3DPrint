@@ -60,7 +60,7 @@ const Model = ({ onClick, modelName }) => {
     return (
         <div style={modelStyle} onClick={onClick} className='modelClass' onMouseEnter={handleModelInfoEnter} onMouseLeave={handleModelInfoLeave}>
             <div style={imgModelStyle}>
-                {/* <StlViewer 
+                 <StlViewer 
                     style={style} 
                     url={url}
                     modelProps={{
@@ -72,7 +72,7 @@ const Model = ({ onClick, modelName }) => {
                         enableDamping: false,
                         scale: 1.5
                     }}
-                /> */}
+                /> 
             </div>
             <div style={infoModelStyle} className='infoModelClass'>
                 <div style={infoModelTitleBar}> {modelName} </div>
