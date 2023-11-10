@@ -136,7 +136,7 @@ const [modelUrlFinded, setModelUrlFinded] = useState(null);
 
             <div className="w-full h-fit mt-[6%] flex flex-wrap box-border animate-fade">
                 {catalogModels.map((model, index) => (
-                    <Models key={model.id} onClick={() => handleModelClick(model.id)} modelName={model.title}/>
+                    <Models key={model.id} onClick={() => handleModelClick(model.id)} modelName={model.title} modelUrl={model.mainUrl}/>
                 ))}
             </div>
             </div>
