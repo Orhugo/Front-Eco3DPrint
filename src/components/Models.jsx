@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './Models.css'
+import '../styles/Models.css'
 import {StlViewer} from "react-stl-viewer";
 
 const Model = ({onClick, modelName, modelUrl}) => {
