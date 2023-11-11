@@ -4,22 +4,13 @@ import { StlViewer } from "react-stl-viewer";
 import { useLocation } from 'react-router-dom';
 import Comments from "./Comment";
 
-// AWS.config.update({
-//   accessKeyId: 'TU_ACCESS_KEY_ID',
-//   secretAccessKey: 'TU_SECRET_ACCESS_KEY',
-// });
-
-// const s3 = new AWS.S3();
-
 const style = {
   top: 0,
   left: 0,
   width: "100vw",
   height: "100vh",
 };
-
 export function VisualizarSTL() {
-
   const { state } = useLocation();
   const url = state ? state : "thinker.stl";
   // const [url, setUrl] = useState(null);
