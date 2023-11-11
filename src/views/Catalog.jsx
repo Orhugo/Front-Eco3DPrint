@@ -1,72 +1,110 @@
-import { useState, useEffect } from "react";
-import React from "react";
-import { useLocation } from 'react-router-dom';
+import React, {useEffect, useState} from "react";
+import {useLocation, useNavigate} from 'react-router-dom';
 import Models from "../components/Models";
-import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/joy/CircularProgress';
 import axios from 'axios';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export function showCatalog() {
 
-const [catalogModels, setModels] = useState([]);
-const { state } = useLocation();
-const name = state;
+    const [catalogModels, setModels] = useState([]);
 
- useEffect(() => {
-     axios.get('http://localhost:8080/models/getAll')
-       .then((response) => {
-        if(name == null){
-            const filteredModels = response.data;
-            setModels(filteredModels);
-        } else {
-            const filteredModels = response.data.filter((model) => model.title.toLowerCase().includes(name.toLowerCase()));
-            setModels(filteredModels);
-        }
-      })
-       .catch((error) => {
-         console.error('Error fetching data:', error);
-      });
-   }, [name]);
+    const [urlList, setUrls] = useState([]);
 
-    const containerStyle = {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-evenly', 
-      };
+    const [showLoaderPrompt, setLoaderPrompt] = useState(true);
 
-    const modelStyle = {
-        width: '30%', // Asegura que haya tres modelos por fila
-        marginBottom: '20px',
-    };
+    const {state} = useLocation();
+    const nameSearch = state;
+    const [modelUrlFinded, setModelUrlFinded] = useState(null);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/models/getAll').then((response) => {
+            if (nameSearch == null) {
+                const filteredModels = response.data;
+                setModels(filteredModels);
+            } else {
+                const filteredModels = response.data.filter((model) => model.title.toLowerCase().includes(nameSearch.toLowerCase()));
+                setModels(filteredModels);
+            }
+        }).catch((error) => {
+            console.error('Error fetching models data:', error);
+        });
+        const timer = setTimeout(() => {
+            setLoaderPrompt(false);
+        }, 1000);
+        return () => clearTimeout(timer);
+
+    }, [nameSearch]);
 
     const navigate = useNavigate();
 
-       // console.log(`Model with ID ${modelId} clicked.`);      
-
-    const handleModelClick = (modelId) => {
-        if (modelId == 0) {
+    const handleModelClick = (mainUrl) => {
+        if(mainUrl == null){
             navigate("/Front-Eco3DPrint/visualizarSTL", {
-            state: "Face"
+                state: "thinker.stl"
             });
-        }else if(modelId == 1){
+        }else if(mainUrl.length < 1){
             navigate("/Front-Eco3DPrint/visualizarSTL", {
-                state: "Graisseur"
+                state: "thinker.stl"
             });
-        } else{
+        }else{
             navigate("/Front-Eco3DPrint/visualizarSTL", {
-                state: "thinker"
+                state: mainUrl
             });
         }
     }
 
-  return (
-    <div>
-        <div style={containerStyle}>
-            {catalogModels.map((model, index) => (
-             <Models key={model.id} style={modelStyle} onClick={() => handleModelClick(index)} modelName={model.title}/>
-        ))}
+    const [cathegory, setCathegory] = React.useState('');
+
+    const handleChange = (event) => {
+        setCathegory(event.target.value);
+
+    };
+
+    const pickerStyle = {
+        width: '170px',
+        marginBottom: '20px',
+        marginLeft: '47px'
+    };
+
+    return (
+        <div className="w-[60%] h-screen inline-block justify-start">
+            {showLoaderPrompt ? (
+                <div className="w-full h-full flex items-center text-center justify-center">
+                    <div className="w-[200px] h-fit flex items-center justify-center">
+                        <CircularProgress variant="plain"/>
+                    </div>
+                </div>
+            ):(
+                <div>
+                    <div style={pickerStyle}>
+                        <Box>
+                            <FormControl fullWidth>
+                                <InputLabel id="select-id">Categoria</InputLabel>
+                                <Select labelId="select-id" id="select-id" value={cathegory} label="Categoria"
+                                        onChange={handleChange}>
+                                    <MenuItem value={"Arte"}>Arte</MenuItem>
+                                    <MenuItem value={"Herramientas"}>Herramientas</MenuItem>
+                                    <MenuItem value={"Complementos"}>Complementos</MenuItem>
+                                    <MenuItem value={"Juguetes"}>Juguetes</MenuItem>
+                                    <MenuItem value={"Figuras"}>Figuras</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+                    </div>
+                    <div className="w-full h-fit mt-[6%] flex flex-wrap box-border animate-fade">
+                        {catalogModels.map((model, index) => (
+                            <Models key={model.id} onClick={() => handleModelClick(null)} modelName={model.title} modelUrl={model.mainUrl}/>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
-     </div>
-  );
+    );
 }
 
 export default showCatalog;

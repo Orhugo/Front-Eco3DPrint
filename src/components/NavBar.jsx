@@ -52,11 +52,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `calc(1em + ${theme.spacing(0)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "12ch",
+      width: "20ch",
       "&:focus": {
         width: "20ch",
       },
@@ -110,6 +110,12 @@ function NavBar() {
       state: searchTerm
      });
     }
+  }
+
+  const handleClick = () => {
+    navigate("/Front-Eco3DPrint/catalogo", {
+      state: searchTerm
+    });
   }
 
   return (
@@ -203,10 +209,21 @@ function NavBar() {
             ))}
           </Box>
 
-          <Search sx={{ flexGrow: 1, marginRight: '50px' }}>
-            <SearchIconWrapper>
+          <IconButton 
+            aria-label="search" 
+            sx={{
+              backgroundColor: 'rgba(84,180,220, 0.5)',
+              '&:hover': {
+                backgroundColor: 'rgba(84,180,220, 0.7)',
+              },
+            }}
+            onClick={handleClick}>
+            
               <SearchIcon />
-            </SearchIconWrapper>
+          </IconButton>
+
+          <Search sx={{ flexGrow: 1, marginRight: '10px' }}>
+           
             <StyledInputBase
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
