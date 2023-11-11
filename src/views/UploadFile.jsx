@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Dropzone from "../components/Dropzone";
 import TextField from "@mui/material/TextField";
+import { Print } from "@mui/icons-material";
+import PrintSettings from "../components/PrintSettings";
 
 function UploadFile() {
   const [title, setTitle] = useState("");
@@ -20,10 +22,9 @@ function UploadFile() {
   };
 
   return (
-    <div>
+    <div className="mt-[600px]">
       <div>
-        <h1>Upload File</h1>
-        <Dropzone title={title} description={description} />
+        <Dropzone title={title} description={description}/>
       </div>
       <div className="centerDetails">
         <h1>File details</h1>
@@ -47,6 +48,7 @@ function UploadFile() {
           />
         </div>
       </div>
+      <PrintSettings />
     </div>
   );
 }
