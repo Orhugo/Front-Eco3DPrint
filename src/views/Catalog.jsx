@@ -11,7 +11,8 @@ import Select from '@mui/material/Select';
 
 export function showCatalog() {
 
-    const [catalogModels, setModels] = useState([]);
+    const [catalogModels, setAllModels] = useState([]);
+    const [cathegorygModels, setCathegoryModels] = useState([]);
 
     const [urlList, setUrls] = useState([]);
 
@@ -25,10 +26,12 @@ export function showCatalog() {
         axios.get('http://localhost:8080/models/getAll').then((response) => {
             if (nameSearch == null) {
                 const filteredModels = response.data;
-                setModels(filteredModels);
+                setAllModels(filteredModels);
+                setCathegoryModels(filteredModels);
             } else {
                 const filteredModels = response.data.filter((model) => model.title.toLowerCase().includes(nameSearch.toLowerCase()));
-                setModels(filteredModels);
+                setAllModels(filteredModels);
+                setCathegoryModels(filteredModels);
             }
         }).catch((error) => {
             console.error('Error fetching models data:', error);
@@ -58,18 +61,32 @@ export function showCatalog() {
         }
     }
 
-    const [cathegory, setCathegory] = React.useState('');
+    const [cathegory, setCathegory] = useState("");
 
     const handleChange = (event) => {
-        setCathegory(event.target.value);
+        const selectedCategory = event.target.value;
+        setCathegory(selectedCategory);
+        
+        if(selectedCategory == "Todo"){
+            setCathegoryModels(catalogModels);
+        } else {
+            setCathegoryModels(catalogModels);
+            const cathegoryModels = catalogModels.filter((model) => model.cathegory == selectedCategory);
+            setCathegoryModels(cathegoryModels);
+        }
+    };
 
+    const boxStyle = {
+        marginTop: '75px',
+        width: '150px',
+        marginBottom: '20px',        
     };
 
     const pickerStyle = {
-        width: '170px',
-        marginBottom: '20px',
-        marginLeft: '47px'
+        backgroundColor: 'white',
+        border: '1px solid black',
     };
+    
 
     return (
         <div className="w-[60%] h-screen inline-block justify-start">
@@ -81,13 +98,13 @@ export function showCatalog() {
                 </div>
             ):(
                 <div>
-                    <div style={pickerStyle}>
-                        <Box>
-                            <FormControl fullWidth>
-                                <InputLabel id="select-id">Categoria</InputLabel>
+                    <div>
+                        <Box style={boxStyle}>
+                            <FormControl fullWidth >
+                                <InputLabel id="select-id" >Categoria</InputLabel>
                                 <Select labelId="select-id" id="select-id" value={cathegory} label="Categoria"
-                                        onChange={handleChange}>
-                                    <MenuItem value={"Arte"}>Arte</MenuItem>
+                                        onChange={handleChange} style={pickerStyle}>
+                                    <MenuItem value={"Todo"}>Todo</MenuItem>
                                     <MenuItem value={"Herramientas"}>Herramientas</MenuItem>
                                     <MenuItem value={"Complementos"}>Complementos</MenuItem>
                                     <MenuItem value={"Juguetes"}>Juguetes</MenuItem>
@@ -97,7 +114,7 @@ export function showCatalog() {
                         </Box>
                     </div>
                     <div className="w-full h-fit mt-[6%] flex flex-wrap box-border animate-fade">
-                        {catalogModels.map((model, index) => (
+                        {cathegorygModels.map((model, index) => (
                             <Models key={model.id} onClick={() => handleModelClick(null)} modelName={model.title} modelUrl={model.mainUrl}/>
                         ))}
                     </div>
