@@ -58,18 +58,34 @@ export function showCatalog() {
         }
     }
 
-    const [cathegory, setCathegory] = React.useState('');
+    const [cathegory, setCathegory] = useState("");
 
     const handleChange = (event) => {
-        setCathegory(event.target.value);
+        const selectedCategory = event.target.value;
+        setCathegory(selectedCategory);
+       
+        console.log("*******");
+        console.log("*******");
+        console.log("*******");
+        console.log("*******");
+        console.log("Categoría seleccionada:", selectedCategory);
+        console.log("*******");
+        console.log("*******");
+        console.log("*******");
+        console.log("*******");
+    };
 
+    const boxStyle = {
+        marginTop: '75px',
+        width: '150px',
+        marginBottom: '20px',        
     };
 
     const pickerStyle = {
-        width: '170px',
-        marginBottom: '20px',
-        marginLeft: '47px'
+        backgroundColor: 'white',
+        border: '1px solid black',
     };
+    
 
     return (
         <div className="w-[60%] h-screen inline-block justify-start">
@@ -81,12 +97,12 @@ export function showCatalog() {
                 </div>
             ):(
                 <div>
-                    <div style={pickerStyle}>
-                        <Box>
-                            <FormControl fullWidth>
-                                <InputLabel id="select-id">Categoria</InputLabel>
+                    <div>
+                        <Box style={boxStyle}>
+                            <FormControl fullWidth >
+                                <InputLabel id="select-id" >Categoria</InputLabel>
                                 <Select labelId="select-id" id="select-id" value={cathegory} label="Categoria"
-                                        onChange={handleChange}>
+                                        onChange={handleChange} style={pickerStyle}>
                                     <MenuItem value={"Arte"}>Arte</MenuItem>
                                     <MenuItem value={"Herramientas"}>Herramientas</MenuItem>
                                     <MenuItem value={"Complementos"}>Complementos</MenuItem>
