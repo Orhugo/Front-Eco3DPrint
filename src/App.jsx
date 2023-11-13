@@ -11,6 +11,7 @@ import UserLogin from "./views/UserLogin";
 import Comment from "./views/Comment";
 import Tutorials from "./views/TutorialsCatalog";
 import TutorialHandler from "./views/TutorialHandler";
+import Profile from "./views/Profile";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/Front-Eco3DPrint/Comment" element={<Comment />} />
             <Route path="/Front-Eco3DPrint/tutorials" element={<Tutorials />} />
             <Route path="/Front-Eco3DPrint/tutorials/:id" element={<TutorialHandler/>} />
+            <Route path="/Front-Eco3DPrint/Profile" element={<Profile />} />
           </Routes>
         </div>
       </Router>

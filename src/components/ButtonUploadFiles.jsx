@@ -1,78 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { Form } from "react-router-dom";
 
 function ButtonUploadFiles({ files, title, description }) {
-  const uploadFiles = () => {
-    const formData = new FormData();
-    let url = "";
-    let modelId;
+  const [uploading, setUploading] = useState(false);
 
-    files.forEach((file) => {
-      formData.append("file", file);
-      axios
-        .post("http://localhost:8080/aws/upload", formData)
-        .then((response) => {
-          // handle the response
+  const uploadFiles = async () => {
+    setUploading(true);
+    try {
+      const urls = await Promise.all(
+        files.map(async (file) => {
+          const formData = new FormData();
+          formData.append("file", file);
+          const uploadResponse = await axios.post(
+            "http://localhost:8080/aws/upload",
+            formData
+          );
           alert("File uploaded successfully");
-          console.log(response);
           const uploadedFileName = file.name;
-          console.log(uploadedFileName);
-          axios
-            .get("http://localhost:8080/aws/getFileUrl", {
+          const urlResponse = await axios.get(
+            "http://localhost:8080/aws/getFileUrl",
+            {
               params: {
                 key: uploadedFileName,
               },
-            })
-            .then((urlResponse) => {
-              // Maneja la respuesta con la URL del archivo
-              console.log("File URL:", urlResponse.data);
-              url = urlResponse.data;
-              axios
-                .post("http://localhost:8080/models/add", {
-                  category: "1",
-                  description: description,
-                  tags: "whatever",
-                  title: title,
-                  author_id: 10,
-                  print_setting_id: null,
-                })
-                .then((response) => {
-                  axios
-                    .get("http://localhost:8080/models/getLastModelId", {})
-                    .then((response) => {
-                      modelId = response.data;
-                      axios.post("http://localhost:8080/url/add", {
-                        id_model: modelId,
-                        url: url,
-                      });
-                    })
-                    .catch((error) => {
-                      console.log(error);
-                    });
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            })
-            .catch((urlError) => {
-              // Maneja errores en la obtención de la URL
-              console.error("Error getting file URL", urlError);
-            });
+            }
+          );
+          return urlResponse.data;
         })
-        .catch((error) => {
-          // handle errors
-          alert("Error uploading file");
-          console.log(error);
-        });
-      console.log(formData.get("file"));
-      formData.delete("file");
-    });
+      );
+
+      const modelResponse = await axios.post(
+        "http://localhost:8080/models/add",
+        {
+          category: "1",
+          description: description,
+          tags: "whatever",
+          title: title,
+          author_id: 10,
+          print_setting_id: null,
+        }
+      );
+      const modelId = modelResponse.data;
+
+      await Promise.all(
+        urls.map((url) =>
+          axios.post("http://localhost:8080/url/add", {
+            id_model: modelId,
+            url: url,
+          })
+        )
+      );
+
+      alert("Files uploaded and model created successfully");
+    } catch (error) {
+      console.error("Error uploading or getting file URL:", error);
+      alert("Error uploading files");
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
     <>
-      <button onClick={uploadFiles}>Subir Archivos</button>
+      <button onClick={uploadFiles} disabled={uploading} className="text-gray-900 bg-gray-100 hover:bg-gray-400 focus:ring-4 focus:outline-2 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 mb-2">
+        {uploading ? "Uploading..." : "Subir Archivos"}
+      </button>
     </>
   );
 }
