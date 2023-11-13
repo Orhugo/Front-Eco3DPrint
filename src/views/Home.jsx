@@ -58,6 +58,7 @@ function Home() {
             <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/subirArchivo')}}>Subir Archivo</button>
             <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/visualizarSTL')}}>Visualizar STL</button>
             <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/ProfileConfig')}}>ModifyProfile</button>
+            <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/tutorials')}}>Tutorials</button>
             <button className="px-14 py-8 w-[85%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={handleLogout}>Sign out</button>
           </div>
       )}
@@ -66,6 +67,7 @@ function Home() {
             <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/subirArchivo')}}>Subir Archivo</button>
             <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/visualizarSTL')}}>Visualizar STL</button>
             <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/UserRegistration')}}>Registrate</button>
+            <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/tutorials')}}>Tutorials</button>
             <button className="px-14 py-8 w-[40%] m-[2%] text-[20px] rounded-2xl transition hover:scale-105 hover:shadow-dark-spread bg-gradient-to-br from-sky-400 to-blue-800" onClick={() => {navigate('/Front-Eco3DPrint/UserLogin')}}>Sign in</button>
           </div>
       )}
