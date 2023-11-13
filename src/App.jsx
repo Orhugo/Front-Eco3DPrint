@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Home from "./views/Home";
 import STLVisualizer from "./views/STLVisualizer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -10,29 +10,34 @@ import Catalog from "./views/Catalog";
 import UserLogin from "./views/UserLogin";
 import Comment from "./views/Comment";
 import Profile from "./views/Profile";
+import { UserProvider } from './UserContext';
+import Budget from "./views/Budget";
 
 
 function App() {
   return (
-    <div className="h-screen w-full flex justify-center">
-
-      <Router>
-      <NavBar/>
-        <div className="w-full h-screen flex justify-center items-center">
-          <Routes>
-            <Route path="/Front-Eco3DPrint" element={<Home />} />
-            <Route path="/Front-Eco3DPrint/subirArchivo" element={<UploadFile />} />
-            <Route path="/Front-Eco3DPrint/visualizarSTL" element={<STLVisualizer />} />
-            <Route path="/Front-Eco3DPrint/catalogo" element={<Catalog />} />
-            <Route path="/Front-Eco3DPrint/UserRegistration" element={<UserRegistration />} />
-            <Route path="/Front-Eco3DPrint/UserLogin" element={<UserLogin />} />
-            <Route path="/Front-Eco3DPrint/ProfileConfig" element={<ProfileConfig />} />
-            <Route path="/Front-Eco3DPrint/Comment" element={<Comment />} />
-            <Route path="/Front-Eco3DPrint/Profile" element={<Profile />} />
-          </Routes>
-        </div>
-      </Router>
-    </div>
+    <UserProvider>
+      <div className="h-screen w-full flex justify-center">
+        <Router>
+          <NavBar/>
+            <div className="w-full h-screen flex justify-center items-center">
+              <Routes>
+                <Route path="/Volume" element={<Home />} />
+                <Route path="/Volume/subirArchivo" element={<UploadFile />} />
+                <Route path="/Volume/visualizarSTL" element={<STLVisualizer />} />
+                <Route path="/Volume/catalogo" element={<Catalog />} />
+                <Route path="/Volume/UserRegistration" element={<UserRegistration />} />
+                <Route path="/Volume/UserLogin" element={<UserLogin />} />
+                <Route path="/Volume/ProfileConfig" element={<ProfileConfig />} />
+                <Route path="/Volume/Comment" element={<Comment />} />
+                <Route path="/Volume/Profile" element={<Profile />} />
+                <Route path="/Volume/CalcularPresupuesto" element={<Budget />} />
+              </Routes>
+            </div>
+        </Router>
+      </div>
+    </UserProvider>
+    
   );
 }
 
