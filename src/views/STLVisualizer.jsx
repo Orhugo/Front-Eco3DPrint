@@ -3,6 +3,7 @@ import React from "react";
 import { StlViewer } from "react-stl-viewer";
 import { useLocation } from 'react-router-dom';
 import Comments from "./Comment";
+import ModelLikes from "./ModelLikesHandler";
 
 const style = {
   top: 0,
@@ -53,6 +54,15 @@ export function VisualizarSTL() {
           }}
         />
       </div>
+
+      <div style={{display: 'center'}} className="comments-container">
+        {/* There should be model ID variable in the STL Visualizer component  */}
+        {/* If this is implemented, the line below should be changed to: */}
+        {/* <Comments modelId={modelId} /> */}
+        {/* #TO DO */}
+        <ModelLikes modelId={3}/>
+      </div>
+
 
       <div style={{display: 'center'}} className="comments-container">
         {/* There should be model ID variable in the STL Visualizer component  */}
