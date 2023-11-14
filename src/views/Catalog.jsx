@@ -47,15 +47,15 @@ export function showCatalog() {
 
     const handleModelClick = (mainUrl) => {
         if(mainUrl == null){
-            navigate("/Front-Eco3DPrint/visualizarSTL", {
+            navigate("/Volume/visualizarSTL", {
                 state: "thinker.stl"
             });
         }else if(mainUrl.length < 1){
-            navigate("/Front-Eco3DPrint/visualizarSTL", {
+            navigate("/Volume/visualizarSTL", {
                 state: "thinker.stl"
             });
         }else{
-            navigate("/Front-Eco3DPrint/visualizarSTL", {
+            navigate("/Volume/visualizarSTL", {
                 state: mainUrl
             });
         }
