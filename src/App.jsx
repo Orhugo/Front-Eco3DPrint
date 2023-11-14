@@ -10,13 +10,11 @@ import Catalog from "./views/Catalog";
 import UserLogin from "./views/UserLogin";
 import Comment from "./views/Comment";
 import Profile from "./views/Profile";
-import { UserProvider } from './UserContext';
 import Budget from "./views/Budget";
 
 
 function App() {
   return (
-    <UserProvider>
       <div className="h-screen w-full flex justify-center">
         <Router>
           <NavBar/>
@@ -36,7 +34,6 @@ function App() {
             </div>
         </Router>
       </div>
-    </UserProvider>
     
   );
 }

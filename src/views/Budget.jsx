@@ -1,8 +1,9 @@
-import React, { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { StlViewer } from 'react-stl-viewer';
-import * as THREE from 'three';
-import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+import React, { useCallback, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import { StlViewer } from "react-stl-viewer";
+import * as THREE from "three";
+import { STLLoader } from "three/addons/loaders/STLLoader.js";
+import axios from "axios";
 
 function Budget() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -18,54 +19,28 @@ function Budget() {
       if (geometry) {
         const dimensions = getDimensions(geometry);
         setModelDimensions(dimensions);
-        console.log('Dimensiones del modelo:', dimensions);
-
-        const volume = calculateVolume(geometry);
-        setModelVolume(volume);
-        console.log('Volumen del modelo:', volume);
-      } else {
-        console.error('Error al cargar la geometría del modelo.');
+        console.log("Dimensiones del modelo:", dimensions);
       }
+      processStl(acceptedFiles[0]);
     });
   }, []);
+
+  async function processStl(file) {
+    let formData = new FormData();
+    formData.append("file", file);
+    let response = await axios.post("http://127.0.0.1:5000/process-stl", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    console.log(response.data.volume);
+    setModelVolume(response.data.volume / 1000);
+  }
 
   const getDimensions = (geometry) => {
     const box = new THREE.Box3().setFromObject(new THREE.Mesh(geometry));
     const size = box.getSize(new THREE.Vector3());
     return size;
-  };
-
-  const calculateVolume = (geometry) => {
-    const position = geometry.attributes.position;
-
-    const vertices = [];
-    const count = position.count;
-
-    for (let i = 0; i < count; i++) {
-      const vertex = new THREE.Vector3(
-        position.getX(i),
-        position.getY(i),
-        position.getZ(i)
-      );
-      vertices.push(vertex);
-    }
-
-    let volume = 0;
-
-    for (let i = 0; i < vertices.length; i += 3) {
-      const v0 = vertices[i];
-      const v1 = vertices[i + 1];
-      const v2 = vertices[i + 2];
-
-      const v0v1 = v1.clone().sub(v0);
-      const v0v2 = v2.clone().sub(v0);
-
-      const tetrahedronVolume = v0v1.cross(v0v2).length() / 6;
-      volume += tetrahedronVolume;
-    }
-
-    const scaledVolume = volume * Math.pow(modelScale, 3);
-    return scaledVolume;
   };
 
   const handleScaleChange = (e) => {
@@ -75,7 +50,7 @@ function Budget() {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: { 'model/stl': ['.stl'] },
+    accept: { "model/stl": [".stl"] },
   });
 
   return (
@@ -89,7 +64,7 @@ function Budget() {
                 url={URL.createObjectURL(uploadedFiles[0])}
                 orbitControls
                 modelProps={{
-                  color: 'gray',
+                  color: "gray",
                   positionX: 0,
                   positionY: 0,
                   scale: modelScale,
@@ -103,14 +78,12 @@ function Budget() {
           <div>
             <p>Información del modelo:</p>
             <div>
-              <p>Ancho: {modelDimensions.x}</p>
-              <p>Alto: {modelDimensions.y}</p>
-              <p>Profundidad: {modelDimensions.z}</p>
+              <p>Ancho: {modelDimensions.x.toFixed(2)}</p>
+              <p>Alto: {modelDimensions.y.toFixed(2)}</p>
+              <p>Profundidad: {modelDimensions.z.toFixed(2)}</p>
             </div>
 
-            {modelVolume !== null && (
-              <p>Volumen del modelo: {modelVolume}</p>
-            )}
+            {modelVolume !== null && <p>Volumen del modelo: {modelVolume.toFixed(2)}</p>}
 
             <label>
               Cambiar tamaño:
