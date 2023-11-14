@@ -15,7 +15,7 @@ import Budget from "./views/Budget";
 
 function App() {
   return (
-      <div className="h-screen w-full flex justify-center">
+      <div className="h-screen w-full flex justify-center overflow-scroll">
         <Router>
           <NavBar/>
             <div className="w-full h-screen flex justify-center items-center">

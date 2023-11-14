@@ -19,7 +19,7 @@ function Profile() {
                   src="/vite.svg"
                 ></img>
               </div>
-              <div className="mt-5">{user.username}</div>
+              <div className="mt-5">{user !== null && <p>{user.name}</p>}</div>
               <div className="flex items-center justify-center mt-5">
                 <button className="bg-blue-400 border mr-1">Seguir</button>
                 <button className="bg-blue-400 border mr-1">Tip</button>
