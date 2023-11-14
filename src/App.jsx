@@ -9,6 +9,8 @@ import NavBar from "./components/NavBar";
 import Catalog from "./views/Catalog";
 import UserLogin from "./views/UserLogin";
 import Comment from "./views/Comment";
+import Tutorials from "./views/TutorialsCatalog";
+import TutorialHandler from "./views/TutorialHandler";
 import Profile from "./views/Profile";
 import Budget from "./views/Budget";
 
@@ -34,7 +36,6 @@ function App() {
             </div>
         </Router>
       </div>
-    
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import "../styles/Modal.css"
 
 function Comment(props){
 
@@ -13,6 +14,9 @@ function Comment(props){
     const [newReply, setNewReply] = useState("");
     const [repliesForCommentId, setRepliesForCommentId] = useState(null);
     const [likedComments, setLikedComments] = useState([]);
+    const [likedUsers, setLikedUsers] = useState([]);
+    const [showLikedUsers, setShowLikedUsers] = useState(false);
+    const [modal, setModal] = useState(false);
     const urlParams = new URLSearchParams(window.location.search);
     const location = useLocation();
     // const modelId = urlParams.get('id');
@@ -81,23 +85,60 @@ function Comment(props){
     
 
     const likeComment = (commentId) => {
-        axios.post(`http://localhost:8080/comments/like/${commentId}?userId=${userId}`)
-        .then((response) => {
-            setLikedComments([...likedComments, commentId]);
-        })
-        .catch((error) => {
-            console.error("Error liking comment:", error);
-        });
+        axios
+            .post(`http://localhost:8080/comments/like/${commentId}?userId=${userId}`)
+            .then((response) => {
+                const updatedComments = comments.map((c) =>
+                    c.id === commentId ? { ...c, likeCounter: response.data.likeCounter } : c
+                );
+                setComments(updatedComments);
+                setLikedComments([...likedComments, commentId]);
+            })
+            .catch((error) => {
+                console.error("Error liking comment:", error);
+            });
     };
-
+    
     const dislikeComment = (commentId) => {
         axios.delete(`http://localhost:8080/comments/dislike/${commentId}?userId=${userId}`)
         .then((response) => {
             setLikedComments(likedComments.filter((id) => id !== commentId));
+    
+            // Update the comments state to decrease the likeCounter for the specific comment
+            setComments((prevComments) =>
+                prevComments.map((c) =>
+                    c.id === commentId ? { ...c, likeCounter: c.likeCounter - 1 } : c
+                )
+            );
         })
         .catch((error) => {
             console.error("Error disliking comment:", error);
         });
+    };
+
+    const fetchLikedUsers = async (commentId) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/comments/userInteractions/${commentId}`);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching liked users:", error);
+            return [];
+        }
+    };
+
+    const toggleModal = async (commentId) => {
+        if(modal){
+            setModal(!modal)
+            return;
+        }
+        try {
+            const likedUsersData = await fetchLikedUsers(commentId);
+            setModal(!modal)
+            setLikedUsers(likedUsersData); // Fix: Set the likedUsers state
+            setShowLikedUsers(commentId);
+        } catch (error) {
+            console.error("Error fetching liked users:", error);
+        }
     };
 
     const toggleReplies = (commentId) => {
@@ -215,7 +256,34 @@ function Comment(props){
                                     <br />
                                     {c.content}
                                 </p>
-                                <p>Like Counter: {c.likeCounter}</p>
+                                <button onClick={() => {
+                                    if(c.likeCounter > 0) {
+                                        toggleModal(c.id);
+                                    }
+                                }}>Like Counter: {c.likeCounter}</button>
+
+                                {modal && (
+                                    <div className="modal">
+                                        <div onClick={toggleModal} className="overlay"></div>
+                                        <div className="modal-bg">
+                                            <div className="Header">
+                                                <p>{c.likeCounter} Comment likes</p>
+                                            </div>
+                                            <div className="modal-content">
+                                                
+                                                <ul>
+                                                    {likedUsers.map((user) => (
+                                                        <li key={user.id}>{user.name} {user.lastname}</li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                            <button className="close-modal" onClick={toggleModal}>
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                                
 
                             </div>
                         )}
