@@ -27,7 +27,7 @@ function UserLogin(props) {
                     setUser(user);
                     localStorage.setItem('user', JSON.stringify(user));
                     localStorage.setItem('isLoggedIn', true);
-                    navigate('/Front-Eco3DPrint', {state: {user: user}});
+                    navigate('/Volume', {state: {user: user}});
                 } else {
                     setLoginError('Mail or/and password incorrect. Try again');
                 }
@@ -77,7 +77,7 @@ function UserLogin(props) {
 
                 <p>
                     Don't have an account?{' '}
-                    <Link to="/Front-Eco3DPrint/UserRegistration">Sign up</Link>
+                    <Link to="/Volume/UserRegistration">Sign up</Link>
                 </p>
             </form>
         </div>

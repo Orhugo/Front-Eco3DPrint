@@ -3,6 +3,7 @@ import "../styles/Profile.css";
 import Catalog from "../views/Catalog";
 
 function Profile() {
+  const user = JSON.parse(localStorage.getItem('user'));
   return (
     <>
       <div className="flex h-screen w-[90%] pt-[7%]">
@@ -18,7 +19,7 @@ function Profile() {
                   src="/vite.svg"
                 ></img>
               </div>
-              <div className="mt-5">Nombre De Usuario</div>
+              <div className="mt-5">{user !== null && <p>{user.name}</p>}</div>
               <div className="flex items-center justify-center mt-5">
                 <button className="bg-blue-400 border mr-1">Seguir</button>
                 <button className="bg-blue-400 border mr-1">Tip</button>
@@ -36,7 +37,7 @@ function Profile() {
           <div className="h-[350px] bg-green-700 rounded-lg">Buenas</div>
         </div>
 
-        <div className="flex w-[90%] w-[700px] h-[735px] bg-gray-400 flex-col">
+        <div className="flex w-[90%] h-[735px] bg-gray-400 flex-col">
           {/*der*/}
           <div className="flex bg-red-500 w-[100%] h-[75px]">
             <button className="w-[120px] h-[75px] mr-10 bg-white border-solid border-2 border-sky-500">

@@ -14,30 +14,6 @@ const style = {
 export function VisualizarSTL() {
   const { state } = useLocation();
   const url = state ? state : "thinker.stl";
-  // const [url, setUrl] = useState(null);
-  
-  // useEffect(() => {
-  //   // Nombre del archivo en S3
-  //   const s3FileName = "1697792052233_Face.stl";
-
-  //   // Nombre del bucket en S3
-  //   const s3BucketName = "stl-models-bucket";
-
-  //   // Llama a getObject para obtener el archivo desde S3
-  //   s3.getObject({ Bucket: s3BucketName, Key: s3FileName }, (err, data) => {
-  //     if (err) {
-  //       console.error("Error al obtener el archivo desde S3:", err);
-  //     } else {
-  //       // URL del archivo en S3
-  //       const s3FileUrl = data.Location;
-  //       setUrl(s3FileUrl);
-  //     }
-  //   });
-  // }, []);
-
-  // if (!url) {
-  //   return <div>Cargando...</div>;
-  // }
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}} className="wrapper">

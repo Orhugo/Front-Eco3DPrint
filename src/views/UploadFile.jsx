@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dropzone from "../components/Dropzone";
 import TextField from "@mui/material/TextField";
 import { Print } from "@mui/icons-material";
 import PrintSettings from "../components/PrintSettings";
+import { useNavigate } from 'react-router-dom';
 
 function UploadFile() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -21,35 +25,48 @@ function UploadFile() {
     }
   };
 
+  useEffect(() => {
+    // Check if user is null and navigate accordingly
+    if (user === null) {
+      navigate('/Volume/UserRegistration');
+    }
+  }, [user, navigate]);
+
   return (
-    <div className="mt-[600px]">
+    <>
       <div>
-        <Dropzone title={title} description={description}/>
+        {user !== null ? (
+          <div className="mt-[600px]">
+            <div>
+              <Dropzone title={title} description={description} />
+            </div>
+            <div className="centerDetails">
+              <h1>File details</h1>
+              <div className="fileDetails">
+                Title (required){" "}
+                <TextField
+                  id="outlined-basic"
+                  label=""
+                  variant="outlined"
+                  onBlur={handleOnBlurTitle}
+                />
+              </div>
+              <div className="fileDetails">
+                Description (required){" "}
+                <TextField
+                  id="outlined-basic"
+                  multiline
+                  label=""
+                  variant="outlined"
+                  onBlur={handleOnBlurDescription}
+                />
+              </div>
+            </div>
+            <PrintSettings />
+          </div>
+        ) : null}
       </div>
-      <div className="centerDetails">
-        <h1>File details</h1>
-        <div className="fileDetails">
-          Title (required){" "}
-          <TextField
-            id="outlined-basic"
-            label=""
-            variant="outlined"
-            onBlur={handleOnBlurTitle}
-          />
-        </div>
-        <div className="fileDetails">
-          Description (required){" "}
-          <TextField
-            id="outlined-basic"
-            multiline
-            label=""
-            variant="outlined"
-            onBlur={handleOnBlurDescription}
-          />
-        </div>
-      </div>
-      <PrintSettings />
-    </div>
+    </>
   );
 }
 
