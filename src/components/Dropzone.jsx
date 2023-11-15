@@ -6,11 +6,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "../styles/UploadFile.css";
 import axios from "axios";
 import ButtonUploadFiles from "./ButtonUploadFiles";
+import PrintSettings from "./PrintSettings";
 
 /* The `Dropzone` function is a React component that allows users to drag and drop files or click to
 select files. It uses the `useDropzone` hook from the `react-dropzone` library to handle the file
 drop functionality. */
-function Dropzone({ title, description }) {
+function Dropzone({ info }) {
   const [files, setFiles] = useState([]);
   const [rejected, setRejected] = useState([]);
 
@@ -65,6 +66,7 @@ function Dropzone({ title, description }) {
   return (
     <>
       <div>
+        <button onClick={() => {console.log(info)}}>imprimir info</button>
         {/* General */}
         <div {...getRootProps()} className="bg-white rounded">
           <input {...getInputProps()} />
@@ -80,15 +82,18 @@ function Dropzone({ title, description }) {
         <div className="flex justify-end mt-5">
           {/* Preview */}
           <div className="">
-            <button type="button" onClick={removeAll} className="text-gray-900 bg-red-400 hover:bg-red-600 focus:ring-4 focus:outline-2 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 mr-2 mb-2">
+            <button
+              type="button"
+              onClick={removeAll}
+              className="text-gray-900 bg-red-400 hover:bg-red-600 focus:ring-4 focus:outline-2 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 mr-2 mb-2"
+            >
               Eliminar Todos
             </button>
           </div>
 
           <ButtonUploadFiles
             files={files}
-            title={title}
-            description={description}
+            info={info}
           />
         </div>
 
@@ -148,12 +153,6 @@ function Dropzone({ title, description }) {
           </li>
         ))}
       </ul>
-
-      <div>
-        <p>
-          {title},{description}
-        </p>
-      </div>
     </>
   );
 }

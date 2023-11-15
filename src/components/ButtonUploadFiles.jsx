@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function ButtonUploadFiles({ files, title, description }) {
+function ButtonUploadFiles({ files, info }) {
   const [uploading, setUploading] = useState(false);
 
   const uploadFiles = async () => {
@@ -33,9 +33,9 @@ function ButtonUploadFiles({ files, title, description }) {
         "http://localhost:8080/models/add",
         {
           category: "1",
-          description: description,
+          description: info.description,
           tags: "whatever",
-          title: title,
+          title: info.title,
           author_id: 10,
           print_setting_id: null,
         }
