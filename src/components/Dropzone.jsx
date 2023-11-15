@@ -66,7 +66,6 @@ function Dropzone({ info }) {
   return (
     <>
       <div>
-        <button onClick={() => {console.log(info)}}>imprimir info</button>
         {/* General */}
         <div {...getRootProps()} className="bg-white rounded">
           <input {...getInputProps()} />

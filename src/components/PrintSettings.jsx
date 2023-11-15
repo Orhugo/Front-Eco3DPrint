@@ -13,17 +13,8 @@ function PrintSettings() {
     modeloImpresora: "",
     resolucion: "",
     soportes: "",
+    categoria: "",
   });
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [marcaFilamento, setMarcaFilamento] = useState("");
-  const [colorFilamento, setColorFilamento] = useState("");
-  const [materialFilamento, setMaterialFilamento] = useState("");
-  const [relleno, setRelleno] = useState("");
-  const [marcaImpresora, setMarcaImpresora] = useState("");
-  const [modeloImpresora, setModeloImpresora] = useState("");
-  const [resolucion, setResolucion] = useState("");
-  const [soportes, setSoportes] = useState("");
 
   const handleOnBlurTitle = (event) => {
     const titulo = event.target.value;
@@ -75,6 +66,11 @@ function PrintSettings() {
     setInfo((prevInfo) => ({ ...prevInfo, soportes: supports }));
   };
 
+  const handleCategoria = (event) => {
+    const categoria = event.target.value;
+    setInfo((prevInfo) => ({ ...prevInfo, categoria: categoria }));
+  };
+
   return (
     <div>
       <Dropzone info={info} />
@@ -84,7 +80,7 @@ function PrintSettings() {
         <input
           type="text"
           id="resolucion"
-          className="w-full p-2 border rounded mb-[4px]"
+          className="w-full p-2 border rounded mb-4"
           onBlur={handleOnBlurTitle}
         />
       </div>
@@ -93,21 +89,41 @@ function PrintSettings() {
         <input
           type="text"
           id="resolucion"
-          className="w-full p-2 border rounded mb-[4px]"
+          className="w-full p-2 border rounded mb-4"
           onBlur={handleOnBlurDescription}
           variant="outlined"
         />
       </div>
       <div className="mb-4">
-        <label for="marcaFilamento" className="block">
+        <label htmlFor="marcaFilamento" className="block">
+          Categoría
+        </label>
+        <select
+          defaultValue=""
+          id="categoria"
+          className="w-full p-2 border rounded"
+          onChange={handleCategoria}
+        >
+          <option value="" disabled>
+            Seleccione una opción
+          </option>
+          <option value="Herramientas">Herramientas</option>
+          <option value="Complementos">Complementos</option>
+          <option value="Juguetes">Juguetes</option>
+          <option value="Figuras">Figuras</option>
+        </select>
+      </div>
+      <div className="mb-4">
+        <label htmlFor="marcaFilamento" className="block">
           Marca del Filamento
         </label>
         <select
+          defaultValue=""
           id="marcaFilamento"
           className="w-full p-2 border rounded"
           onChange={handleMarcaFilamento}
         >
-          <option value="" disabled selected>
+          <option value="" disabled>
             Seleccione una opción
           </option>
           <option value="marca1">Marca 1</option>
@@ -116,15 +132,16 @@ function PrintSettings() {
       </div>
 
       <div className="mb-4">
-        <label for="colorFilamento" className="block">
+        <label htmlFor="colorFilamento" className="block">
           Color del Filamento
         </label>
         <select
+          defaultValue=""
           id="colorFilamento"
           className="w-full p-2 border rounded"
           onChange={handleColorFilamento}
         >
-          <option value="" disabled selected>
+          <option value="" disabled>
             Seleccione una opción
           </option>
           <option value="color1">Color 1</option>
@@ -133,15 +150,16 @@ function PrintSettings() {
       </div>
 
       <div className="mb-4">
-        <label for="materialFilamento" className="block">
+        <label htmlFor="materialFilamento" className="block">
           Material del Filamento
         </label>
         <select
+          defaultValue=""
           id="materialFilamento"
           className="w-full p-2 border rounded"
           onChange={handleMaterialFilamento}
         >
-          <option value="" disabled selected>
+          <option value="" disabled>
             Seleccione una opción
           </option>
           <option value="material1">Material 1</option>
@@ -150,7 +168,7 @@ function PrintSettings() {
       </div>
 
       <div className="mb-4">
-        <label for="relleno" className="block">
+        <label htmlFor="relleno" className="block">
           Relleno
         </label>
         <input
@@ -163,15 +181,16 @@ function PrintSettings() {
       </div>
 
       <div className="mb-4">
-        <label for="marcaImpresora" className="block">
+        <label htmlFor="marcaImpresora" className="block">
           Marca de la Impresora
         </label>
         <select
+          defaultValue=""
           id="marcaImpresora"
           className="w-full p-2 border rounded"
           onChange={handleMarcaImpresora}
         >
-          <option value="" disabled selected>
+          <option value="" disabled>
             Seleccione una opción
           </option>
           <option value="marca1">Marca 1</option>
@@ -180,15 +199,16 @@ function PrintSettings() {
       </div>
 
       <div className="mb-4">
-        <label for="modeloImpresora" className="block">
+        <label htmlFor="modeloImpresora" className="block">
           Modelo de la Impresora
         </label>
         <select
+          defaultValue=""
           id="modeloImpresora"
           className="w-full p-2 border rounded"
           onChange={handleModeloImpresora}
         >
-          <option value="" disabled selected>
+          <option value="" disabled>
             Seleccione una opción
           </option>
           <option value="modelo1">Modelo 1</option>
@@ -197,11 +217,11 @@ function PrintSettings() {
       </div>
 
       <div className="mb-4">
-        <label for="resolucion" className="block">
+        <label htmlFor="resolucion" className="block">
           Resolución
         </label>
-        <select id="resolucion" onChange={handleResolucion}>
-          <option value="" disabled selected>
+        <select defaultValue="" id="resolucion" onChange={handleResolucion}>
+          <option value="" disabled>
             Seleccione una opción
           </option>
           <option value="0.2">0.2</option>
@@ -220,11 +240,11 @@ function PrintSettings() {
           value="si"
           onChange={handleSoportes}
         />
-        <label for="soportesSi" className="mr-2">
+        <label htmlFor="soportesSi" className="mr-2">
           Sí
         </label>
         <input type="radio" id="soportesNo" name="soportes" value="no" />
-        <label for="soportesNo">No</label>
+        <label htmlFor="soportesNo">No</label>
       </div>
     </div>
   );
