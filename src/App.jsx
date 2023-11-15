@@ -32,6 +32,8 @@ function App() {
                 <Route path="/Volume/Comment" element={<Comment />} />
                 <Route path="/Volume/Profile" element={<Profile />} />
                 <Route path="/Volume/CalcularPresupuesto" element={<Budget />} />
+                <Route path="/Front-Eco3DPrint/tutorials" element={<Tutorials />} />
+                <Route path="/Front-Eco3DPrint/tutorials/:id" element={<TutorialHandler/>} />
               </Routes>
             </div>
         </Router>
