@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function ButtonUploadFiles({ files, info }) {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
   const [uploading, setUploading] = useState(false);
 
   const uploadFiles = async () => {
@@ -30,6 +30,20 @@ function ButtonUploadFiles({ files, info }) {
         })
       );
 
+      const printSettingsResponse = await axios.post(
+        "http://localhost:8080/printSettings/add",
+        {
+          filament_brand: info.marcaFilamento,
+          filament_color: info.colorFilamento,
+          filament_material: info.materialFilamento,
+          infill: parseInt(info.relleno),
+          printer_brand: info.marcaImpresora,
+          printer_model: info.modeloImpresora,
+          resolution: parseFloat(info.resolucion),
+          supports: info.soportes,
+        }
+      );
+
       const modelResponse = await axios.post(
         "http://localhost:8080/models/add",
         {
@@ -38,7 +52,7 @@ function ButtonUploadFiles({ files, info }) {
           tags: "whatever",
           title: info.title,
           author_id: user.id,
-          print_setting_id: null,
+          print_setting_id: printSettingsResponse.data,
         }
       );
       const modelId = modelResponse.data;
@@ -63,10 +77,20 @@ function ButtonUploadFiles({ files, info }) {
 
   return (
     <>
-      <button onClick={uploadFiles} disabled={uploading} className="text-gray-900 bg-gray-100 hover:bg-gray-400 focus:ring-4 focus:outline-2 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 mb-2">
+      <button
+        onClick={uploadFiles}
+        disabled={uploading}
+        className="text-gray-900 bg-gray-100 hover:bg-gray-400 focus:ring-4 focus:outline-2 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 mb-2"
+      >
         {uploading ? "Uploading..." : "Subir Archivos"}
       </button>
-      <button onClick={() => {console.log(user.id)}}>imprimir info</button>
+      <button
+        onClick={() => {
+          console.log(user.id);
+        }}
+      >
+        imprimir info
+      </button>
     </>
   );
 }
