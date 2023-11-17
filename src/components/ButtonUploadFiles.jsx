@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 function ButtonUploadFiles({ files, info }) {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const usuario = JSON.parse(localStorage.getItem("user"));
   const [uploading, setUploading] = useState(false);
+  const [printSettings, setPrintSettingsId] = useState(null);
+  const [userId, setUserId] = useState(null);
 
+
+  useEffect(() => {setUserId(usuario.id);});
   const uploadFiles = async () => {
     setUploading(true);
     try {
@@ -33,26 +37,30 @@ function ButtonUploadFiles({ files, info }) {
       const printSettingsResponse = await axios.post(
         "http://localhost:8080/printSettings/add",
         {
-          filament_brand: info.marcaFilamento,
-          filament_color: info.colorFilamento,
-          filament_material: info.materialFilamento,
+          filamentBrand: info.marcaFilamento,
+          filamentColor: info.colorFilamento,
+          filamentMaterial: info.materialFilamento,
           infill: parseInt(info.relleno),
-          printer_brand: info.marcaImpresora,
-          printer_model: info.modeloImpresora,
+          printerBrand: info.marcaImpresora,
+          printerModel: info.modeloImpresora,
           resolution: parseFloat(info.resolucion),
           supports: info.soportes,
         }
       );
+        const pSettings = printSettingsResponse.data;
+        setPrintSettingsId(pSettings);
 
+        
       const modelResponse = await axios.post(
         "http://localhost:8080/models/add",
         {
-          category: info.categoria,
-          description: info.description,
-          tags: "whatever",
           title: info.title,
-          author_id: user.id,
-          print_setting_id: printSettingsResponse.data,
+          description: info.description,
+          category: info.categoria,
+          tags: "whatever",
+          author: usuario,
+          printSettings: printSettings,
+          mainUrl: "lo que sea pa descargar"
         }
       );
       const modelId = modelResponse.data;
@@ -86,7 +94,7 @@ function ButtonUploadFiles({ files, info }) {
       </button>
       <button
         onClick={() => {
-          console.log(user.id);
+          console.log(info);
         }}
       >
         imprimir info
