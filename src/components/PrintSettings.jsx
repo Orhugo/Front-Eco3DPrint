@@ -243,7 +243,7 @@ function PrintSettings() {
         <label htmlFor="soportesSi" className="mr-2">
           Sí
         </label>
-        <input type="radio" id="soportesNo" name="soportes" value="no" />
+        <input type="radio" id="soportesNo" name="soportes" value="no" onChange={handleSoportes}/>
         <label htmlFor="soportesNo">No</label>
       </div>
     </div>

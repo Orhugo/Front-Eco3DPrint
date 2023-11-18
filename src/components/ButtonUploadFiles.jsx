@@ -49,7 +49,7 @@ function ButtonUploadFiles({ files, info }) {
       );
         const pSettings = printSettingsResponse.data;
         setPrintSettingsId(pSettings);
-
+        console.log(pSettings);
         
       const modelResponse = await axios.post(
         "http://localhost:8080/models/add",
@@ -63,7 +63,7 @@ function ButtonUploadFiles({ files, info }) {
           mainUrl: "lo que sea pa descargar"
         }
       );
-      const modelId = modelResponse.data;
+      const modelId = modelResponse.data.id;
 
       await Promise.all(
         urls.map((url) =>
