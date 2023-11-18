@@ -46,6 +46,7 @@ export function showCatalog() {
     const navigate = useNavigate();
 
     const handleModelClick = (mainUrl) => {
+        console.log("Url: ", mainUrl);
         if(mainUrl == null){
             navigate("/Volume/visualizarSTL", {
                 state: "thinker.stl"
@@ -115,7 +116,7 @@ export function showCatalog() {
                     </div>
                     <div className="w-full h-fit mt-[6%] flex flex-wrap box-border animate-fade">
                         {cathegorygModels.map((model, index) => (
-                            <Models key={model.id} onClick={() => handleModelClick(null)} modelName={model.title} modelUrl={model.mainUrl}/>
+                            <Models key={model.id} onClick={() => handleModelClick(model.mainUrl)} modelName={model.title} modelUrl={model.mainUrl}/>
                         ))}
                     </div>
                 </div>
