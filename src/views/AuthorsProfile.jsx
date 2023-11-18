@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/Profile.css";
-import UserCatalog from "../views/UserCatalog";
+import UserCatalog from "./UserCatalog";
+import { useParams } from "react-router-dom";
 
 function Profile() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const {username} = useParams();
+
+  useEffect(() => {console.log(username)}, []);
+
   return (
     <>
       <div className="flex h-screen w-[90%] pt-[7%]">
@@ -19,7 +23,7 @@ function Profile() {
                   src="/vite.svg"
                 ></img>
               </div>
-              <div className="mt-5">{user !== null && <p>{user.name}</p>}</div>
+              <div className="mt-5">{username}</div>
               <div className="flex items-center justify-center mt-5">
                 <button className="bg-blue-400 border mr-1">Seguir</button>
                 <button className="bg-blue-400 border mr-1">Tip</button>
@@ -51,7 +55,7 @@ function Profile() {
             </button>
           </div>
           <div>
-            <UserCatalog username={user.username}/>
+            <UserCatalog username={username}/>
           </div>
         </div>
       </div>

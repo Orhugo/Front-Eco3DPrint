@@ -13,6 +13,7 @@ import Tutorials from "./views/TutorialsCatalog";
 import TutorialHandler from "./views/TutorialHandler";
 import Profile from "./views/Profile";
 import Budget from "./views/Budget";
+import AuthorsProfile from "./views/AuthorsProfile";
 
 
 function App() {
@@ -32,8 +33,9 @@ function App() {
                 <Route path="/Volume/Comment" element={<Comment />} />
                 <Route path="/Volume/Profile" element={<Profile />} />
                 <Route path="/Volume/CalcularPresupuesto" element={<Budget />} />
-                <Route path="/Front-Eco3DPrint/tutorials" element={<Tutorials />} />
-                <Route path="/Front-Eco3DPrint/tutorials/:id" element={<TutorialHandler/>} />
+                <Route path="/Volume/tutorials" element={<Tutorials />} />
+                <Route path="/Volume/tutorials/:id" element={<TutorialHandler/>} />
+                <Route path="/Volume/authors/:username" element={<AuthorsProfile />} />
               </Routes>
             </div>
         </Router>

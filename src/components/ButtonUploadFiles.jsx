@@ -60,7 +60,7 @@ function ButtonUploadFiles({ files, info }) {
           tags: "whatever",
           author: usuario,
           printSettings: printSettings,
-          mainUrl: "lo que sea pa descargar"
+          mainUrl: urls[0],
         }
       );
       const modelId = modelResponse.data.id;
