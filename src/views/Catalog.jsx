@@ -12,7 +12,7 @@ import Select from '@mui/material/Select';
 export function showCatalog() {
 
     const [catalogModels, setAllModels] = useState([]);
-    const [cathegorygModels, setCathegoryModels] = useState([]);
+    const [categoryModels, setCategoryModels] = useState([]);
 
     const [urlList, setUrls] = useState([]);
 
@@ -27,11 +27,11 @@ export function showCatalog() {
             if (nameSearch == null) {
                 const filteredModels = response.data;
                 setAllModels(filteredModels);
-                setCathegoryModels(filteredModels);
+                setCategoryModels(filteredModels);
             } else {
                 const filteredModels = response.data.filter((model) => model.title.toLowerCase().includes(nameSearch.toLowerCase()));
                 setAllModels(filteredModels);
-                setCathegoryModels(filteredModels);
+                setCategoryModels(filteredModels);
             }
         }).catch((error) => {
             console.error('Error fetching models data:', error);
@@ -46,6 +46,7 @@ export function showCatalog() {
     const navigate = useNavigate();
 
     const handleModelClick = (mainUrl) => {
+        console.log("Url: ", mainUrl);
         if(mainUrl == null){
             navigate("/Volume/visualizarSTL", {
                 state: "thinker.stl"
@@ -61,18 +62,18 @@ export function showCatalog() {
         }
     }
 
-    const [cathegory, setCathegory] = useState("");
+    const [category, setCategory] = useState("");
 
     const handleChange = (event) => {
         const selectedCategory = event.target.value;
-        setCathegory(selectedCategory);
+        setCategory(selectedCategory);
         
         if(selectedCategory == "Todo"){
-            setCathegoryModels(catalogModels);
+            setCategoryModels(catalogModels);
         } else {
-            setCathegoryModels(catalogModels);
-            const cathegoryModels = catalogModels.filter((model) => model.cathegory == selectedCategory);
-            setCathegoryModels(cathegoryModels);
+            setCategoryModels(catalogModels);
+            const categoryModels = catalogModels.filter((model) => model.category == selectedCategory);
+            setCategoryModels(categoryModels);
         }
     };
 
@@ -102,7 +103,7 @@ export function showCatalog() {
                         <Box style={boxStyle}>
                             <FormControl fullWidth >
                                 <InputLabel id="select-id" >Categoria</InputLabel>
-                                <Select labelId="select-id" id="select-id" value={cathegory} label="Categoria"
+                                <Select labelId="select-id" id="select-id" value={category} label="Categoria"
                                         onChange={handleChange} style={pickerStyle}>
                                     <MenuItem value={"Todo"}>Todo</MenuItem>
                                     <MenuItem value={"Herramientas"}>Herramientas</MenuItem>
@@ -114,8 +115,8 @@ export function showCatalog() {
                         </Box>
                     </div>
                     <div className="w-full h-fit mt-[6%] flex flex-wrap box-border animate-fade">
-                        {cathegorygModels.map((model, index) => (
-                            <Models key={model.id} onClick={() => handleModelClick(null)} modelName={model.title} modelUrl={model.mainUrl}/>
+                        {categoryModels.map((model, index) => (
+                            <Models key={model.id} onClick={() => handleModelClick(model.mainUrl)} modelName={model.title} modelUrl={model.mainUrl}/>
                         ))}
                     </div>
                 </div>
