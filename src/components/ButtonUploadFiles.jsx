@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function ButtonUploadFiles({ files, title, description }) {
+function ButtonUploadFiles({ files, info }) {
+  const usuario = JSON.parse(localStorage.getItem("user"));
   const [uploading, setUploading] = useState(false);
+  const [printSettings, setPrintSettingsId] = useState(null);
+  const [userId, setUserId] = useState(null);
 
+
+  useEffect(() => {setUserId(usuario.id);});
   const uploadFiles = async () => {
     setUploading(true);
     try {
@@ -29,18 +34,36 @@ function ButtonUploadFiles({ files, title, description }) {
         })
       );
 
+      const printSettingsResponse = await axios.post(
+        "http://localhost:8080/printSettings/add",
+        {
+          filamentBrand: info.marcaFilamento,
+          filamentColor: info.colorFilamento,
+          filamentMaterial: info.materialFilamento,
+          infill: parseInt(info.relleno),
+          printerBrand: info.marcaImpresora,
+          printerModel: info.modeloImpresora,
+          resolution: parseFloat(info.resolucion),
+          supports: info.soportes,
+        }
+      );
+        const pSettings = printSettingsResponse.data;
+        setPrintSettingsId(pSettings);
+        console.log(pSettings);
+        
       const modelResponse = await axios.post(
         "http://localhost:8080/models/add",
         {
-          category: "1",
-          description: description,
+          title: info.title,
+          description: info.description,
+          category: info.categoria,
           tags: "whatever",
-          title: title,
-          author_id: 10,
-          print_setting_id: null,
+          author: usuario,
+          printSettings: printSettings,
+          mainUrl: "lo que sea pa descargar"
         }
       );
-      const modelId = modelResponse.data;
+      const modelId = modelResponse.data.id;
 
       await Promise.all(
         urls.map((url) =>
@@ -62,8 +85,19 @@ function ButtonUploadFiles({ files, title, description }) {
 
   return (
     <>
-      <button onClick={uploadFiles} disabled={uploading} className="text-gray-900 bg-gray-100 hover:bg-gray-400 focus:ring-4 focus:outline-2 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 mb-2">
+      <button
+        onClick={uploadFiles}
+        disabled={uploading}
+        className="text-gray-900 bg-gray-100 hover:bg-gray-400 focus:ring-4 focus:outline-2 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 mb-2"
+      >
         {uploading ? "Uploading..." : "Subir Archivos"}
+      </button>
+      <button
+        onClick={() => {
+          console.log(info);
+        }}
+      >
+        imprimir info
       </button>
     </>
   );
