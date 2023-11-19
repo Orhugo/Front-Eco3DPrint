@@ -18,9 +18,9 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from 'react-router-dom';
 
-const pages = ["Catalogo", "Subir Diseños", "Visualizar Diseños"];
-const referencias = ["/Front-Eco3DPrint/catalogo", "/Front-Eco3DPrint/subirArchivo", "/Front-Eco3DPrint/visualizarSTL"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["Catalogo", "Subir Diseños", "Calcular Presupuesto"];
+const referencias = ["/Volume/catalogo", "/Volume/subirArchivo", "/Volume/calcularPresupuesto"];
+const settings = ["Profile", "Account", "Logout"];
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -52,11 +52,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `calc(1em + ${theme.spacing(0)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "12ch",
+      width: "20ch",
       "&:focus": {
         width: "20ch",
       },
@@ -88,13 +88,10 @@ function NavBar() {
   const handleClickOnItem = (setting) => {
     switch (setting) {
       case "Profile":
-        navigate('/Front-Eco3DPrint/ProfileConfig')
+        navigate('/Volume/Profile')
         break;
       case "Account":
-        navigate('/Account')
-        break;
-      case "Dashboard":
-        navigate('/Dashboard')
+        navigate('/Volume/ProfileConfig')
         break;
       case "Logout":
         break;
@@ -106,10 +103,16 @@ function NavBar() {
 
   function handleKeyPress(e) {
     if (e.key === "Enter") {
-     navigate("/Front-Eco3DPrint/catalogo", {
+     navigate("/Volume/catalogo", {
       state: searchTerm
      });
     }
+  }
+
+  const handleClick = () => {
+    navigate("/Volume/catalogo", {
+      state: searchTerm
+    });
   }
 
   return (
@@ -121,7 +124,7 @@ function NavBar() {
             variant="h6"
             noWrap
             component="a"
-            href="/Front-Eco3DPrint"
+            href="/Volume"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -176,7 +179,7 @@ function NavBar() {
             variant="h5"
             noWrap
             component="a"
-            href="/Front-Eco3DPrint"
+            href="/Volume"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -203,10 +206,21 @@ function NavBar() {
             ))}
           </Box>
 
-          <Search sx={{ flexGrow: 1, marginRight: '50px' }}>
-            <SearchIconWrapper>
+          <IconButton 
+            aria-label="search" 
+            sx={{
+              backgroundColor: 'rgba(84,180,220, 0.5)',
+              '&:hover': {
+                backgroundColor: 'rgba(84,180,220, 0.7)',
+              },
+            }}
+            onClick={handleClick}>
+            
               <SearchIcon />
-            </SearchIconWrapper>
+          </IconButton>
+
+          <Search sx={{ flexGrow: 1, marginRight: '10px' }}>
+           
             <StyledInputBase
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}

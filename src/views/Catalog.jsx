@@ -1,71 +1,145 @@
-import { useState, useEffect } from "react";
-import React from "react";
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Models from "../components/Models";
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import CircularProgress from "@mui/joy/CircularProgress";
+import axios from "axios";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 export function showCatalog() {
+  const [catalogModels, setAllModels] = useState([]);
+  const [categoryModels, setCategoryModels] = useState([]);
 
-const [catalogModels, setModels] = useState([]);
-const { state } = useLocation();
-const name = state;
+  const [urlList, setUrls] = useState([]);
 
- useEffect(() => {
-     axios.get('http://localhost:8080/models/getAll')
-       .then((response) => {
-        if(name == null){
-            const filteredModels = response.data;
-            setModels(filteredModels);
+  const [showLoaderPrompt, setLoaderPrompt] = useState(true);
+
+  const { state } = useLocation();
+  const nameSearch = state;
+  const [modelUrlFinded, setModelUrlFinded] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/models/getAll")
+      .then((response) => {
+        if (nameSearch == null) {
+          const filteredModels = response.data;
+          setAllModels(filteredModels);
+          setCategoryModels(filteredModels);
         } else {
-            const filteredModels = response.data.filter((model) => model.title.toLowerCase().includes(name.toLowerCase()));
-            setModels(filteredModels);
+          const filteredModels = response.data.filter((model) =>
+            model.title.toLowerCase().includes(nameSearch.toLowerCase())
+          );
+          setAllModels(filteredModels);
+          setCategoryModels(filteredModels);
         }
       })
-       .catch((error) => {
-         console.error('Error fetching data:', error);
+      .catch((error) => {
+        console.error("Error fetching models data:", error);
       });
-   }, [name]);
+    const timer = setTimeout(() => {
+      setLoaderPrompt(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [nameSearch]);
 
-    const containerStyle = {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-evenly', 
-      };
+  const navigate = useNavigate();
 
-    const modelStyle = {
-        width: '30%', // Asegura que haya tres modelos por fila
-        marginBottom: '20px',
-    };
-
-    const navigate = useNavigate();
-
-       // console.log(`Model with ID ${modelId} clicked.`);      
-
-    const handleModelClick = (modelId) => {
-        if (modelId == 0) {
-            navigate("/Front-Eco3DPrint/visualizarSTL", {
-            state: "Face"
-            });
-        }else if(modelId == 1){
-            navigate("/Front-Eco3DPrint/visualizarSTL", {
-                state: "Graisseur"
-            });
-        } else{
-            navigate("/Front-Eco3DPrint/visualizarSTL", {
-                state: "thinker"
-            });
-        }
+  const handleModelClick = (model) => {
+    console.log("Url: ", model.mainUrl);
+    if (model.mainUrl == null) {
+      navigate("/Volume/visualizarSTL", {
+        state: "thinker.stl",
+      });
+    } else if (model.mainUrl.length < 1) {
+      navigate("/Volume/visualizarSTL", {
+        state: "thinker.stl",
+      });
+    } else {
+      navigate("/Volume/visualizarSTL", {
+        state: {
+          mainUrl: model.mainUrl,
+          modelName: model.title,
+        },
+      });
     }
+  };
+
+  const [category, setCategory] = useState("");
+
+  const handleChange = (event) => {
+    const selectedCategory = event.target.value;
+    setCategory(selectedCategory);
+
+    if (selectedCategory == "Todo") {
+      setCategoryModels(catalogModels);
+    } else {
+      setCategoryModels(catalogModels);
+      const categoryModels = catalogModels.filter(
+        (model) => model.category == selectedCategory
+      );
+      setCategoryModels(categoryModels);
+    }
+  };
+
+  const boxStyle = {
+    marginTop: "75px",
+    width: "150px",
+    marginBottom: "20px",
+  };
+
+  const pickerStyle = {
+    backgroundColor: "white",
+    border: "1px solid black",
+  };
 
   return (
-    <div>
-        <div style={containerStyle}>
-            {catalogModels.map((model, index) => (
-             <Models key={model.id} style={modelStyle} onClick={() => handleModelClick(index)} modelName={model.title}/>
-        ))}
+    <div className="w-[60%] h-screen inline-block justify-start">
+      {showLoaderPrompt ? (
+        <div className="w-full h-full flex items-center text-center justify-center">
+          <div className="w-[200px] h-fit flex items-center justify-center">
+            <CircularProgress variant="plain" />
+          </div>
         </div>
-     </div>
+      ) : (
+        <div>
+          <div>
+            <Box style={boxStyle}>
+              <FormControl fullWidth>
+                <InputLabel id="select-id">Categoria</InputLabel>
+                <Select
+                  labelId="select-id"
+                  id="select-id"
+                  value={category}
+                  label="Categoria"
+                  onChange={handleChange}
+                  style={pickerStyle}
+                >
+                  <MenuItem value={"Todo"}>Todo</MenuItem>
+                  <MenuItem value={"Herramientas"}>Herramientas</MenuItem>
+                  <MenuItem value={"Complementos"}>Complementos</MenuItem>
+                  <MenuItem value={"Juguetes"}>Juguetes</MenuItem>
+                  <MenuItem value={"Figuras"}>Figuras</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
+          <div className="w-full h-fit mt-[6%] flex flex-wrap box-border animate-fade">
+            {categoryModels.map((model, index) => (
+              <Models
+                key={model.id}
+                onClick={() => handleModelClick(model)}
+                modelName={model.title}
+                modelUrl={model.mainUrl}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 

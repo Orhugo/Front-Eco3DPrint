@@ -1,20 +1,4 @@
 .button-container {
-<<<<<<< Updated upstream
-    display: flex;
-    position: absolute;
-    top: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-  }
-  
-  .button-style {
-    padding: 15px 30px;
-    font-size: 20px;
-    margin: 0 10px;
-  }
-  
-=======
   display: flex;
   flex-direction: column; 
   position: absolute;
@@ -28,4 +12,3 @@
   font-size: 20px;
   margin: 0 10px;
 }
->>>>>>> Stashed changes

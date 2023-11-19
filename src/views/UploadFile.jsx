@@ -1,53 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dropzone from "../components/Dropzone";
-import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
+import PrintSettings from "../components/PrintSettings";
 
 function UploadFile() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
 
-  const handleOnBlurTitle = (event) => {
-    if (title !== event.target.value) {
-      setTitle(event.target.value);
-      console.log(title);
+  useEffect(() => {
+    // Check if user is null and navigate accordingly
+    if (user === null) {
+      navigate("/Volume/UserRegistration");
     }
-  };
-
-  const handleOnBlurDescription = (event) => {
-    if (description !== event.target.value) {
-      setDescription(event.target.value);
-    }
-  };
+  }, [user, navigate]);
 
   return (
-    <div>
+    <>
       <div>
-        <h1>Upload File</h1>
-        <Dropzone title={title} description={description} />
+        {user !== null ? (
+          <div className="mt-[600px]">
+            <div>
+              <PrintSettings />
+            </div>            
+          </div>
+        ) : null}
       </div>
-      <div className="centerDetails">
-        <h1>File details</h1>
-        <div className="fileDetails">
-          Title (required){" "}
-          <TextField
-            id="outlined-basic"
-            label=""
-            variant="outlined"
-            onBlur={handleOnBlurTitle}
-          />
-        </div>
-        <div className="fileDetails">
-          Description (required){" "}
-          <TextField
-            id="outlined-basic"
-            multiline
-            label=""
-            variant="outlined"
-            onBlur={handleOnBlurDescription}
-          />
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 
