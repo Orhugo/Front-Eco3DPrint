@@ -4,7 +4,6 @@ import { StlViewer } from "react-stl-viewer";
 import { useLocation, useNavigate } from "react-router-dom";
 import Comments from "./Comment";
 import ModelLikes from "./ModelLikesHandler";
-import '../styles/VisualizarSTL.css'; 
 
 const style = {
   width: "900px",
@@ -14,18 +13,6 @@ export function VisualizarSTL() {
   const { state } = useLocation();
   const url = state ? state.mainUrl : "thinker.stl";
   const modelName = state ? state.modelName : "Nombre Predeterminado";
-  const modelId = 3; //Should retrieve it from DB
-
-  const handleButtonClick = () => {
-    navigate(`/Front-Eco3DPrint/InfoModel?id=${modelId}`);
-  };
-
-  const downloadSTL = () => {
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = url.substring(url.lastIndexOf('/') + 1);
-    link.click();
-  };
 
   const navigate = useNavigate();
   return (
@@ -43,15 +30,6 @@ export function VisualizarSTL() {
             positionY: 0,
           }}
         />
-      </div>
-
-      <div className="button-container">
-        <button className="button-style" onClick={handleButtonClick}>
-          Visualizar Información
-        </button>
-        <button className="button-style" onClick={downloadSTL}>
-          Descargar modelo
-        </button>
       </div>
 
       <div className="stl-viewer-container">

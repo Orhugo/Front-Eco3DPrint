@@ -14,7 +14,6 @@ import TutorialHandler from "./views/TutorialHandler";
 import Profile from "./views/Profile";
 import Budget from "./views/Budget";
 import AuthorsProfile from "./views/AuthorsProfile";
-import InfoModel from "./views/InfoModel";
 
 
 function App() {
@@ -37,7 +36,6 @@ function App() {
                 <Route path="/Volume/tutorials" element={<Tutorials />} />
                 <Route path="/Volume/tutorials/:id" element={<TutorialHandler/>} />
                 <Route path="/Volume/authors/:username" element={<AuthorsProfile />} />
-                <Route path="/Front-Eco3DPrint/InfoModel" element={<InfoModel />} />
               </Routes>
             </div>
         </Router>
