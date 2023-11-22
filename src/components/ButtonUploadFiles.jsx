@@ -45,6 +45,7 @@ function ButtonUploadFiles({ files, info }) {
           printerModel: info.modeloImpresora,
           resolution: parseFloat(info.resolucion),
           supports: info.soportes,
+          payment: info.pago,
         }
       );
         const pSettings = printSettingsResponse.data;
