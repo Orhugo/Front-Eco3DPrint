@@ -15,15 +15,17 @@ import Profile from "./views/Profile";
 import Budget from "./views/Budget";
 import AuthorsProfile from "./views/AuthorsProfile";
 import InfoModel from "./views/InfoModel";
+import AboutUs from "./views/AboutUs.jsx";
+import Footer from "./components/Footer.jsx";
 
 
 
 function App() {
   return (
-      <div className="h-screen w-full flex justify-center overflow-scroll">
+      <div id="MainAppContainer" className="h-fit w-full justify-center overflow-scroll">
         <Router>
           <NavBar/>
-            <div className="w-full h-screen flex justify-center items-center">
+            <div id="MainViewContainer" className="w-full h-fit pt-[100px] flex justify-center items-center">
               <Routes>
                 <Route path="/Volume" element={<Home />} />
                 <Route path="/Volume/subirArchivo" element={<UploadFile />} />
@@ -39,8 +41,10 @@ function App() {
                 <Route path="/Volume/tutorials/:id" element={<TutorialHandler/>} />
                 <Route path="/Volume/authors/:username" element={<AuthorsProfile />} />
                 <Route path="/Front-Eco3DPrint/InfoModel" element={<InfoModel />} />
+                <Route path="/Volume/AboutUs" element={<AboutUs />} />
               </Routes>
             </div>
+          <Footer/>
         </Router>
       </div>
   );

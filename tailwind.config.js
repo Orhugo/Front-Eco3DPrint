@@ -10,6 +10,7 @@ export default {
         'dark': '0 0 10px rgba(0, 0, 0, 0.5)',
         'darker': '0 5px 10px rgba(0, 0, 0, 0.75)',
         'content': '5px 0 10px rgba(0,0,0,0.75)',
+        'top-s': '0 -5px 10px rgba(0,0,0,0.5)'
       },
       boxShadow:{
         'dark': '0 3px 10px rgba(0, 0, 0, 0.5)',
