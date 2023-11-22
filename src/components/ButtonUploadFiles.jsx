@@ -4,7 +4,6 @@ import axios from "axios";
 function ButtonUploadFiles({ files, info }) {
   const usuario = JSON.parse(localStorage.getItem("user"));
   const [uploading, setUploading] = useState(false);
-  const [printSettings, setPrintSettingsId] = useState(null);
   const [userId, setUserId] = useState(null);
 
 
@@ -49,7 +48,6 @@ function ButtonUploadFiles({ files, info }) {
         }
       );
         const pSettings = printSettingsResponse.data;
-        setPrintSettingsId(pSettings);
         console.log(pSettings);
         
       const modelResponse = await axios.post(
@@ -60,7 +58,7 @@ function ButtonUploadFiles({ files, info }) {
           category: info.categoria,
           tags: "whatever",
           author: usuario,
-          printSettings: printSettings,
+          printSettings: pSettings,
           mainUrl: urls[0],
         }
       );
