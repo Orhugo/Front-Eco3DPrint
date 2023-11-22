@@ -14,6 +14,7 @@ function PrintSettings() {
     resolucion: "",
     soportes: "",
     categoria: "",
+    pago: "",
   });
 
   const handleOnBlurTitle = (event) => {
@@ -64,6 +65,11 @@ function PrintSettings() {
   const handleSoportes = (event) => {
     const supports = event.target.value === "si" ? true : false;
     setInfo((prevInfo) => ({ ...prevInfo, soportes: supports }));
+  };
+
+  const handlePago = (event) => {
+    const payment = event.target.value === "si" ? true : false;
+    setInfo((prevInfo) => ({ ...prevInfo, pago: payment }));
   };
 
   const handleCategoria = (event) => {
@@ -245,6 +251,22 @@ function PrintSettings() {
         </label>
         <input type="radio" id="soportesNo" name="soportes" value="no" onChange={handleSoportes}/>
         <label htmlFor="soportesNo">No</label>
+      </div>
+
+      <div className="mb-4">
+        <label className="block">Modelo de pago</label>
+        <input
+          type="radio"
+          id="pagoSi"
+          name="pago"
+          value="si"
+          onChange={handlePago}
+        />
+        <label htmlFor="pagosSi" className="mr-2">
+          Sí
+        </label>
+        <input type="radio" id="pagoNo" name="pago" value="no" onChange={handlePago}/>
+        <label htmlFor="pagoNo">No</label>
       </div>
     </div>
   );
