@@ -272,7 +272,7 @@ function Budget() {
           </div>
         </div>
         <button onClick={handleCalculate} className="bg-blue-500">Calcular</button>
-        <p>Precio: {price.toFixed(2)}</p>
+        {price != null && (<p>Precio: {price.toFixed(2)}</p>)}
       </div>
     </div>
   );
