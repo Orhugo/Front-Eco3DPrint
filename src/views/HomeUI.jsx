@@ -5,13 +5,13 @@ export default function HomeUI(){
                 <img src="../../public/VolumeLanding.svg"/>
                 <p className="w-full text-center lg:text-5xl text-3xl mt-3.5">Dale vida a tus objetos</p>
             </div>
-            <div id="secondSectionContainer" className="w-full relative mt-52 2xl:mt-72 px-6 md:px-0">
+            <div id="secondSectionContainer" className="w-full relative mt-72 sm:mt-52 2xl:mt-72 px-6 md:px-0">
                 <img className="absolute max-h-[400px] top-52 blur-sm w-auto hidden 2xl:block" src="../../public/LeftJarron.png" alt="Jarron Izq"/>
                 <img className="absolute max-h-[400px] top-52 blur-sm end-0 w-auto hidden 2xl:block" src="../../public/RightJarron.png" alt="Jarron Der"/>
-                <div className="flex items-start justify-center">
-                    <div className="w-fit flex 2xl:grid grid-cols-3">
-                        <img className="w-full xl:w-fit max-w-[300px] xl:max-w-[400px] h-auto object-contain col-start-2 hover:drop-shadow-2xl transition duration-300" src="../../public/3DModelPreview.png" alt="3D Model Preview"/>
-                        <div className="w-fit p-8 col-start-3">
+                <div id="modelOfTheDayContainer" className="flex items-start justify-center">
+                    <div className="w-fit sm:flex 2xl:grid grid-cols-3">
+                        <img className="w-full mx-auto sm:mx-0 xl:w-fit max-w-[300px] xl:max-w-[400px] h-auto object-contain col-start-2 hover:drop-shadow-2xl transition duration-300" src="../../public/3DModelPreview.png" alt="3D Model Preview"/>
+                        <div className="w-fit p-8 col-start-3 mx-auto sm:mx-0">
                             <div className="flex gap-4 items-center">
                                 <div className="bg-neutral-400 rounded-full w-12 h-12"></div>
                                 <p className="text-2xl">
@@ -34,17 +34,17 @@ export default function HomeUI(){
                 </div>
             </div>
             <div id="thirdSectionContainer" className="w-full mt-72">
-                <div id="aprendeDesdeCeroDiv" className="relative bg-marronPocho px-6 pt-2 pb-8 mx-3 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl z-10 hover:z-50">
+                <div id="aprendeDesdeCeroDiv" className="relative bg-marronPocho px-6 pt-2 pb-8 mx-3 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
                     <p className="font-loos font-[550]">
                         Aprende desde cero
                     </p>
                 </div>
-                <div id="buscaDiseñoDiv" className="relative bg-greenFooter p-6 pb-8 -mt-7 md:-mt-5 mx-3 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl z-10 hover:z-50">
+                <div id="buscaDiseñoDiv" className="relative bg-greenFooter p-6 pb-8 -mt-7 md:-mt-5 mx-3 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
                     <p className="font-loos font-[550]">
                         Busca el diseño hecho para ti
                     </p>
                 </div>
-                <div id="hazRealidadDiv" className="relative bg-azulVolume p-6 pt-10 pb-12 -mt-10 md:-mt-7 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl z-10 hover:z-50">
+                <div id="hazRealidadDiv" className="relative bg-azulVolume p-6 pt-10 pb-12 -mt-10 md:-mt-7 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
                     <p className="font-loos font-[550]">
                         Haz realidad tu creacion
                     </p>

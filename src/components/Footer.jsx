@@ -3,31 +3,31 @@ export default function Footer(){
 
     return(
         <div id="footerClipContainer" className="bg-greenFooter pt-32 px-12 pb-12">
-            <div className="flex justify-between px-20 mt-40">
-                <div className="">
-                    <p className="hover:underline cursor-pointer mt-2 w-fit">
+            <div className="grid grid-cols-2 gap-14 lg:flex justify-between md:px-20 mt-40">
+                <div className="order-2 lg:order-1">
+                    <p className="hover:underline cursor-pointer w-fit text-md md:text-xl">
                         Catálogo
                     </p>
-                    <p className="hover:underline cursor-pointer mt-2 w-fit">
+                    <p className="hover:underline cursor-pointer mt-2 w-fit text-md md:text-xl">
                         Tutoriales
                     </p>
-                    <p className="hover:underline cursor-pointer mt-2 w-fit">
+                    <p className="hover:underline cursor-pointer mt-2 w-fit text-md md:text-xl">
                         Foro
                     </p>
                 </div>
-                <div>
-                    <p className="text-2xl">
+                <div className="order-1 lg:order-2">
+                    <p className="text-xl md:text-2xl">
                         Servicio Técnico
                     </p>
                     <p className="max-w-[240px] mt-2 text-sm text-slate-600">
                         Ponle fin a los problemas tecnicos sobre tu impresora 3D
                     </p>
-                    <p className="hover:underline cursor-pointer mt-2 w-fit">
+                    <p className="hover:underline cursor-pointer mt-2 w-fit text-sm md:text-base">
                         volumetecnico@gmail.com
                     </p>
                 </div>
-                <div>
-                    <p className="text-2xl max-w-[270px]">
+                <div className="order-4 lg:order-3">
+                    <p className="text-xl md:text-2xl max-w-[270px]">
                         Siguenos en nuestras redes sociales
                     </p>
                     <p className="mt-2 hover:underline cursor-pointer w-fit">
@@ -40,8 +40,8 @@ export default function Footer(){
                         Tik Tok
                     </p>
                 </div>
-                <div>
-                    <p className="text-2xl">
+                <div className="order-3 lg:order-4">
+                    <p className="text-xl md:text-2xl">
                         Trabaja con nosotros
                     </p>
                     <p className="mt-2">
@@ -50,18 +50,18 @@ export default function Footer(){
                     <p className="hover:underline cursor-pointer mt-2 w-fit">
                         900 676 283
                     </p>
-                    <p className="hover:underline cursor-pointer mt-2 w-fit">
+                    <p className="hover:underline cursor-pointer mt-2 w-fit text-sm md:text-base">
                         volume@gmail.com
                     </p>
                 </div>
             </div>
-            <div className="flex items-end gap-10 mt-24">
+            <div className="sm:flex items-end gap-10 mt-24">
                 <img className="max-w-[747px] w-full object-contain" src="../../public/VolumeLogoXL.svg" alt="Volume logo"/>
                 <div className="flex md:flex-row flex-col  w-full justify-between">
-                    <p className="cursor-pointer hover:underline">
+                    <p className="cursor-pointer hover:underline hidden sm:block">
                       Back to menu
                     </p>
-                    <p className="text-xs">
+                    <p className="text-xs mt-4 sm:mt-0">
                         Copyright © Volume 2023
                     </p>
                 </div>
