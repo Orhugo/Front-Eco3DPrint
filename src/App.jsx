@@ -25,11 +25,10 @@ function App() {
     return (
         <div id="MainAppContainer" className="w-full justify-center bg-neutral-100">
             <Router>
-                <div id="navigationBarWrapper" className="w-full flex justify-center p-4">
+                <div id="navigationBarWrapper" className="w-full sticky top-0 flex justify-center p-4 z-10">
                     <VolumeNavBar/>
                 </div>
-                <div id="MainViewContainer"
-                     className="w-full flex justify-center items-center">
+                <div id="MainViewContainer" className="w-full relative flex justify-center items-center z-0">
                     <Routes>
                         <Route path="/Volume" element={<HomeUI/>}/>
                         <Route path="/Volume/subirArchivo" element={<UploadFile/>}/>

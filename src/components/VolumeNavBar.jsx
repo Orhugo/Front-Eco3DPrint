@@ -7,11 +7,11 @@ export default function VolumeNavBar(){
     const tutorialsUrl = '/Volume/tutorials'
 
     return(
-        <div id="navigationBar" className="w-[60%] min-w-[216px] lg:w-[935px] sticky top-0 px-8 py-2 flex border-[1px] border-black rounded-full items-center justify-between animate-fade-down animate-delay-200">
+        <div id="navigationBar" className="w-[60%] min-w-[216px] lg:w-[935px] sticky top-0 px-8 py-2 flex border-[1px] border-black rounded-full items-center justify-between animate-fade-down animate-delay-200 backdrop-blur-sm">
             <div>
                 <div id="logoContainer" className="flex items-center gap-12">
                     <VolumeLogoSm urlNavigate={volumeHomeUrl}/>
-                    <svg id="menuLgIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 hidden sm:block lg:hidden">
+                    <svg id="menuLgIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 hidden sm:block lg:hidden cursor-pointer hover:text-cyan-600">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
 
@@ -28,7 +28,7 @@ export default function VolumeNavBar(){
                 <div id="profileImgContainer" className="w-10 h-10 rounded-full bg-slate-800 hidden sm:block cursor-pointer hover:drop-shadow-slim transition duration-300">
 
                 </div>
-                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 ml-2 sm:hidden">
+                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 ml-2 sm:hidden cursor-pointer hover:text-cyan-600">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
             </div>
