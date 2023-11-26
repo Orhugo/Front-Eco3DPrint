@@ -1,8 +1,8 @@
 export default function HomeUI(){
     return(
         <div id="mainHomeUIContainer" className="md:w-[80%] w-full mt-14 font-loos">
-            <div id="landingContainer" className="max-w-[1440px] md:p-0 p-6 mx-auto animate-fade animate-delay-200">
-                <img src="../../public/VolumeLanding.svg"/>
+            <div id="landingContainer" className="max-w-[1340px] md:p-0 p-6 mx-auto animate-fade animate-delay-200">
+                <img src="../../public/VolumeLanding.svg" draggable={false}/>
                 <p className="w-full text-center lg:text-5xl text-3xl mt-3.5">Dale vida a tus objetos</p>
             </div>
             <div id="secondSectionContainer" className="w-full relative mt-72 sm:mt-52 2xl:mt-72 px-6 md:px-0">

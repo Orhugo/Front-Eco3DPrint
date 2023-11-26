@@ -1,6 +1,13 @@
+import {useNavigate} from "react-router-dom";
+
 export default function VolumeLogoSm(){
+    const navigate = useNavigate()
+    const handleClick = ()=>{
+        navigate("/Volume")
+    }
+
     return(
-        <svg width="120" height="17" viewBox="0 0 120 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="object-contain cursor-pointer">
+        <svg onClick={handleClick} width="120" height="17" viewBox="0 0 120 17" fill="none" xmlns="http://www.w3.org/2000/svg" className="object-contain cursor-pointer">
             <path d="M0 1.58667H3.91264L9.02394 13.464H9.99644L15.0625 1.58667H18.8168L15.5714 9.18L12.3259 16.7733H6.53614L0 1.58667Z" fill="black"/>
             <path d="M25.8956 4.91867H40.5662C44.8859 4.91867 47.9164 6.82267 47.9164 10.5627V11.3333C47.9164 15.1413 44.8859 16.9773 40.5662 16.9773H25.8956C21.5533 16.9773 18.5453 15.1413 18.5453 11.3333V10.5627C18.5453 6.82267 21.5533 4.91867 25.8956 4.91867ZM25.8956 7.82C23.3626 7.82 22.2996 8.908 22.2996 10.54V11.356C22.2996 13.0107 23.3626 14.0987 25.8956 14.0987H40.5662C43.0992 14.0987 44.1621 13.0107 44.1621 11.356V10.54C44.1621 8.908 43.0992 7.82 40.5662 7.82H25.8956Z" fill="black"/>
             <path d="M50.259 0H54.0131V16.7733H50.259V0Z" fill="black"/>

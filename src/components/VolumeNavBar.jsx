@@ -2,18 +2,22 @@ import VolumeLogoSm from "./VolumeLogoSm.jsx";
 import NavigationButton from "./NavigationButton.jsx";
 
 export default function VolumeNavBar(){
+    const volumeHomeUrl = '/Volume/'
+    const catalogUrl = '/Volume/catalogo'
+    const tutorialsUrl = '/Volume/tutorials'
+
     return(
         <div id="navigationBar" className="w-[60%] min-w-[216px] lg:w-[935px] sticky top-0 px-8 py-2 flex border-[1px] border-black rounded-full items-center justify-between animate-fade-down animate-delay-200">
             <div>
                 <div id="logoContainer" className="flex items-center gap-12">
-                    <VolumeLogoSm/>
+                    <VolumeLogoSm urlNavigate={volumeHomeUrl}/>
                     <svg id="menuLgIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 hidden sm:block lg:hidden">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
 
-                    <NavigationButton name="Catalogo"/>
+                    <NavigationButton name="Catalogo" urlNavigate={catalogUrl}/>
                     <NavigationButton name="3D Of the day"/>
-                    <NavigationButton name="Tutoriales"/>
+                    <NavigationButton name="Tutoriales" urlNavigate={tutorialsUrl}/>
                     <NavigationButton name="Foro"/>
                 </div>
             </div>
