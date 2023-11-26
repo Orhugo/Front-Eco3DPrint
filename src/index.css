@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.LoosFont{
+    font-family: loos-extrawide, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+#footerClipContainer{
+    clip-path: polygon(0 10%, 100% 30%, 100% 100%, 0% 100%);
+}
+
+#aprendeDesdeCeroDiv{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+}
+
+#buscaDiseñoDiv{
+    clip-path: polygon(0 0, 100% 20%, 100% 70%, 0 100%);
+}
+
+#hazRealidadDiv{
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+}

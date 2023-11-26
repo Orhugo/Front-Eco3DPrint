@@ -6,7 +6,20 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        white: '#FFFFFF',
+        greenFooter: '#CEF7A0',
+        amarilloCode: '#F1FA8C',
+        azulCode: '#8BE9DD',
+        morado: '#C1ACF6',
+        lightGrey: '#999999',
+        marronPocho: '#BCABAE',
+        azulVolume: '#7EBDC3',
+      },
       dropShadow:{
+        'slim': '0 0 5px rgba(0, 0, 0, 0.5)',
         'dark': '0 0 10px rgba(0, 0, 0, 0.5)',
         'darker': '0 5px 10px rgba(0, 0, 0, 0.75)',
         'content': '5px 0 10px rgba(0,0,0,0.75)',
@@ -25,7 +38,8 @@ export default {
       },
     },
     fontFamily: {
-      'ubuntu': ['Ubuntu']
+      'ubuntu': ['Ubuntu'],
+      'loos': ['Kanit']
     },
   },
   plugins: [
