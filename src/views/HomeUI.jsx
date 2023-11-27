@@ -18,7 +18,7 @@ export default function HomeUI(){
                                     orhugo
                                 </p>
                             </div>
-                            <p className="text-5xl md:text-6xl lg:text-8xl max-w-sm font-loos font-[900] hover:text-azulVolume cursor-pointer transition duration-300">
+                            <p className="text-5xl md:text-6xl lg:text-8xl max-w-sm LoosFont font-[900] hover:text-azulVolume cursor-pointer transition duration-300">
                                 Diseño Jarrones
                             </p>
                             <div className="flex gap-4 mt-6">
@@ -35,17 +35,17 @@ export default function HomeUI(){
             </div>
             <div id="thirdSectionContainer" className="w-full mt-72">
                 <div id="aprendeDesdeCeroDiv" className="relative bg-marronPocho px-6 pt-2 pb-8 mx-3 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
-                    <p className="font-loos font-[550]">
+                    <p className="LoosFont font-[550]">
                         Aprende desde cero
                     </p>
                 </div>
                 <div id="buscaDiseñoDiv" className="relative bg-greenFooter p-6 pb-8 -mt-7 md:-mt-5 mx-3 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
-                    <p className="font-loos font-[550]">
+                    <p className="LoosFont font-[550]">
                         Busca el diseño hecho para ti
                     </p>
                 </div>
                 <div id="hazRealidadDiv" className="relative bg-azulVolume p-6 pt-10 pb-12 -mt-10 md:-mt-7 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
-                    <p className="font-loos font-[550]">
+                    <p className="LoosFont font-[550]">
                         Haz realidad tu creacion
                     </p>
                     <div className="flex justify-end mt-16">

@@ -19,6 +19,7 @@ import AboutUs from "./views/AboutUs.jsx";
 import Footer from "./components/Footer.jsx";
 import HomeUI from "./views/HomeUI.jsx";
 import VolumeNavBar from "./components/VolumeNavBar.jsx"
+import UploadFileUI from "./views/UploadFileUI.jsx";
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
                 <div id="MainViewContainer" className="w-full relative flex justify-center items-center z-0">
                     <Routes>
                         <Route path="/Volume" element={<HomeUI/>}/>
-                        <Route path="/Volume/subirArchivo" element={<UploadFile/>}/>
+                        <Route path="/Volume/subirArchivo" element={<UploadFileUI/>}/>
                         <Route path="/Volume/visualizarSTL" element={<STLVisualizer/>}/>
                         <Route path="/Volume/catalogo" element={<Catalog/>}/>
                         <Route path="/Volume/UserRegistration" element={<UserRegistration/>}/>
