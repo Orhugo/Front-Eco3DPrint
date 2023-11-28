@@ -27,8 +27,9 @@ describe('PrintSettings', () => {
 
   it('selects a category', () => {
     render(<OnlyPrintSettings />);
-    const categorySelect = screen.getByLabelText('Categoría');
+    const categorySelect = screen.getByTestId('categoria');
     fireEvent.change(categorySelect, { target: { value: 'Herramientas' } });
+    expect(categorySelect.value).toBe('Herramientas');
     expect(screen.getByText('Categoría'));
   });
 

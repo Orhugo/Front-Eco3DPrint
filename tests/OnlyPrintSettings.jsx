@@ -107,6 +107,7 @@ function OnlyPrintSettings() {
         <select
           defaultValue=""
           id="categoria"
+          data-testid="categoria"
           className="w-full p-2 border rounded"
           onChange={handleCategoria}
         >
