@@ -1,6 +1,7 @@
 import Carousel from "../components/Carousel.jsx";
 import LinearProgress from '@mui/material/LinearProgress';
 import ProgressBarReview from "../components/ProgressBarReview.jsx";
+import CommentItem from "../components/CommentItem.jsx";
 
 export default function ModelViewUI(){
     return(
@@ -80,8 +81,8 @@ export default function ModelViewUI(){
                 <div id="columnContainer" className="max-w-xl">
                     <div id="makeCommentContainer" className="flex items-center mt-8 gap-2">
                         <div className="w-12 h-12 bg-slate-400 rounded-full"></div>
-                        <div id="commentTextField" className="w-full">
-                            <input className="px-4 py-2 bg-pinkVolume placeholder-neutral-500 w-full rounded-full" placeholder="Escribe un comentario..."/>
+                        <div id="commentTextField" className="w-fit flex-grow">
+                            <input className="px-4 py-2 bg-pinkVolume placeholder-neutral-500 w-full rounded-full focus:outline-none focus:ring focus:ring-pink-200" placeholder="Escribe un comentario..."/>
                         </div>
                     </div>
                     <div id="reviewsContainer" className="mt-24">
@@ -133,8 +134,16 @@ export default function ModelViewUI(){
                             </div>
                         </div>
                     </div>
+                    <div id="commentsContainer" className="gap-12 flex flex-col mt-14">
+                        <CommentItem name="carlos"/>
+                        <CommentItem name="fer"/>
+                        <CommentItem name="iván"/>
+                        <CommentItem name="orhugo"/>
+                        <CommentItem name="carla"/>
+                        <CommentItem name="elena"/>
+                    </div>
                 </div>
-                <div id="exploreContainer">
+                <div id="exploreContainer" className="mt-24">
                     <div id="exploreLabel">
                         <p className="text-4xl">Explora más esta categoría</p>
                     </div>
