@@ -18,9 +18,9 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from 'react-router-dom';
 
-const pages = ["Catalogo", "Subir Diseños", "Visualizar Diseños"];
-const referencias = ["/Front-Eco3DPrint/catalogo", "/Front-Eco3DPrint/subirArchivo", "/Front-Eco3DPrint/visualizarSTL"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["Catalogo", "Subir Diseños", "Calcular Presupuesto"];
+const referencias = ["/Volume/catalogo", "/Volume/subirArchivo", "/Volume/calcularPresupuesto"];
+const settings = ["Profile", "Account", "Logout"];
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -88,13 +88,10 @@ function NavBar() {
   const handleClickOnItem = (setting) => {
     switch (setting) {
       case "Profile":
-        navigate('/Front-Eco3DPrint/ProfileConfig')
+        navigate('/Volume/Profile')
         break;
       case "Account":
-        navigate('/Account')
-        break;
-      case "Dashboard":
-        navigate('/Dashboard')
+        navigate('/Volume/ProfileConfig')
         break;
       case "Logout":
         break;
@@ -106,14 +103,14 @@ function NavBar() {
 
   function handleKeyPress(e) {
     if (e.key === "Enter") {
-     navigate("/Front-Eco3DPrint/catalogo", {
+     navigate("/Volume/catalogo", {
       state: searchTerm
      });
     }
   }
 
   const handleClick = () => {
-    navigate("/Front-Eco3DPrint/catalogo", {
+    navigate("/Volume/catalogo", {
       state: searchTerm
     });
   }
@@ -127,7 +124,7 @@ function NavBar() {
             variant="h6"
             noWrap
             component="a"
-            href="/Front-Eco3DPrint"
+            href="/Volume"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -182,7 +179,7 @@ function NavBar() {
             variant="h5"
             noWrap
             component="a"
-            href="/Front-Eco3DPrint"
+            href="/Volume"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },

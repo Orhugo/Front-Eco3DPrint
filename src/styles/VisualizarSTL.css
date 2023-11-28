@@ -1,0 +1,14 @@
+.button-container {
+  display: flex;
+  flex-direction: column; 
+  position: absolute;
+  top: 80px;
+  right: 0;
+  z-index: 1;
+}
+
+.button-style {
+  padding: 15px 30px;
+  font-size: 20px;
+  margin: 0 10px;
+}

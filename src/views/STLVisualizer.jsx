@@ -1,46 +1,37 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { StlViewer } from "react-stl-viewer";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
 import Comments from "./Comment";
+import ModelLikes from "./ModelLikesHandler";
+import '../styles/VisualizarSTL.css'; 
 
 const style = {
-  top: 0,
-  left: 0,
-  width: "100vw",
-  height: "100vh",
+  width: "900px",
+  height: "600px",
 };
 export function VisualizarSTL() {
   const { state } = useLocation();
-  const url = state ? state : "thinker.stl";
-  // const [url, setUrl] = useState(null);
-  
-  // useEffect(() => {
-  //   // Nombre del archivo en S3
-  //   const s3FileName = "1697792052233_Face.stl";
+  const url = state ? state.mainUrl : "thinker.stl";
+  const modelName = state ? state.modelName : "Nombre Predeterminado";
+  const modelId = 4; //Should retrieve it from DB
 
-  //   // Nombre del bucket en S3
-  //   const s3BucketName = "stl-models-bucket";
+  const handleButtonClick = () => {
+    navigate(`/Front-Eco3DPrint/InfoModel?id=${modelId}`);
+  };
 
-  //   // Llama a getObject para obtener el archivo desde S3
-  //   s3.getObject({ Bucket: s3BucketName, Key: s3FileName }, (err, data) => {
-  //     if (err) {
-  //       console.error("Error al obtener el archivo desde S3:", err);
-  //     } else {
-  //       // URL del archivo en S3
-  //       const s3FileUrl = data.Location;
-  //       setUrl(s3FileUrl);
-  //     }
-  //   });
-  // }, []);
+  const downloadSTL = () => {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = url.substring(url.lastIndexOf('/') + 1);
+    link.click();
+  };
 
-  // if (!url) {
-  //   return <div>Cargando...</div>;
-  // }
-
+  const navigate = useNavigate();
   return (
-    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}} className="wrapper">
-      <div  className="stl-viewer-container">
+    <div className="flex flex-col justify-center items-center">
+      <div className="w-[900px] h-[600px] bg-gray-300 mt-[300px] flex flex-col justify-center items-center">
+        <h2>{modelName}</h2>
         <StlViewer
           style={style}
           orbitControls
@@ -54,14 +45,39 @@ export function VisualizarSTL() {
         />
       </div>
 
-      <div style={{display: 'center'}} className="comments-container">
+      <div className="button-container">
+        <button className="button-style" onClick={handleButtonClick}>
+          Visualizar Información
+        </button>
+        <button className="button-style" onClick={downloadSTL}>
+          Descargar modelo
+        </button>
+      </div>
+
+      <div className="stl-viewer-container">
+        <button
+          className="mt-[100px]"
+          onClick={() => navigate("/Volume/authors/user1")}
+        >
+          Ir a perfil de usuario
+        </button>
+      </div>
+
+      <div style={{ display: "center" }} className="comments-container">
+        {/* There should be model ID variable in the STL Visualizer component  */}
+        {/* If this is implemented, the line below should be changed to: */}
+        {/* <Comments modelId={modelId} /> */}
+        {/* #TO DO */}
+        <ModelLikes modelId={3} />
+      </div>
+
+      <div style={{ display: "center" }} className="comments-container">
         {/* There should be model ID variable in the STL Visualizer component  */}
         {/* If this is implemented, the line below should be changed to: */}
         {/* <Comments modelId={modelId} /> */}
         {/* #TO DO */}
         <Comments modelId={3} />
       </div>
-
     </div>
   );
 }
