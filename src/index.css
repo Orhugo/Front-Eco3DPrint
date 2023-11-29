@@ -50,3 +50,7 @@
 #tutorialsFifthDiv{
     clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
 }
+
+#catalogDrawer{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+}

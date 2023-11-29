@@ -23,6 +23,7 @@ import UploadFileUI from "./views/UploadFileUI.jsx";
 import ModelViewUI from "./views/ModelViewUI.jsx";
 import UserLoginUI from "./views/UserLoginUI.jsx";
 import TutorialsUI from "./views/TutorialsUI.jsx";
+import CatalogUI from "./views/CatalogUI.jsx";
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
                         <Route path="/Volume" element={<HomeUI/>}/>
                         <Route path="/Volume/subirArchivo" element={<UploadFileUI/>}/>
                         <Route path="/Volume/visualizarSTL" element={<ModelViewUI/>}/>
-                        <Route path="/Volume/catalogo" element={<Catalog/>}/>
+                        <Route path="/Volume/catalogo" element={<CatalogUI/>}/>
                         <Route path="/Volume/UserRegistration" element={<UserRegistration/>}/>
                         <Route path="/Volume/UserLogin" element={<UserLoginUI/>}/>
                         <Route path="/Volume/ProfileConfig" element={<ProfileConfig/>}/>
