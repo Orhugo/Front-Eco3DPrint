@@ -21,6 +21,7 @@ import HomeUI from "./views/HomeUI.jsx";
 import VolumeNavBar from "./components/VolumeNavBar.jsx"
 import UploadFileUI from "./views/UploadFileUI.jsx";
 import ModelViewUI from "./views/ModelViewUI.jsx";
+import UserLoginUI from "./views/UserLoginUI.jsx";
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
                         <Route path="/Volume/visualizarSTL" element={<ModelViewUI/>}/>
                         <Route path="/Volume/catalogo" element={<Catalog/>}/>
                         <Route path="/Volume/UserRegistration" element={<UserRegistration/>}/>
-                        <Route path="/Volume/UserLogin" element={<UserLogin/>}/>
+                        <Route path="/Volume/UserLogin" element={<UserLoginUI/>}/>
                         <Route path="/Volume/ProfileConfig" element={<ProfileConfig/>}/>
                         <Route path="/Volume/Comment" element={<Comment/>}/>
                         <Route path="/Volume/Profile" element={<Profile/>}/>
