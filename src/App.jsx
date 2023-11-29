@@ -22,6 +22,7 @@ import VolumeNavBar from "./components/VolumeNavBar.jsx"
 import UploadFileUI from "./views/UploadFileUI.jsx";
 import ModelViewUI from "./views/ModelViewUI.jsx";
 import UserLoginUI from "./views/UserLoginUI.jsx";
+import TutorialsUI from "./views/TutorialsUI.jsx";
 
 
 function App() {
@@ -43,7 +44,7 @@ function App() {
                         <Route path="/Volume/Comment" element={<Comment/>}/>
                         <Route path="/Volume/Profile" element={<Profile/>}/>
                         <Route path="/Volume/CalcularPresupuesto" element={<Budget/>}/>
-                        <Route path="/Volume/tutorials" element={<Tutorials/>}/>
+                        <Route path="/Volume/tutorials" element={<TutorialsUI/>}/>
                         <Route path="/Volume/tutorials/:id" element={<TutorialHandler/>}/>
                         <Route path="/Volume/authors/:username" element={<AuthorsProfile/>}/>
                         <Route path="/Front-Eco3DPrint/InfoModel" element={<InfoModel/>}/>

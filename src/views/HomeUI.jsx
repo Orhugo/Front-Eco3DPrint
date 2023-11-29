@@ -34,17 +34,17 @@ export default function HomeUI(){
                 </div>
             </div>
             <div id="thirdSectionContainer" className="w-full mt-72">
-                <div id="aprendeDesdeCeroDiv" className="relative bg-marronPocho px-6 pt-2 pb-8 mx-3 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
+                <div id="aprendeDesdeCeroDiv" className="relative bg-marronPocho px-6 pt-2 pb-8 mx-3 lg:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
                     <p className="LoosFont font-[550]">
                         Aprende desde cero
                     </p>
                 </div>
-                <div id="buscaDiseñoDiv" className="relative bg-greenFooter p-6 pb-8 -mt-7 md:-mt-5 mx-3 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
+                <div id="buscaDiseñoDiv" className="relative bg-greenFooter p-6 pb-8 -mt-7 md:-mt-5 mx-3 lg:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
                     <p className="LoosFont font-[550]">
                         Busca el diseño hecho para ti
                     </p>
                 </div>
-                <div id="hazRealidadDiv" className="relative bg-azulVolume p-6 pt-10 pb-12 -mt-10 md:-mt-7 xl:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
+                <div id="hazRealidadDiv" className="relative bg-azulVolume p-6 pt-10 pb-12 -mt-10 md:-mt-7 lg:hover:scale-105 transition duration-300 cursor-pointer font-loos text-3xl xl:z-10 xl:hover:z-50">
                     <p className="LoosFont font-[550]">
                         Haz realidad tu creacion
                     </p>
