@@ -3,7 +3,7 @@ import NotificationItem from "../components/NotificationItem.jsx";
 
 export default function ProfileUI({profileName}){
     return(
-        <div className="flex w-[80%] mt-12 gap-6 h-full">
+        <div className="flex w-[80%] mt-12 gap-6 h-full animate-fade">
             <div id="sideBarContainer" className="max-w-sm flex flex-col">
                 <div id="profilePicContainer" className="w-32 h-32 bg-slate-400 rounded-full mx-auto"></div>
                 <div id="profileNameContainer" className="mt-8">

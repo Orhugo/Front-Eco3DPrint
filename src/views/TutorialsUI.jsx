@@ -2,7 +2,7 @@ import TutorialItemComponent from "../components/TutorialItemComponent.jsx";
 
 export default function TutorialsUI(){
     return(
-        <div id="mainTutorialsViewContainer" className="max-w-4xl">
+        <div id="mainTutorialsViewContainer" className="max-w-4xl animate-fade">
             <div id="mainLabelContainer" className="mt-12">
                 <p className="LoosFont max-w-4xl text-8xl">
                     Iníciate en la impresión 3D

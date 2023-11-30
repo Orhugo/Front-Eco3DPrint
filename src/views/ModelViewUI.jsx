@@ -2,10 +2,16 @@ import Carousel from "../components/Carousel.jsx";
 import LinearProgress from '@mui/material/LinearProgress';
 import ProgressBarReview from "../components/ProgressBarReview.jsx";
 import CommentItem from "../components/CommentItem.jsx";
+import {useNavigate} from "react-router-dom";
 
 export default function ModelViewUI(){
+    const navigate = useNavigate()
+    const navigateProfile = ()=>{
+        navigate("/Volume/Profile")
+    }
+
     return(
-        <div id="mainModelViewUIContainer" className="md:w-[80%] w-full mt-14 font-loos">
+        <div id="mainModelViewUIContainer" className="md:w-[80%] w-full mt-14 font-loos animate-fade">
             <div id="mainLabelContainer" className="w-full">
                 <p className="LoosFont text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center">
                     Titulo del modelo
@@ -33,8 +39,10 @@ export default function ModelViewUI(){
                 <div id="modelInfoMainContainer" className="flex justify-between mt-4">
                     <div className="w-fit max-w-md">
                         <div id="userInfoContainer" className="flex gap-4 items-center">
-                            <div className="w-8 h-8 rounded-full bg-slate-400"></div>
-                            <p className="LoosFont text-xl">orhugo</p>
+                            <div className="flex gap-4 items-center" onClick={navigateProfile}>
+                                <div className="w-8 h-8 rounded-full bg-slate-400 hover:drop-shadow-slim cursor-pointer transition duration-300"></div>
+                                <p className="LoosFont text-xl hover:underline cursor-pointer transition duration-300">orhugo</p>
+                            </div>
                             <button className="rounded-full px-10 py-[0.5px] border-2 border-black text-lg hover:bg-black hover:text-white transition duration-300">Seguir</button>
                         </div>
                         <div id="modelDescription" className="mt-4">

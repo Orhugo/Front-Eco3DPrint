@@ -1,8 +1,10 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 export default function CatalogItem(){
     const [infoDeployed, setInfoDeployed] = useState(false)
     const deployInfo = "-translate-y-16"
+    const navigate = useNavigate()
     const openInfo = ()=>{
         setInfoDeployed(true)
         handleInfo()
@@ -21,8 +23,12 @@ export default function CatalogItem(){
         }
     }
 
+    const navigateModel = ()=>{
+        navigate('/Volume/visualizarSTL')
+    }
+
     return(
-        <div className="w-full max-w-[330px] mx-auto h-96 bg-slate-400 flex flex-shrink flex-col relative overflow-y-hidden cursor-pointer" onMouseEnter={openInfo} onMouseLeave={closeInfo}>
+        <div className="w-full max-w-[330px] mx-auto h-96 bg-slate-400 flex flex-shrink flex-col relative overflow-y-hidden cursor-pointer" onMouseEnter={openInfo} onMouseLeave={closeInfo} onClick={navigateModel}>
             <div id="imageContainer" className="w-full h-full bg-azulVolume">
 
             </div>
