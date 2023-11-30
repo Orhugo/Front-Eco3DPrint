@@ -40,11 +40,11 @@
 }
 
 #tutorialsThirdDiv{
-    clip-path: polygon(0 0, 100% 25%, 100% 90%, 0 100%);
+    clip-path: polygon(0 0, 100% 20%, 100% 90%, 0 100%);
 }
 
 #tutorialsFourthDiv{
-    clip-path: polygon(0 10%, 100% 0, 98% 100%, 0 90%);
+    clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 90%);
 }
 
 #tutorialsFifthDiv{
