@@ -63,7 +63,7 @@ export default function SearchBar(){
                     </div>
                 </div>
             </div>
-            <div id="catalogItemsContainer" className={`${blurOnSearch()} -mt-44 transition duration-300 relative z-0`}>
+            <div id="catalogItemsContainer" className={`${blurOnSearch()} -mt-32 transition duration-300 relative z-0`}>
                 <div id="catalogGrid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-8">
                     <CatalogItem/>
                     <CatalogItem/>

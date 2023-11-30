@@ -22,7 +22,7 @@ export default function CatalogItem(){
     }
 
     return(
-        <div className="w-full max-w-xs mx-auto h-72 bg-slate-400 flex flex-shrink flex-col relative overflow-y-hidden cursor-pointer" onMouseEnter={openInfo} onMouseLeave={closeInfo}>
+        <div className="w-full max-w-[330px] mx-auto h-96 bg-slate-400 flex flex-shrink flex-col relative overflow-y-hidden cursor-pointer" onMouseEnter={openInfo} onMouseLeave={closeInfo}>
             <div id="imageContainer" className="w-full h-full bg-azulVolume">
 
             </div>

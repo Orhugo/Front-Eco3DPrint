@@ -24,11 +24,12 @@ import ModelViewUI from "./views/ModelViewUI.jsx";
 import UserLoginUI from "./views/UserLoginUI.jsx";
 import TutorialsUI from "./views/TutorialsUI.jsx";
 import CatalogUI from "./views/CatalogUI.jsx";
+import ProfileUI from "./views/ProfileUI.jsx";
 
 
 function App() {
     return (
-        <div id="MainAppContainer" className="w-full justify-center bg-neutral-100">
+        <div id="MainAppContainer" className="w-full justify-center bg-neutral-100 no-scrollbar">
             <Router>
                 <div id="navigationBarWrapper" className="w-full sticky top-0 flex justify-center p-4 z-10">
                     <VolumeNavBar/>
@@ -43,7 +44,7 @@ function App() {
                         <Route path="/Volume/UserLogin" element={<UserLoginUI/>}/>
                         <Route path="/Volume/ProfileConfig" element={<ProfileConfig/>}/>
                         <Route path="/Volume/Comment" element={<Comment/>}/>
-                        <Route path="/Volume/Profile" element={<Profile/>}/>
+                        <Route path="/Volume/Profile" element={<ProfileUI/>}/>
                         <Route path="/Volume/CalcularPresupuesto" element={<Budget/>}/>
                         <Route path="/Volume/tutorials" element={<TutorialsUI/>}/>
                         <Route path="/Volume/tutorials/:id" element={<TutorialHandler/>}/>
