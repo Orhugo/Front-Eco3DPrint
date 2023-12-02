@@ -133,7 +133,7 @@ export function showCatalog() {
                 key={model.id}
                 onClick={() => handleModelClick(model)}
                 modelName={model.title}
-                modelUrl={model.mainUrl}
+                modelImage={model.imageUrl}
               />
             ))}
           </div>
