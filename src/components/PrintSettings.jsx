@@ -78,8 +78,8 @@ function PrintSettings() {
   };
 
   return (
-    <div>
-      <Dropzone info={info} />
+    <div className="mx-auto">
+      <Dropzone info={info}/>
       <h1 className="font-extrabold text-3xl mt-[10px]">File details</h1>
       <div className="fileDetails">
         Title (required){" "}
