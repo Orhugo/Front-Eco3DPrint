@@ -24,7 +24,7 @@ function Tutorials() {
         <ul>
             {tutorials.map((tutorial) => (
                 <li key={tutorial.id}>
-                <button onClick={() => navigate(`/Front-Eco3DPrint/tutorials/${tutorial.id}`)}> 
+                <button onClick={() => navigate(`/Volume/tutorials/${tutorial.id}`)}> 
                     {tutorial.title}
                 </button>
                 </li>

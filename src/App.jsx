@@ -40,7 +40,7 @@ function App() {
                 <Route path="/Volume/tutorials" element={<Tutorials />} />
                 <Route path="/Volume/tutorials/:id" element={<TutorialHandler/>} />
                 <Route path="/Volume/authors/:username" element={<AuthorsProfile />} />
-                <Route path="/Front-Eco3DPrint/InfoModel" element={<InfoModel />} />
+                <Route path="/Volume/InfoModel" element={<InfoModel />} />
                 <Route path="/Volume/AboutUs" element={<AboutUs />} />
               </Routes>
             </div>
