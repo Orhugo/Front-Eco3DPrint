@@ -2,12 +2,13 @@ import CatalogItem from "../components/CatalogItem.jsx";
 import NotificationItem from "../components/NotificationItem.jsx";
 
 export default function ProfileUI({profileName}){
+    const user = JSON.parse(localStorage.getItem('user'));
     return(
         <div className="flex w-[80%] mt-12 gap-6 h-full animate-fade">
             <div id="sideBarContainer" className="max-w-sm flex flex-col">
                 <div id="profilePicContainer" className="w-32 h-32 bg-slate-400 rounded-full mx-auto"></div>
                 <div id="profileNameContainer" className="mt-8">
-                    <p className="LoosFont text-4xl text-center">{profileName}</p>
+                    <p className="LoosFont text-4xl text-center">{user.username}</p>
                 </div>
                 <div id="statsContainer" className="flex gap-6 mt-8 justify-between">
                     <div>

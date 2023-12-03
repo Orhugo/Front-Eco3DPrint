@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Dropzone from "../components/Dropzone";
 import { useNavigate } from "react-router-dom";
 import PrintSettings from "../components/PrintSettings";
 
