@@ -1,10 +1,14 @@
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import axios from "axios";
 
 export default function UserLoginUI(){
     const [isWarningHidden, setWarningHidden] = useState(true)
     const [emailValue, setEmailValue] = useState("")
     const [passwordValue, setPasswordValue] = useState("")
+    const [data, setData] = useState(null)
+    const [loginError, setLoginError] = useState('');
+    const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const handleClick = ()=>{
         navigate('/Volume/UserRegistration')
@@ -18,13 +22,15 @@ export default function UserLoginUI(){
         setPasswordValue(event.target.value)
     }
 
-    const checkFields = ()=>{
+    function checkFields(event) {
         if(emailValue.length < 1 || passwordValue.length < 1){
             setWarningHidden(false)
             warningVisibility()
         }else{
+            console.log("Email: " + emailValue + " Password: " + passwordValue)
             setWarningHidden(true)
             warningVisibility()
+            login(event)
         }
     }
 
@@ -39,6 +45,38 @@ export default function UserLoginUI(){
     const closeWarning = ()=>{
         setWarningHidden(true)
         warningVisibility()
+    }
+
+    async function login(event) {
+        event.preventDefault();
+
+        const data = {
+            email: emailValue,
+            password: passwordValue,
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8080/users/login', data);
+
+            if (response.status === 200) {
+                const { message, status, user } = response.data;
+
+                if (status) {
+                    setUser(user);
+                    localStorage.setItem('user', JSON.stringify(user));
+                    localStorage.setItem('isLoggedIn', true);
+                    navigate('/Volume', {state: {user: user}});
+                } else {
+                    setLoginError('Mail or/and password incorrect. Try again');
+                }
+            } else {
+                console.log('Login failed:', response.data);
+                setLoginError('Mail or/and password incorrect');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            setLoginError('Mail or/and password incorrect');
+        }
     }
 
     return(

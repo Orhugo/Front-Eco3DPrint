@@ -1,5 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {useRef, useState} from "react";
+import axios from "axios";
 
 export default function UserRegistrationUI(){
     const [isWarningHidden, setWarningHidden] = useState(true)
@@ -35,13 +36,14 @@ export default function UserRegistrationUI(){
     }
 
 
-    const checkFields = ()=>{
+    function checkFields(event) {
         if(nameValue.length < 1 || lastnameValue.length < 1 || usernameValue.length < 1 || emailValue.length < 1 || passwordValue.length < 1 || confirmpasswordValue.length < 1){
             setWarningHidden(false)
             warningVisibility()
         }else{
             setWarningHidden(true)
             warningVisibility()
+            save(event)
         }
     }
 
@@ -56,6 +58,43 @@ export default function UserRegistrationUI(){
     const closeWarning = ()=>{
         setWarningHidden(true)
         warningVisibility()
+    }
+
+    async function save(event) {
+        event.preventDefault();
+        // Check email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailValue)) {
+            alert("Please enter a valid email address");
+            return;
+        }
+
+        // Check password length
+        if (passwordValue.length < 7) {
+            alert("Password must be at least 7 characters long");
+            return;
+        }
+
+        const data = {
+            username: usernameValue,
+            name: nameValue,
+            lastname: lastnameValue,
+            email: emailValue,
+            password: passwordValue
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8080/users/add', data);
+            if (response.status === 200) {
+                alert("Registration successful");
+                navigate('/Volume/UserLogin');
+            } else {
+                alert("Registration failed");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Registration failed");
+        }
     }
 
     return(
