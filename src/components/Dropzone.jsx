@@ -65,14 +65,14 @@ function Dropzone({ info }) {
 
   return (
     <>
-      <div>
+      <div className="mx-auto p-2">
         {/* General */}
-        <div {...getRootProps()} className="bg-white rounded">
+        <div {...getRootProps()} className="rounded mx-auto">
           <input {...getInputProps()} />
           {isDragActive ? (
-            <p className="drag-area active">Drop the files here ...</p>
+            <p className="drag-area active mx-auto LoosFont">Drop the files here ...</p>
           ) : (
-            <p className="drag-area">
+            <p className="drag-area mx-auto LoosFont">
               Drag 'n' drop some files here, or click to select files
             </p>
           )}
