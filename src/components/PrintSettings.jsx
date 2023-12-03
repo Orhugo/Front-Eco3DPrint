@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Dropzone from "./Dropzone";
+import { createClient } from '@supabase/supabase-js';
 
 function PrintSettings() {
   const [info, setInfo] = useState({
@@ -75,6 +76,37 @@ function PrintSettings() {
   const handleCategoria = (event) => {
     const categoria = event.target.value;
     setInfo((prevInfo) => ({ ...prevInfo, categoria: categoria }));
+  };
+
+
+  const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadedUrl, setUploadedUrl] = useState(null);
+
+  const supabaseUrl = 'https://ohjmhtpmzrwhleemxqgr.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oam1odHBtenJ3aGxlZW14cWdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkwMzA0NjQsImV4cCI6MjAxNDYwNjQ2NH0.a8yTP4L8J_qPPzOBasqmFjMuftpA279n4fgRoLWQgW8';
+
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleUpload = async () => {
+    try {
+      setUploading(true);
+      const path = `public/${file.name}`;
+      const { data, error } = await supabase.storage.from('test').upload(path, file);
+
+      if (error) {
+        console.error('Error al subir la imagen:', error.message);
+      } else {
+        setUploadedUrl(data.Key);
+        console.log('Imagen subida con éxito:', data.Key);
+      }
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
@@ -267,6 +299,16 @@ function PrintSettings() {
         </label>
         <input type="radio" id="pagoNo" name="pago" value="no" onChange={handlePago}/>
         <label htmlFor="pagoNo">No</label>
+      </div>
+
+      <div>
+        <input type="file" onChange={handleFileChange} />
+        <button onClick={handleUpload} disabled={uploading}>
+          Subir Imagen
+        </button>
+
+        {uploading && <p>Subiendo...</p>}
+        {uploadedUrl && <img src={`${supabaseUrl}/${uploadedUrl}`} alt="Uploaded" />}
       </div>
     </div>
   );
