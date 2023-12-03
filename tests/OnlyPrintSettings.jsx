@@ -127,6 +127,7 @@ function OnlyPrintSettings() {
         <select
           defaultValue=""
           id="marcaFilamento"
+          data-testid="marcaFilamento"
           className="w-full p-2 border rounded"
           onChange={handleMarcaFilamento}
         >
@@ -145,6 +146,7 @@ function OnlyPrintSettings() {
         <select
           defaultValue=""
           id="colorFilamento"
+          data-testid="colorFilamento"
           className="w-full p-2 border rounded"
           onChange={handleColorFilamento}
         >
@@ -163,6 +165,7 @@ function OnlyPrintSettings() {
         <select
           defaultValue=""
           id="materialFilamento"
+          data-testid="materialFilamento"
           className="w-full p-2 border rounded"
           onChange={handleMaterialFilamento}
         >
@@ -181,6 +184,7 @@ function OnlyPrintSettings() {
         <input
           type="number"
           id="relleno"
+          data-testid="relleno"
           className="w-full p-2 border rounded"
           max={100}
           onChange={handleRelleno}
@@ -194,6 +198,7 @@ function OnlyPrintSettings() {
         <select
           defaultValue=""
           id="marcaImpresora"
+          data-testid="marcaImpresora"
           className="w-full p-2 border rounded"
           onChange={handleMarcaImpresora}
         >
@@ -212,6 +217,7 @@ function OnlyPrintSettings() {
         <select
           defaultValue=""
           id="modeloImpresora"
+          data-testid="modeloImpresora"
           className="w-full p-2 border rounded"
           onChange={handleModeloImpresora}
         >
@@ -243,6 +249,7 @@ function OnlyPrintSettings() {
         <input
           type="radio"
           id="soportesSi"
+          data-testid="soportes"
           name="soportes"
           value="si"
           onChange={handleSoportes}
@@ -259,6 +266,7 @@ function OnlyPrintSettings() {
         <input
           type="radio"
           id="pagoSi"
+          data-testid="pago"
           name="pago"
           value="si"
           onChange={handlePago}

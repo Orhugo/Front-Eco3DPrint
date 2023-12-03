@@ -17,7 +17,7 @@ export function VisualizarSTL() {
   const modelId = 4; //Should retrieve it from DB
 
   const handleButtonClick = () => {
-    navigate(`/Front-Eco3DPrint/InfoModel?id=${modelId}`);
+    navigate(`/Volume/InfoModel?id=${modelId}`);
   };
 
   const downloadSTL = () => {
