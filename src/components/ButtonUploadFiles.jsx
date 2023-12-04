@@ -6,7 +6,6 @@ function ButtonUploadFiles({ files, info }) {
   const usuario = JSON.parse(localStorage.getItem("user"));
   const [uploading, setUploading] = useState(false);
   const [userId, setUserId] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null); 
 
 
   useEffect(() => {setUserId(usuario.id);});
@@ -55,16 +54,7 @@ function ButtonUploadFiles({ files, info }) {
 
         
        const url= await handleUpload();   
-       console.log("********");
-       console.log("********");
-       console.log("********");
-       console.log("********");
-       console.log(url);
-       console.log("********");
-       console.log("********");
-       console.log("********");
-       console.log("********");
-        
+       
       const modelResponse = await axios.post(
         "http://localhost:8080/models/add",
         {
@@ -112,9 +102,8 @@ function ButtonUploadFiles({ files, info }) {
         console.error('Error al subir la imagen:', error.message);
         return "Error";
       } else {
+
         const localImageUrl = `${supabaseUrl}/storage/v1/object/public/test/${path}`;
-      
-        setImageUrl(localImageUrl);
 
         console.log('Imagen subida con éxito:', data);
         console.log('URL de la imagen:', localImageUrl);
