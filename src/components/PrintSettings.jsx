@@ -81,7 +81,7 @@ function PrintSettings() {
 
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [uploadedUrl, setUploadedUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
 
   const supabaseUrl = 'https://ohjmhtpmzrwhleemxqgr.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oam1odHBtenJ3aGxlZW14cWdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkwMzA0NjQsImV4cCI6MjAxNDYwNjQ2NH0.a8yTP4L8J_qPPzOBasqmFjMuftpA279n4fgRoLWQgW8';
@@ -101,14 +101,18 @@ function PrintSettings() {
       if (error) {
         console.error('Error al subir la imagen:', error.message);
       } else {
-        setUploadedUrl(data.Key);
-        console.log('Imagen subida con éxito:', data.Key);
+        const imageUrl = `${supabaseUrl}/storage/v1/object/public/test/${path}`;
+      
+        setImageUrl(imageUrl);
+
+        console.log('Imagen subida con éxito:', data);
+        console.log('URL de la imagen:', imageUrl);
       }
     } finally {
       setUploading(false);
     }
   };
-
+  const modelImage = "https://ohjmhtpmzrwhleemxqgr.supabase.co/storage/v1/object/public/test/public/face.jpg";
   return (
     <div className="mx-auto">
       <Dropzone info={info}/>
@@ -302,16 +306,22 @@ function PrintSettings() {
       </div>
 
       <div>
-        <input type="file" onChange={handleFileChange} />
-        <button onClick={handleUpload} disabled={uploading}>
+        <h1 className="font-extrabold text-3xl mt-[10px] my-4"> Image </h1>
+          <div className="w-36 h-36 border-2 border-black mb-4 overflow-hidden">
+            {<img className="w-full h-full object-cover" src={imageUrl || "./stl_icon.png"} alt="Uploaded" />}
+          </div>
+        <input className=" border-2 border-black  rounded" type="file" onChange={handleFileChange} />
+        <button className="w-36 h-12 ml-2 border-2 border-black bg-green-300 rounded" onClick={handleUpload} disabled={uploading}>
           Subir Imagen
         </button>
 
         {uploading && <p>Subiendo...</p>}
-        {uploadedUrl && <img src={`${supabaseUrl}/${uploadedUrl}`} alt="Uploaded" />}
+        {/* {imageUrl && <p>URL de la imagen: {imageUrl}</p>} */}
       </div>
+      
     </div>
   );
+        
 }
 
 export default PrintSettings;
