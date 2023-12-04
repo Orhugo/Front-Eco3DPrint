@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Dropzone from "./Dropzone";
-import { createClient } from '@supabase/supabase-js';
+
 
 function PrintSettings() {
   const [info, setInfo] = useState({
@@ -16,6 +16,7 @@ function PrintSettings() {
     soportes: "",
     categoria: "",
     pago: "",
+    image: null
   });
 
   const handleOnBlurTitle = (event) => {
@@ -81,38 +82,27 @@ function PrintSettings() {
 
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null); 
+  const [defaultImage, setdefaultImage] = useState("./default_image.png");
 
-  const supabaseUrl = 'https://ohjmhtpmzrwhleemxqgr.supabase.co';
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oam1odHBtenJ3aGxlZW14cWdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkwMzA0NjQsImV4cCI6MjAxNDYwNjQ2NH0.a8yTP4L8J_qPPzOBasqmFjMuftpA279n4fgRoLWQgW8';
-
-  const supabase = createClient(supabaseUrl, supabaseKey);
+  
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
-  const handleUpload = async () => {
-    try {
-      setUploading(true);
-      const path = `public/${file.name}`;
-      const { data, error } = await supabase.storage.from('test').upload(path, file);
-
-      if (error) {
-        console.error('Error al subir la imagen:', error.message);
-      } else {
-        const imageUrl = `${supabaseUrl}/storage/v1/object/public/test/${path}`;
+    const image = e.target.files[0];
+    setFile(image);
+    setInfo((prevInfo) => ({ ...prevInfo, image: image }));
+    setdefaultImage(null);
+    
+    if (e.target.files && e.target.files.length > 0) {
       
-        setImageUrl(imageUrl);
-
-        console.log('Imagen subida con éxito:', data);
-        console.log('URL de la imagen:', imageUrl);
-      }
-    } finally {
-      setUploading(false);
+      const imageUrl = URL.createObjectURL(e.target.files[0]);
+      setImageUrl(imageUrl);
     }
   };
-  const modelImage = "https://ohjmhtpmzrwhleemxqgr.supabase.co/storage/v1/object/public/test/public/face.jpg";
+
+  
+
+ 
   return (
     <div className="mx-auto">
       <Dropzone info={info}/>
@@ -308,12 +298,12 @@ function PrintSettings() {
       <div>
         <h1 className="font-extrabold text-3xl mt-[10px] my-4"> Image </h1>
           <div className="w-36 h-36 border-2 border-black mb-4 overflow-hidden">
-            {<img className="w-full h-full object-cover" src={imageUrl || "./stl_icon.png"} alt="Uploaded" />}
+            {<img className="w-full h-full object-cover" src={imageUrl || defaultImage} alt="Uploaded" />}
           </div>
-        <input className=" border-2 border-black  rounded" type="file" onChange={handleFileChange} />
-        <button className="w-36 h-12 ml-2 border-2 border-black bg-green-300 rounded" onClick={handleUpload} disabled={uploading}>
+        <input className=" border-2 border-black rounded" type="file" onChange={handleFileChange} />
+        {/* <button className="w-36 h-12 ml-2 border-2 border-black bg-green-300 rounded" onClick={handleUpload} disabled={uploading}>
           Subir Imagen
-        </button>
+        </button> */}
 
         {uploading && <p>Subiendo...</p>}
         {/* {imageUrl && <p>URL de la imagen: {imageUrl}</p>} */}
