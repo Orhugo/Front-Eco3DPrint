@@ -1,12 +1,15 @@
 import {useState} from "react";
 
-export default function ToggleButtonVolume({label}){
-    const [isToggled, setToggled] = useState(false)
+export default function ToggleButtonVolume({label, onToggle}){
+    
     const toggleFalse = "text-black "
     const toggleTrue = "text-white bg-black"
 
+    const [isToggled, setToggled] = useState(false)
     const handleClick = ()=>{
         setToggled(!isToggled)
+
+        onToggle(!isToggled, label);
     }
 
     const toggle = ()=>{
