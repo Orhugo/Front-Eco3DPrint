@@ -100,7 +100,7 @@ function ButtonUploadFiles({ files, info }) {
 
       if (error) {
         console.error('Error al subir la imagen:', error.message);
-        return "Error";
+        return null;
       } else {
 
         const localImageUrl = `${supabaseUrl}/storage/v1/object/public/test/${path}`;

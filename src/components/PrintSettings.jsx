@@ -139,6 +139,7 @@ function PrintSettings() {
           <option value="" disabled>
             Seleccione una opción
           </option>
+          <option value="Accesorios">Accesorios</option>
           <option value="Herramientas">Herramientas</option>
           <option value="Complementos">Complementos</option>
           <option value="Juguetes">Juguetes</option>
