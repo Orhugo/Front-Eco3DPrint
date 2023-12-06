@@ -165,6 +165,7 @@ export default function SearchBar(){
                 }
             }
         }
+                
       }
 
     const navigate = useNavigate();
@@ -196,7 +197,7 @@ export default function SearchBar(){
         setSelectedButton(buttonNumber);
     };
 
-    const [numMod, setNumMod] = useState(2);
+    const [numMod, setNumMod] = useState(10);
     
     const setNumModMostrados = (event) => {
         setNumMod(event.target.value);
@@ -210,8 +211,7 @@ export default function SearchBar(){
     };
 
     const [pagesButtons, setPagesButtons] = useState([]);
-
-    const lengthModels = Math.ceil(catalogModels.length / numMod);
+ 
 
     useEffect(() => {
         axios
@@ -220,7 +220,9 @@ export default function SearchBar(){
 
             const filteredModels = response.data;
             setAllModels(filteredModels);
-            setShownModels(filteredModels);
+            if(shownModels.length == 0){
+                setShownModels(filteredModels);
+            }
         })
         .catch((error) => {
             console.error("Error fetching models data:", error);
@@ -228,13 +230,13 @@ export default function SearchBar(){
 
         const lista = [];
 
-        const long = lengthModels;
+        const long = Math.ceil(shownModels.length / numMod);;
         for (let i = 1; i <= long; i++) {
             lista.push(i);
         }
         setPagesButtons(lista);
 
-    }, [lengthModels]);
+    }, [shownModels, numMod]);
 
     return(
         <div className="overflow-y-hidden mt-12">
