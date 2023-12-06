@@ -35,20 +35,6 @@ export default function SearchBar(){
     const [shownModels, setShownModels] = useState([]);
     const [searchTerm, setSearchTerm] = useState(""); 
 
-    useEffect(() => {
-        axios
-          .get("http://localhost:8080/models/getAll")
-          .then((response) => {
-
-            const filteredModels = response.data;
-            setAllModels(filteredModels);
-            setShownModels(filteredModels);
-          })
-          .catch((error) => {
-            console.error("Error fetching models data:", error);
-          });
-      }, []);
-
     const [accesoriosToggled, setAccesorios] = useState(false);
     const [herramientasToggled, setHerramientas] = useState(false);
     const [complementosToggled, setComplementos] = useState(false);
@@ -75,10 +61,8 @@ export default function SearchBar(){
     }
 
     const toggleAllDisabled = !(accesoriosToggled || herramientasToggled || complementosToggled || juguetesToggled || figurasToggled || mecanismosToggled);
+  
     
-    
-      
-
       function handleKeyPress(e) {
         if (e.key === "Enter") {
             closeDrawer();
@@ -204,8 +188,51 @@ export default function SearchBar(){
           });
         }
     };
-      
+
         
+    const [selectedButton, setSelectedButton] = useState(1);
+
+    const handleButtonClick = (buttonNumber) => {
+        setSelectedButton(buttonNumber);
+    };
+
+    const [numMod, setNumMod] = useState(2);
+    
+    const setNumModMostrados = (event) => {
+        setNumMod(event.target.value);
+        handleButtonClick(1);
+    };
+
+    const getButtonStyle = (buttonNumber) => {
+        return {
+        backgroundColor: selectedButton === buttonNumber ? 'blue' : 'white'
+        };
+    };
+
+    const [pagesButtons, setPagesButtons] = useState([]);
+
+    useEffect(() => {
+        axios
+        .get("http://localhost:8080/models/getAll")
+        .then((response) => {
+
+            const filteredModels = response.data;
+            setAllModels(filteredModels);
+            setShownModels(filteredModels);
+        })
+        .catch((error) => {
+            console.error("Error fetching models data:", error);
+        });
+
+        const lista = [];
+
+        const long =  Math.ceil(catalogModels.length / numMod);
+        for (let i = 1; i <= long; i++) {
+            lista.push(i);
+        }
+        setPagesButtons(lista);
+
+    }, [catalogModels, numMod]);
 
     return(
         <div className="overflow-y-hidden mt-12">
@@ -249,8 +276,17 @@ export default function SearchBar(){
                 </div>
             </div>
             <div id="catalogItemsContainer" className={`${blurOnSearch()} -mt-32 transition duration-300 relative z-0`}>
+                Número de modelos:
+            <select className="mb-4 ml-2" value={numMod} onChange={setNumModMostrados}>
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+            </select>
+
                 <div id="catalogGrid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-8">
-                    {shownModels.map((model, index) => (
+                    {shownModels.slice(numMod*(selectedButton-1), numMod*selectedButton).map((model, index) => (
                         <CatalogItem
                             key={model.id}
                             onClick={() => handleModelClick(model)}
@@ -258,6 +294,17 @@ export default function SearchBar(){
                             modelImage={model.imageUrl}
                             modelAuthor={model.author}
                         />
+                    ))}
+                </div>
+                <div className="mt-8 flex items-center justify-center">
+                    {pagesButtons.map((buttonNumber) => (
+                        <button className="w-8 h-8 mx-2"
+                        key={buttonNumber}
+                        style={getButtonStyle(buttonNumber)}
+                        onClick={() => handleButtonClick(buttonNumber)}
+                        >
+                        {buttonNumber}
+                        </button>
                     ))}
                 </div>
             </div>
