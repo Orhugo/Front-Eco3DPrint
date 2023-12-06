@@ -205,11 +205,13 @@ export default function SearchBar(){
 
     const getButtonStyle = (buttonNumber) => {
         return {
-        backgroundColor: selectedButton === buttonNumber ? 'blue' : 'white'
+        backgroundColor: selectedButton === buttonNumber ? '#4D82DF' : 'white'
         };
     };
 
     const [pagesButtons, setPagesButtons] = useState([]);
+
+    const lengthModels = Math.ceil(catalogModels.length / numMod);
 
     useEffect(() => {
         axios
@@ -226,13 +228,13 @@ export default function SearchBar(){
 
         const lista = [];
 
-        const long =  Math.ceil(catalogModels.length / numMod);
+        const long = lengthModels;
         for (let i = 1; i <= long; i++) {
             lista.push(i);
         }
         setPagesButtons(lista);
 
-    }, [catalogModels, numMod]);
+    }, [lengthModels]);
 
     return(
         <div className="overflow-y-hidden mt-12">
@@ -298,7 +300,7 @@ export default function SearchBar(){
                 </div>
                 <div className="mt-8 flex items-center justify-center">
                     {pagesButtons.map((buttonNumber) => (
-                        <button className="w-8 h-8 mx-2"
+                        <button className="w-8 h-8 mx-2 rounded-full border border-black"
                         key={buttonNumber}
                         style={getButtonStyle(buttonNumber)}
                         onClick={() => handleButtonClick(buttonNumber)}
