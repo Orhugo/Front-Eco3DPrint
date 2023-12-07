@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Dropzone from "./Dropzone";
 
+
 function PrintSettings() {
   const [info, setInfo] = useState({
     title: "",
@@ -15,6 +16,7 @@ function PrintSettings() {
     soportes: "",
     categoria: "",
     pago: "",
+    image: null
   });
 
   const handleOnBlurTitle = (event) => {
@@ -77,9 +79,33 @@ function PrintSettings() {
     setInfo((prevInfo) => ({ ...prevInfo, categoria: categoria }));
   };
 
+
+  const [file, setFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [imageUrl, setImageUrl] = useState(null); 
+  const [defaultImage, setdefaultImage] = useState("./default_image.png");
+
+  
+
+  const handleFileChange = (e) => {
+    const image = e.target.files[0];
+    setFile(image);
+    setInfo((prevInfo) => ({ ...prevInfo, image: image }));
+    setdefaultImage(null);
+    
+    if (e.target.files && e.target.files.length > 0) {
+      
+      const imageUrl = URL.createObjectURL(e.target.files[0]);
+      setImageUrl(imageUrl);
+    }
+  };
+
+  
+
+ 
   return (
-    <div>
-      <Dropzone info={info} />
+    <div className="mx-auto">
+      <Dropzone info={info}/>
       <h1 className="font-extrabold text-3xl mt-[10px]">File details</h1>
       <div className="fileDetails">
         Title (required){" "}
@@ -113,6 +139,7 @@ function PrintSettings() {
           <option value="" disabled>
             Seleccione una opción
           </option>
+          <option value="Accesorios">Accesorios</option>
           <option value="Herramientas">Herramientas</option>
           <option value="Complementos">Complementos</option>
           <option value="Juguetes">Juguetes</option>
@@ -268,8 +295,24 @@ function PrintSettings() {
         <input type="radio" id="pagoNo" name="pago" value="no" onChange={handlePago}/>
         <label htmlFor="pagoNo">No</label>
       </div>
+
+      <div>
+        <h1 className="font-extrabold text-3xl mt-[10px] my-4"> Image </h1>
+          <div className="w-36 h-36 border-2 border-black mb-4 overflow-hidden">
+            {<img className="w-full h-full object-cover" src={imageUrl || defaultImage} alt="Uploaded" />}
+          </div>
+        <input className=" border-2 border-black rounded" type="file" onChange={handleFileChange} />
+        {/* <button className="w-36 h-12 ml-2 border-2 border-black bg-green-300 rounded" onClick={handleUpload} disabled={uploading}>
+          Subir Imagen
+        </button> */}
+
+        {uploading && <p>Subiendo...</p>}
+        {/* {imageUrl && <p>URL de la imagen: {imageUrl}</p>} */}
+      </div>
+      
     </div>
   );
+        
 }
 
 export default PrintSettings;

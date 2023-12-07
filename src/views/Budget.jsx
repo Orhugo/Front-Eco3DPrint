@@ -197,7 +197,7 @@ function Budget() {
       <div className="flex flex-col h-[700px] w-[1400px] bg-red-500 justify-center items-center">
         <div
           {...getRootProps()}
-          className="w-[550px] h-[75px] fixed mb-[500px]"
+          className="w-[550px] h-[75px]"
         >
           <input {...getInputProps()} />
           {isDragActive ? (

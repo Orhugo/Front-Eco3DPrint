@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { createClient } from '@supabase/supabase-js';
 
 function ButtonUploadFiles({ files, info }) {
   const usuario = JSON.parse(localStorage.getItem("user"));
@@ -49,7 +50,11 @@ function ButtonUploadFiles({ files, info }) {
       );
         const pSettings = printSettingsResponse.data;
         console.log(pSettings);
+
+
         
+       const url= await handleUpload();   
+       
       const modelResponse = await axios.post(
         "http://localhost:8080/models/add",
         {
@@ -60,6 +65,8 @@ function ButtonUploadFiles({ files, info }) {
           author: usuario,
           printSettings: pSettings,
           mainUrl: urls[0],
+          imageUrl: url,
+          likeCounter: 0,
         }
       );
       const modelId = modelResponse.data.id;
@@ -80,6 +87,29 @@ function ButtonUploadFiles({ files, info }) {
     } finally {
       setUploading(false);
     }
+  };
+  const supabaseUrl = 'https://ohjmhtpmzrwhleemxqgr.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oam1odHBtenJ3aGxlZW14cWdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkwMzA0NjQsImV4cCI6MjAxNDYwNjQ2NH0.a8yTP4L8J_qPPzOBasqmFjMuftpA279n4fgRoLWQgW8';
+
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const handleUpload = async () => {
+    
+      const path = `public/${info.image.name}`;
+      const { data, error } = await supabase.storage.from('test').upload(path, info.image);
+
+      if (error) {
+        console.error('Error al subir la imagen:', error.message);
+        return null;
+      } else {
+
+        const localImageUrl = `${supabaseUrl}/storage/v1/object/public/test/${path}`;
+
+        console.log('Imagen subida con éxito:', data);
+        console.log('URL de la imagen:', localImageUrl);
+
+        return localImageUrl;
+      }
   };
 
   return (

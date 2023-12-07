@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.LoosFont{
+    font-family: loos-extrawide, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.LoosFontMd{
+    font-family: "loos-extrawide", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+#footerClipContainer{
+    clip-path: polygon(0 10%, 100% 30%, 100% 100%, 0% 100%);
+}
+
+#aprendeDesdeCeroDiv{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+}
+
+#buscaDiseñoDiv{
+    clip-path: polygon(0 0, 100% 20%, 100% 70%, 0 100%);
+}
+
+#hazRealidadDiv{
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+}
+
+#tutorialsFirstDiv{
+    clip-path: polygon(0 0, 100% 20%, 100% 80%, 0% 100%);
+}
+
+#tutorialsSecondDiv{
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 75%);
+}
+
+#tutorialsThirdDiv{
+    clip-path: polygon(0 0, 100% 20%, 100% 90%, 0 100%);
+}
+
+#tutorialsFourthDiv{
+    clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 90%);
+}
+
+#tutorialsFifthDiv{
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+}
+
+#catalogDrawer{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+}
+
+@layer utilities {
+    @variants responsive {
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    }
+}

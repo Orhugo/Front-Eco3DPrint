@@ -3,10 +3,6 @@ import { useDropzone } from "react-dropzone";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import "../styles/UploadFile.css";
-import axios from "axios";
-import ButtonUploadFiles from "./ButtonUploadFiles";
-import PrintSettings from "./PrintSettings";
 
 /* The `Dropzone` function is a React component that allows users to drag and drop files or click to
 select files. It uses the `useDropzone` hook from the `react-dropzone` library to handle the file
@@ -65,14 +61,14 @@ function Dropzone({ info }) {
 
   return (
     <>
-      <div className="mx-auto p-2">
+      <div>
         {/* General */}
-        <div {...getRootProps()} className="rounded mx-auto">
-          <input {...getInputProps()} />
+        <div {...getRootProps()} className="bg-white rounded">
+          <input {...getInputProps()} data-testid="dropzone"/>
           {isDragActive ? (
-            <p className="drag-area active mx-auto LoosFont">Drop the files here ...</p>
+            <p className="drag-area active">Drop the files here ...</p>
           ) : (
-            <p className="drag-area mx-auto LoosFont">
+            <p className="drag-area">
               Drag 'n' drop some files here, or click to select files
             </p>
           )}
@@ -83,17 +79,13 @@ function Dropzone({ info }) {
           <div className="">
             <button
               type="button"
+              data-testid="removeAll"
               onClick={removeAll}
               className="text-gray-900 bg-red-400 hover:bg-red-600 focus:ring-4 focus:outline-2 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 mr-2 mb-2"
             >
               Eliminar Todos
             </button>
           </div>
-
-          <ButtonUploadFiles
-            files={files}
-            info={info}
-          />
         </div>
 
         {/*Accepted files*/}
