@@ -7,9 +7,9 @@ import {useEffect, useState} from "react";
 
 export default function VolumeNavBar(){
     const [isUserLoggedIn, setUserLoggedIn] = useState(false)
-    const volumeHomeUrl = '/Volume/'
-    const catalogUrl = '/Volume/catalogo'
-    const tutorialsUrl = '/Volume/tutorials'
+    const volumeHomeUrl = '/volume/'
+    const catalogUrl = '/volume/catalogo'
+    const tutorialsUrl = '/volume/tutorials'
     const user = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
@@ -23,19 +23,19 @@ export default function VolumeNavBar(){
     const navigate = useNavigate()
 
     const navigateProfile = ()=>{
-        navigate('/Volume/Profile')
+        navigate('/volume/profile')
     }
 
     const navigateUpload = ()=>{
-        navigate('/Volume/subirArchivo')
+        navigate('/volume/subirarchivo')
     }
 
     const navigateLogin = ()=>{
-        navigate('/Volume/UserLogin')
+        navigate('/volume/userlogin')
     }
 
     const navigateSignIn = ()=>{
-        navigate('/Volume/UserRegistration')
+        navigate('/volume/userregistration')
     }
 
     const checkUserLogged = ()=>{

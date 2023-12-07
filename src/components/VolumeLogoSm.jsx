@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 export default function VolumeLogoSm(){
     const navigate = useNavigate()
     const handleClick = ()=>{
-        navigate("/Volume")
+        navigate("/volume")
     }
 
     return(
