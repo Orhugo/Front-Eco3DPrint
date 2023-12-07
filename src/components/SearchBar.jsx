@@ -293,7 +293,7 @@ export default function SearchBar(){
                 <option value="10">10</option>
             </select>
 
-                <div id="catalogGrid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-8">
+                <div id="catalogGrid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     {shownModels.slice(numMod*(selectedButton-1), numMod*selectedButton).map((model, index) => (
                         <CatalogItem
                             key={model.id}

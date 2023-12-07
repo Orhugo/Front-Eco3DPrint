@@ -27,7 +27,7 @@ export default function CatalogItem({onClick, modelName, modelImage, modelAuthor
     modelAuthor = modelAuthor ?? "nullUser";
 
     return(
-        <div className="w-full max-w-[330px] mx-auto h-96  flex flex-shrink flex-col relative overflow-y-hidden cursor-pointer  border border-gray-400" onMouseEnter={openInfo} onMouseLeave={closeInfo} onClick={onClick}>
+        <div className="w-full mx-auto h-96  flex flex-shrink flex-col relative overflow-y-hidden cursor-pointer  border border-gray-400" onMouseEnter={openInfo} onMouseLeave={closeInfo} onClick={onClick}>
             <div id="imageContainer" className="w-full h-full  flex items-center justify-center">
 
             <img src={modelImage} alt="Error" className="w-full h-full object-cover" />

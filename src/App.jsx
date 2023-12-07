@@ -37,21 +37,21 @@ function App() {
                 </div>
                 <div id="MainViewContainer" className="w-full relative flex justify-center items-center z-0">
                     <Routes>
-                        <Route path="/Volume" element={<HomeUI/>}/>
-                        <Route path="/Volume/subirArchivo" element={<UploadFileUI/>}/>
-                        <Route path="/Volume/visualizarSTL" element={<ModelViewUI/>}/>
-                        <Route path="/Volume/catalogo" element={<CatalogUI/>}/>
-                        <Route path="/Volume/UserRegistration" element={<UserRegistrationUI/>}/>
-                        <Route path="/Volume/UserLogin" element={<UserLoginUI/>}/>
-                        <Route path="/Volume/ProfileConfig" element={<ProfileConfig/>}/>
-                        <Route path="/Volume/Comment" element={<Comment/>}/>
-                        <Route path="/Volume/Profile" element={<ProfileUI/>}/>
-                        <Route path="/Volume/CalcularPresupuesto" element={<Budget/>}/>
-                        <Route path="/Volume/tutorials" element={<TutorialsUI/>}/>
-                        <Route path="/Volume/tutorials/:id" element={<TutorialHandler/>}/>
-                        <Route path="/Volume/authors/:username" element={<AuthorsProfile/>}/>
+                        <Route path="/volume" element={<HomeUI/>}/>
+                        <Route path="/volume/subirArchivo" element={<UploadFileUI/>}/>
+                        <Route path="/volume/visualizarstl" element={<ModelViewUI/>}/>
+                        <Route path="/volume/catalogo" element={<CatalogUI/>}/>
+                        <Route path="/volume/userregistration" element={<UserRegistrationUI/>}/>
+                        <Route path="/volume/userlogin" element={<UserLoginUI/>}/>
+                        <Route path="/volume/profileconfig" element={<ProfileConfig/>}/>
+                        <Route path="/volume/comment" element={<Comment/>}/>
+                        <Route path="/volume/profile" element={<ProfileUI/>}/>
+                        <Route path="/volume/calcularpresupuesto" element={<Budget/>}/>
+                        <Route path="/volume/tutorials" element={<TutorialsUI/>}/>
+                        <Route path="/volume/tutorials/:id" element={<TutorialHandler/>}/>
+                        <Route path="/volume/authors/:username" element={<AuthorsProfile/>}/>
                         <Route path="/Front-Eco3DPrint/InfoModel" element={<InfoModel/>}/>
-                        <Route path="/Volume/AboutUs" element={<AboutUs/>}/>
+                        <Route path="/volume/AboutUs" element={<AboutUs/>}/>
                     </Routes>
                 </div>
                 <div id="footerContainer" className="w-full">
