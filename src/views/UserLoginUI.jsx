@@ -13,8 +13,6 @@ export default function UserLoginUI(){
     const handleClick = ()=>{
         navigate('/Volume/UserRegistration')
     }
-
-
     const updateEmailValue = (event)=>{
         setEmailValue(event.target.value)
     }
