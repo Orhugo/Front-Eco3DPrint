@@ -1,4 +1,10 @@
+import {useEffect} from "react";
+
 export default function HomeUI(){
+    useEffect(() => {
+        window.scroll(0,0)
+    }, []);
+
     return(
         <div id="mainHomeUIContainer" className="md:w-[80%] w-full mt-14 font-loos">
             <div id="landingContainer" className="max-w-[1340px] md:p-0 p-6 mx-auto animate-fade animate-delay-200">

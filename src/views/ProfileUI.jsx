@@ -1,8 +1,13 @@
 import CatalogItem from "../components/CatalogItem.jsx";
 import NotificationItem from "../components/NotificationItem.jsx";
+import {useEffect} from "react";
 
 export default function ProfileUI({profileName}){
     const user = JSON.parse(localStorage.getItem('user'));
+
+    useEffect(() => {
+        window.scroll(0,0)
+    }, []);
     return(
         <div className="flex w-[80%] mt-12 gap-6 h-full animate-fade">
             <div id="sideBarContainer" className="max-w-sm flex flex-col">

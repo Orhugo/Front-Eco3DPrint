@@ -194,6 +194,10 @@ export default function SearchBar(){
     const [selectedButton, setSelectedButton] = useState(1);
 
     const handleButtonClick = (buttonNumber) => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'  // Agrega un desplazamiento suave
+        });
         setSelectedButton(buttonNumber);
     };
 

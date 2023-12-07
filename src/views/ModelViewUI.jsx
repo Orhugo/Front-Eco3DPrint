@@ -3,9 +3,15 @@ import LinearProgress from '@mui/material/LinearProgress';
 import ProgressBarReview from "../components/ProgressBarReview.jsx";
 import CommentItem from "../components/CommentItem.jsx";
 import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 export default function ModelViewUI(){
     const navigate = useNavigate()
+
+    useEffect(() => {
+        window.scroll(0,0)
+    }, []);
+
     const navigateProfile = ()=>{
         navigate("/Volume/Profile")
     }

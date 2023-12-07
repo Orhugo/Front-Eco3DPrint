@@ -1,6 +1,11 @@
 import TutorialItemComponent from "../components/TutorialItemComponent.jsx";
+import {useEffect} from "react";
 
 export default function TutorialsUI(){
+    useEffect(() => {
+        window.scroll(0,0)
+    }, []);
+
     return(
         <div id="mainTutorialsViewContainer" className="max-w-4xl animate-fade">
             <div id="mainLabelContainer" className="mt-12">

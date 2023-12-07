@@ -7,6 +7,7 @@ function UploadFileUI() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scroll(0,0)
     if (user === null) {
       navigate("/Volume/UserRegistration");
     }

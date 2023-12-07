@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
 export default function UserLoginUI(){
@@ -10,6 +10,11 @@ export default function UserLoginUI(){
     const [loginError, setLoginError] = useState('');
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scroll(0,0)
+    }, []);
+
     const handleClick = ()=>{
         navigate('/Volume/UserRegistration')
     }
