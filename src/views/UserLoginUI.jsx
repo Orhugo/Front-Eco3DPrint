@@ -16,7 +16,7 @@ export default function UserLoginUI(){
     }, []);
 
     const handleClick = ()=>{
-        navigate('/Volume/UserRegistration')
+        navigate('/volume/userregistration')
     }
     const updateEmailValue = (event)=>{
         setEmailValue(event.target.value)
@@ -50,6 +50,13 @@ export default function UserLoginUI(){
         warningVisibility()
     }
 
+    const handleEnter = (event)=>{
+        if(event.key === 'Enter'){
+            console.log("enter")
+            checkFields(event)
+        }
+    }
+
     async function login(event) {
         event.preventDefault();
 
@@ -68,7 +75,7 @@ export default function UserLoginUI(){
                     setUser(user);
                     localStorage.setItem('user', JSON.stringify(user));
                     localStorage.setItem('isLoggedIn', true);
-                    navigate('/Volume', {state: {user: user}});
+                    navigate('/volume', {state: {user: user}});
                 } else {
                     setLoginError('Mail or/and password incorrect. Try again');
                 }
@@ -83,7 +90,7 @@ export default function UserLoginUI(){
     }
 
     return(
-        <div id="loginContainer" className="mt-12 w-[80%]">
+        <div id="loginContainer" className="mt-12 w-[80%]" onKeyPress={handleEnter}>
             <div id="mainLabelContainer">
                 <p className="LoosFont w-full text-center text-4xl sm:text-5xl md:text-7xl lg:text-8xl">
                     Iniciar sesión

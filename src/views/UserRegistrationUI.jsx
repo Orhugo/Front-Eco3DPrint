@@ -13,7 +13,7 @@ export default function UserRegistrationUI(){
     const [confirmpasswordValue, setConfirmPasswordValue] = useState("")
     const navigate = useNavigate()
     const handleClick = ()=>{
-        navigate('/Volume/UserLogin')
+        navigate('/volume/userLogin')
     }
     //ChangeHandlers
     const updateNameValue = (event)=>{
@@ -87,7 +87,7 @@ export default function UserRegistrationUI(){
             const response = await axios.post('http://localhost:8080/users/add', data);
             if (response.status === 200) {
                 alert("Registration successful");
-                navigate('/Volume/UserLogin');
+                navigate('/volume/userlogin');
             } else {
                 alert("Registration failed");
             }
