@@ -13,7 +13,6 @@ import Tutorials from "./views/TutorialsCatalog";
 import TutorialHandler from "./views/TutorialHandler";
 import Profile from "./views/Profile";
 import Budget from "./views/Budget";
-import AuthorsProfile from "./views/AuthorsProfile";
 import InfoModel from "./views/InfoModel";
 import AboutUs from "./views/AboutUs.jsx";
 import Footer from "./components/Footer.jsx";
