@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/Profile.css";
-import UserCatalog from "../views/UserCatalog";
 
 function Profile() {
   const user = JSON.parse(localStorage.getItem('user'));
