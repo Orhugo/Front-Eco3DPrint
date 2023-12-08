@@ -1,6 +1,6 @@
 import CatalogItem from "../components/CatalogItem.jsx";
 import NotificationItem from "../components/NotificationItem.jsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import UserCatalog from "./UserCatalog.jsx";
 import { useLocation } from "react-router-dom";
 
@@ -8,9 +8,52 @@ export default function ProfileUI(){
     //const user = JSON.parse(localStorage.getItem('user'));
     const { state } = useLocation();
     const user = state.user;
+    const [catalogModels, setAllModels] = useState([]);
+    const navigate = useNavigate()
     useEffect(() => {
         window.scroll(0,0)
+        axios
+            .get("http://localhost:8080/models/getAuthorModels", {
+                params: {
+                    author: user.username,
+                }
+            })
+            .then((response) => {
+
+                const filteredModels = response.data.filter(model => model.author.id === user.id);
+                console.log(filteredModels)
+                setAllModels(filteredModels)
+                /*
+                setAllModels(filteredModels);
+                if(shownModels.length == 0){
+                    setShownModels(filteredModels);
+                }*/
+            })
+            .catch((error) => {
+                console.error("Error fetching models data:", error);
+            });
     }, []);
+
+    const handleModelClick = (model) => {
+        console.log("id:  ", model.id);
+        if (model.mainUrl == null) {
+            navigate("/volume/visualizarstl", {
+                state: "thinker.stl",
+            });
+        } else if (model.mainUrl.length < 1) {
+            navigate("/volume/visualizarstl", {
+                state: "thinker.stl",
+            });
+        } else {
+            navigate("/volume/visualizarstl", {
+                state: {
+                    modelID: model.id,
+                    modelName: model.title,
+                },
+            });
+        }
+    };
+
     return(
         <div className="flex w-[80%] mt-12 gap-6 h-full animate-fade">
             <div id="sideBarContainer" className="max-w-sm flex flex-col">
@@ -71,8 +114,16 @@ export default function ProfileUI(){
                     <p className="LoosFont text-xl hover:underline cursor-pointer">Tus diseños</p>
                     <p className="LoosFont text-xl hover:underline cursor-pointer">Colecciones</p>
                 </div>
-                <div id="catalogProfileGrid" className="mt-[150px]">
-                    <UserCatalog username = {user} />
+                <div id="catalogProfileGrid" className="grid grid-cols-3 gap-4 mt-6">
+                    {catalogModels.map((model,)=>(
+                        <CatalogItem
+                            key={model.id}
+                            onClick={() => handleModelClick(model)}
+                            modelName={model.title}
+                            modelImage={model.imageUrl}
+                            modelAuthor={model.author}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
