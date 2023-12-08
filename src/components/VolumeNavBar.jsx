@@ -3,14 +3,13 @@ import NavigationButton from "./NavigationButton.jsx";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
-
-
 export default function VolumeNavBar(){
     const [isUserLoggedIn, setUserLoggedIn] = useState(false)
     const volumeHomeUrl = '/volume/'
     const catalogUrl = '/volume/catalogo'
     const tutorialsUrl = '/volume/tutorials'
     const user = JSON.parse(localStorage.getItem('user'));
+    const isLogged = localStorage.getItem('isLoggedIn');
 
     useEffect(() => {
         if(user != null){
@@ -23,7 +22,11 @@ export default function VolumeNavBar(){
     const navigate = useNavigate()
 
     const navigateProfile = ()=>{
-        navigate('/volume/profile')
+        navigate('/volume/profile', {
+            state: {
+                user: user.username
+            },
+          })
     }
 
     const navigateUpload = ()=>{
@@ -70,16 +73,8 @@ export default function VolumeNavBar(){
                 </div>
             </div>
             <div className="flex items-center gap-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`${checkUserLogged()} w-8 h-8 hover:text-cyan-600 cursor-pointer hidden sm:block`} onClick={navigateUpload}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                </svg>
-                <div id="profileImgContainer" className={`${checkUserLogged()} w-10 h-10 rounded-full bg-slate-800 hidden sm:block cursor-pointer hover:drop-shadow-slim transition duration-300`} onClick={navigateProfile}>
-
-                </div>
-                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 ml-2 sm:hidden cursor-pointer hover:text-cyan-600">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                </svg>
-                <div className={`${showLoginAndRegister()} flex gap-4 items-center`}>
+                {!isLogged ? (<>
+                    <div className={"flex gap-4 items-center"}>
                     <p className="hover:underline transition duration-300 cursor-pointer text-sm" onClick={navigateLogin}>
                         Iniciar sesión
                     </p>
@@ -88,6 +83,19 @@ export default function VolumeNavBar(){
                         Registrarse
                     </p>
                 </div>
+                </>) : (<>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={"w-8 h-8 hover:text-cyan-600 cursor-pointer hidden sm:block"} onClick={navigateUpload}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                </svg>
+                <div id="profileImgContainer" className={"w-10 h-10 rounded-full bg-slate-800 hidden sm:block cursor-pointer hover:drop-shadow-slim transition duration-300"} onClick={navigateProfile}>
+
+                </div>
+                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 ml-2 sm:hidden cursor-pointer hover:text-cyan-600">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                </>)}
+                
+                
             </div>
         </div>
     )

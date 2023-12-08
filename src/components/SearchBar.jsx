@@ -185,6 +185,8 @@ export default function SearchBar(){
             state: {
               modelID: model.id,
               modelName: model.title,
+              mainUrl: model.mainUrl,
+              author: model.author,
             },
           });
         }

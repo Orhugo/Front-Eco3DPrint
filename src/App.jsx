@@ -13,7 +13,6 @@ import Tutorials from "./views/TutorialsCatalog";
 import TutorialHandler from "./views/TutorialHandler";
 import Profile from "./views/Profile";
 import Budget from "./views/Budget";
-import AuthorsProfile from "./views/AuthorsProfile";
 import InfoModel from "./views/InfoModel";
 import AboutUs from "./views/AboutUs.jsx";
 import Footer from "./components/Footer.jsx";
@@ -49,7 +48,7 @@ function App() {
                         <Route path="/volume/calcularpresupuesto" element={<Budget/>}/>
                         <Route path="/volume/tutorials" element={<TutorialsUI/>}/>
                         <Route path="/volume/tutorials/:id" element={<TutorialHandler/>}/>
-                        <Route path="/volume/authors/:username" element={<AuthorsProfile/>}/>
+                        <Route path="/volume/authors/:username" element={<ProfileUI/>}/>
                         <Route path="/Front-Eco3DPrint/InfoModel" element={<InfoModel/>}/>
                         <Route path="/volume/AboutUs" element={<AboutUs/>}/>
                     </Routes>
