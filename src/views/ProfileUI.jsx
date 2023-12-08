@@ -12,7 +12,11 @@ export default function ProfileUI({profileName}){
     useEffect(() => {
         window.scroll(0,0)
         axios
-            .get("http://localhost:8080/models/getAll")
+            .get("http://localhost:8080/models/getAuthorModels", {
+                params: {
+                    author: user.username,
+                }
+            })
             .then((response) => {
 
                 const filteredModels = response.data.filter(model => model.author.id === user.id);
