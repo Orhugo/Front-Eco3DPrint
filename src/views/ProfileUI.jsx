@@ -2,10 +2,12 @@ import CatalogItem from "../components/CatalogItem.jsx";
 import NotificationItem from "../components/NotificationItem.jsx";
 import {useEffect} from "react";
 import UserCatalog from "./UserCatalog.jsx";
+import { useLocation } from "react-router-dom";
 
-export default function ProfileUI({profileName}){
-    const user = JSON.parse(localStorage.getItem('user'));
-
+export default function ProfileUI(){
+    //const user = JSON.parse(localStorage.getItem('user'));
+    const { state } = useLocation();
+    const user = state.user;
     useEffect(() => {
         window.scroll(0,0)
     }, []);
@@ -14,7 +16,7 @@ export default function ProfileUI({profileName}){
             <div id="sideBarContainer" className="max-w-sm flex flex-col">
                 <div id="profilePicContainer" className="w-32 h-32 bg-slate-400 rounded-full mx-auto"></div>
                 <div id="profileNameContainer" className="mt-8">
-                    <p className="LoosFont text-4xl text-center">{user.username}</p>
+                    <p className="LoosFont text-4xl text-center">{user}</p>
                 </div>
                 <div id="statsContainer" className="flex gap-6 mt-8 justify-between">
                     <div>
@@ -70,7 +72,7 @@ export default function ProfileUI({profileName}){
                     <p className="LoosFont text-xl hover:underline cursor-pointer">Colecciones</p>
                 </div>
                 <div id="catalogProfileGrid" className="mt-[150px]">
-                    <UserCatalog username = {user.username} />
+                    <UserCatalog username = {user} />
                 </div>
             </div>
         </div>

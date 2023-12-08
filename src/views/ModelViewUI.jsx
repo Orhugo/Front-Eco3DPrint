@@ -21,7 +21,12 @@ export default function ModelViewUI() {
   }, []);
 
   const navigateProfile = () => {
-    navigate("/Volume/Profile");
+    navigate(`/volume/authors/${author}`,
+    {
+      state: {
+        user: author
+      }
+    });
   };
 
   return (

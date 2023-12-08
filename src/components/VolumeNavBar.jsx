@@ -3,8 +3,6 @@ import NavigationButton from "./NavigationButton.jsx";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
-
-
 export default function VolumeNavBar(){
     const [isUserLoggedIn, setUserLoggedIn] = useState(false)
     const volumeHomeUrl = '/volume/'
@@ -24,7 +22,11 @@ export default function VolumeNavBar(){
     const navigate = useNavigate()
 
     const navigateProfile = ()=>{
-        navigate('/volume/profile')
+        navigate('/volume/profile', {
+            state: {
+                user: user.username
+            },
+          })
     }
 
     const navigateUpload = ()=>{
