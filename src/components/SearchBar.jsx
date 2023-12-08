@@ -173,18 +173,20 @@ export default function SearchBar(){
     const handleModelClick = (model) => {
         console.log("id:  ", model.id);
         if (model.mainUrl == null) {
-          navigate("/Volume/visualizarSTL", {
+          navigate("/volume/visualizarSTL", {
             state: "thinker.stl",
           });
         } else if (model.mainUrl.length < 1) {
-          navigate("/Volume/visualizarSTL", {
+          navigate("/volume/visualizarSTL", {
             state: "thinker.stl",
           });
         } else {
-          navigate("/Volume/visualizarSTL", {
+          navigate("/volume/visualizarSTL", {
             state: {
               modelID: model.id,
               modelName: model.title,
+              mainUrl: model.mainUrl,
+              author: model.author,
             },
           });
         }

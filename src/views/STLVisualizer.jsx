@@ -8,7 +8,7 @@ import '../styles/VisualizarSTL.css';
 
 const style = {
   width: "900px",
-  height: "600px",
+  height: "400px",
 };
 export function VisualizarSTL() {
   const { state } = useLocation();

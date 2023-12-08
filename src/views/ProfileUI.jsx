@@ -1,6 +1,7 @@
 import CatalogItem from "../components/CatalogItem.jsx";
 import NotificationItem from "../components/NotificationItem.jsx";
 import {useEffect} from "react";
+import UserCatalog from "./UserCatalog.jsx";
 
 export default function ProfileUI({profileName}){
     const user = JSON.parse(localStorage.getItem('user'));
@@ -36,7 +37,7 @@ export default function ProfileUI({profileName}){
                 <div className="flex">
                     <p className="text-sm mt-8 relative">
                         Notificaciones
-                        <div className="absolute w-2 h-2 rounded-full bg-red-500 top-0 -end-2"></div>
+                        {/* <div className="absolute w-2 h-2 rounded-full bg-red-500 top-0 -end-2"></div> */}
                     </p>
                 </div>
                 <div id="notificationsContainer" className="mt-2 flex flex-col flex-1 overflow-y-scroll overflow-x-visible max-h-[370px] no-scrollbar px-4 justify-start">
@@ -68,13 +69,8 @@ export default function ProfileUI({profileName}){
                     <p className="LoosFont text-xl hover:underline cursor-pointer">Tus diseños</p>
                     <p className="LoosFont text-xl hover:underline cursor-pointer">Colecciones</p>
                 </div>
-                <div id="catalogProfileGrid" className="grid grid-cols-3 gap-4 mt-6">
-                    <CatalogItem/>
-                    <CatalogItem/>
-                    <CatalogItem/>
-                    <CatalogItem/>
-                    <CatalogItem/>
-                    <CatalogItem/>
+                <div id="catalogProfileGrid" className="mt-[150px]">
+                    <UserCatalog username = {user.username} />
                 </div>
             </div>
         </div>
