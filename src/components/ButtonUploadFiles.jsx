@@ -46,6 +46,7 @@ function ButtonUploadFiles({ files, info }) {
           resolution: parseFloat(info.resolucion),
           supports: info.soportes,
           payment: info.pago,
+          price: parseFloat(info.precio),
         }
       );
         const pSettings = printSettingsResponse.data;

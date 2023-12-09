@@ -22,15 +22,15 @@ export default function HomeUI(){
     return(
         <div id="mainHomeUIContainer" className="md:w-[80%] w-full mt-14 font-loos">
             <div id="landingContainer" className="max-w-[1340px] md:p-0 p-6 mx-auto animate-fade animate-delay-200">
-                <img src="../../public/VolumeLanding.svg" draggable={false}/>
+                <img src="../../VolumeLanding.svg" draggable={false}/>
                 <p className="w-full text-center lg:text-5xl text-3xl mt-3.5">Dale vida a tus objetos</p>
             </div>
             <div id="secondSectionContainer" className="w-full relative mt-72 sm:mt-52 2xl:mt-72 px-6 md:px-0">
-                <img className="absolute max-h-[400px] top-52 blur-sm w-auto hidden 2xl:block" src="../../public/LeftJarron.png" alt="Jarron Izq"/>
-                <img className="absolute max-h-[400px] top-52 blur-sm end-0 w-auto hidden 2xl:block" src="../../public/RightJarron.png" alt="Jarron Der"/>
+                <img className="absolute max-h-[400px] top-52 blur-sm w-auto hidden 2xl:block" src="../../LeftJarron.png" alt="Jarron Izq"/>
+                <img className="absolute max-h-[400px] top-52 blur-sm end-0 w-auto hidden 2xl:block" src="../../RightJarron.png" alt="Jarron Der"/>
                 <div id="modelOfTheDayContainer" className="flex items-start justify-center">
                     <div className="w-fit sm:flex 2xl:grid grid-cols-3">
-                        <img className="w-full mx-auto sm:mx-0 xl:w-fit max-w-[300px] xl:max-w-[400px] h-auto object-contain col-start-2 hover:drop-shadow-2xl transition duration-300" src="../../public/3DModelPreview.png" alt="3D Model Preview"/>
+                        <img className="w-full mx-auto sm:mx-0 xl:w-fit max-w-[300px] xl:max-w-[400px] h-auto object-contain col-start-2 hover:drop-shadow-2xl transition duration-300" src="../../3DModelPreview.png" alt="3D Model Preview"/>
                         <div className="w-fit p-8 col-start-3 mx-auto sm:mx-0">
                             <div className="flex gap-4 items-center">
                                 <div className="bg-neutral-400 rounded-full w-12 h-12"></div>
@@ -70,8 +70,8 @@ export default function HomeUI(){
                     </p>
                     <div className="flex justify-end mt-16">
                         <div>
-                            <img className="w-full max-w-[578px]" src="../../public/Solicita%20una.svg" alt="Solicita una" draggable={false}/>
-                            <img className="w-full max-w-[578px] mt-6 lg:ml-20 ml-0" src="../../public/impresión%203D.svg" alt="Impresion 3D" draggable={false}/>
+                            <img className="w-full max-w-[578px]" src="../../Solicita%20una.svg" alt="Solicita una" draggable={false}/>
+                            <img className="w-full max-w-[578px] mt-6 lg:ml-20 ml-0" src="../../impresión%203D.svg" alt="Impresion 3D" draggable={false}/>
                             <p className="text-2xl lg:ml-20 ml-0 mt-6">
                                 ¡Piénsalo y créalo!
                             </p>
