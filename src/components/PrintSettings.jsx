@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Dropzone from "./Dropzone";
 
-
 function PrintSettings() {
   const [info, setInfo] = useState({
     title: "",
@@ -16,7 +15,8 @@ function PrintSettings() {
     soportes: "",
     categoria: "",
     pago: "",
-    image: null
+    precio: "",
+    image: null,
   });
 
   const handleOnBlurTitle = (event) => {
@@ -79,33 +79,31 @@ function PrintSettings() {
     setInfo((prevInfo) => ({ ...prevInfo, categoria: categoria }));
   };
 
+  const handlePrecio = (event) => {
+    const precio = event.target.value;
+    setInfo((prevInfo) => ({ ...prevInfo, precio: precio }));
+  }
 
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [imageUrl, setImageUrl] = useState(null); 
+  const [imageUrl, setImageUrl] = useState(null);
   const [defaultImage, setdefaultImage] = useState("./default_image.png");
-
-  
 
   const handleFileChange = (e) => {
     const image = e.target.files[0];
     setFile(image);
     setInfo((prevInfo) => ({ ...prevInfo, image: image }));
     setdefaultImage(null);
-    
+
     if (e.target.files && e.target.files.length > 0) {
-      
       const imageUrl = URL.createObjectURL(e.target.files[0]);
       setImageUrl(imageUrl);
     }
   };
 
-  
-
- 
   return (
     <div className="mx-auto">
-      <Dropzone info={info}/>
+      <Dropzone info={info} />
       <h1 className="font-extrabold text-3xl mt-[10px]">File details</h1>
       <div className="fileDetails">
         Title (required){" "}
@@ -276,7 +274,13 @@ function PrintSettings() {
         <label htmlFor="soportesSi" className="mr-2">
           Sí
         </label>
-        <input type="radio" id="soportesNo" name="soportes" value="no" onChange={handleSoportes}/>
+        <input
+          type="radio"
+          id="soportesNo"
+          name="soportes"
+          value="no"
+          onChange={handleSoportes}
+        />
         <label htmlFor="soportesNo">No</label>
       </div>
 
@@ -292,16 +296,48 @@ function PrintSettings() {
         <label htmlFor="pagosSi" className="mr-2">
           Sí
         </label>
-        <input type="radio" id="pagoNo" name="pago" value="no" onChange={handlePago}/>
+        <input
+          type="radio"
+          id="pagoNo"
+          name="pago"
+          value="no"
+          onChange={handlePago}
+        />
         <label htmlFor="pagoNo">No</label>
       </div>
 
       <div>
-        <h1 className="font-extrabold text-3xl mt-[10px] my-4"> Image </h1>
-          <div className="w-36 h-36 border-2 border-black mb-4 overflow-hidden">
-            {<img className="w-full h-full object-cover" src={imageUrl || defaultImage} alt="Uploaded" />}
+        {info.pago && (
+          <div className="mb-4">
+            <label htmlFor="precio" className="block">
+              Precio
+            </label>
+            <input
+              type="number"
+              id="precio"
+              className="w-full p-2 border rounded w-[100px]"
+              onChange={handlePrecio}
+            />
           </div>
-        <input className=" border-2 border-black rounded" type="file" onChange={handleFileChange} />
+        )}
+      </div>
+
+      <div>
+        <h1 className="font-extrabold text-3xl mt-[10px] my-4"> Image </h1>
+        <div className="w-36 h-36 border-2 border-black mb-4 overflow-hidden">
+          {
+            <img
+              className="w-full h-full object-cover"
+              src={imageUrl || defaultImage}
+              alt="Uploaded"
+            />
+          }
+        </div>
+        <input
+          className=" border-2 border-black rounded"
+          type="file"
+          onChange={handleFileChange}
+        />
         {/* <button className="w-36 h-12 ml-2 border-2 border-black bg-green-300 rounded" onClick={handleUpload} disabled={uploading}>
           Subir Imagen
         </button> */}
@@ -309,10 +345,8 @@ function PrintSettings() {
         {uploading && <p>Subiendo...</p>}
         {/* {imageUrl && <p>URL de la imagen: {imageUrl}</p>} */}
       </div>
-      
     </div>
   );
-        
 }
 
 export default PrintSettings;
