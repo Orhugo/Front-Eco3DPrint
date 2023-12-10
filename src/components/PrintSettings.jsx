@@ -315,7 +315,7 @@ function PrintSettings() {
             <input
               type="number"
               id="precio"
-              className="w-full p-2 border rounded w-[100px]"
+              className="p-2 border rounded w-[100px]"
               onChange={handlePrecio}
             />
           </div>
