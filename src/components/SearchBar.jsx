@@ -12,6 +12,7 @@ export default function SearchBar(){
         setDrawerIsOpen(true)
         handleDrawer()
     }
+    const loading = '../loading.gif';
 
     const closeDrawer = ()=>{
         setDrawerIsOpen(false)
@@ -57,6 +58,11 @@ export default function SearchBar(){
             setJuguetes(toggledValue);
         }else if(label == "Mecanismos"){
             setMecanismos(toggledValue);
+        }
+        if(toggledValue){
+
+        } else {
+            
         }
     }
 
@@ -203,7 +209,7 @@ export default function SearchBar(){
         setSelectedButton(buttonNumber);
     };
 
-    const [numMod, setNumMod] = useState(10);
+    const [numMod, setNumMod] = useState(8);
     
     const setNumModMostrados = (event) => {
         setNumMod(event.target.value);
@@ -217,9 +223,14 @@ export default function SearchBar(){
     };
 
     const [pagesButtons, setPagesButtons] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
  
 
     useEffect(() => {
+        if(shownModels.length == 0){
+            setIsLoading(true);
+        }
+
         axios
         .get("http://localhost:8080/models/getAll")
         .then((response) => {
@@ -232,6 +243,9 @@ export default function SearchBar(){
         })
         .catch((error) => {
             console.error("Error fetching models data:", error);
+        })
+        .finally(() => {
+            setIsLoading(false); 
         });
 
         const lista = [];
@@ -243,7 +257,7 @@ export default function SearchBar(){
         setPagesButtons(lista);
 
     }, [shownModels, numMod]);
-
+const text = "Buscar en " ;
     return(
         <div className="overflow-y-hidden mt-12">
             <div onMouseLeave={closeDrawer}>
@@ -253,7 +267,7 @@ export default function SearchBar(){
                     </svg>
                     <div className="w-full">
                         <input 
-                            placeholder="Buscar en Volume" 
+                            placeholder={text}
                             onClick={openDrawer}  
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
@@ -285,14 +299,18 @@ export default function SearchBar(){
                     </div>
                 </div>
             </div>
+            {isLoading ? (
+                <div className="flex items-center justify-center mb-2">
+                    <img className="w-32 h-32" src={loading} />
+                </div>
+            ) : (
             <div id="catalogItemsContainer" className={`${blurOnSearch()} -mt-32 transition duration-300 relative z-0`}>
                 Número de modelos:
             <select className="mb-4 ml-2" value={numMod} onChange={setNumModMostrados}>
-                <option value="2">2</option>
-                <option value="4">4</option>
-                <option value="6">6</option>
                 <option value="8">8</option>
-                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="16">16</option>
+                <option value="20">20</option>
             </select>
 
                 <div id="catalogGrid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -318,6 +336,7 @@ export default function SearchBar(){
                     ))}
                 </div>
             </div>
+            )}
         </div>
     )
 }

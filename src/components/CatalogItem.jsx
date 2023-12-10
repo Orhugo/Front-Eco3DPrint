@@ -23,14 +23,14 @@ export default function CatalogItem({onClick, modelName, modelImage, modelAuthor
         }
     }
 
-    modelImage = modelImage ?? "./default_image.png";
+    modelImage = modelImage ?? "../default_image.png";
     modelAuthor = modelAuthor ?? "nullUser";
 
     return(
         <div className="w-full mx-auto h-96  flex flex-shrink flex-col relative overflow-y-hidden cursor-pointer  border border-gray-400" onMouseEnter={openInfo} onMouseLeave={closeInfo} onClick={onClick}>
             <div id="imageContainer" className="w-full h-full  flex items-center justify-center">
 
-            <img src={modelImage} alt="Error" className="w-full h-full object-cover" />
+            <img src={modelImage} className="w-full h-full object-cover" />
 
             </div>
             <div id="infoDrawer" className={`${handleInfo()} w-full bg-white px-4 py-2 absolute top-full transition duration-300`}>
