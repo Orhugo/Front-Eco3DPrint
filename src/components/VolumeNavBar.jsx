@@ -8,6 +8,7 @@ export default function VolumeNavBar(){
     const volumeHomeUrl = '/volume/'
     const catalogUrl = '/volume/catalogo'
     const tutorialsUrl = '/volume/tutorials'
+    const budgetUrl = '/volume/calcularpresupuesto'
     const user = JSON.parse(localStorage.getItem('user'));
     const isLogged = localStorage.getItem('isLoggedIn');
 
@@ -70,6 +71,7 @@ export default function VolumeNavBar(){
                     <NavigationButton name="3D Of the day"/>
                     <NavigationButton name="Tutoriales" urlNavigate={tutorialsUrl}/>
                     <NavigationButton name="Foro"/>
+                    <NavigationButton name="Presupuesto" urlNavigate={budgetUrl}/>
                 </div>
             </div>
             <div className="flex items-center gap-4">
