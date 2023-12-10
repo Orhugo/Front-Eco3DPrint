@@ -26,7 +26,7 @@ function Dropzone({ info }) {
       ]);
     }
     if (rejectedFiles?.length) {
-      setRejected((previousFiles) => [...previousFiles, ...rejectedFiles]);
+      alert("No se admite este tipo de archivo");
     }
     console.log(acceptedFiles);
   }, []);
@@ -129,30 +129,6 @@ function Dropzone({ info }) {
           </ul>
         </div>
       </div>
-
-      {/* Rejected Files */}
-      <h3>Rejected Files</h3>
-      <ul>
-        {rejected.map(({ file, errors }) => (
-          <li key={file.name}>
-            <div>
-              <p>{file.name}</p>
-              <ul>
-                {errors.map((error) => (
-                  <li key={error.code}>{error.message}</li>
-                ))}
-              </ul>
-            </div>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={() => removeRejected(file.name)}
-            >
-              Remove
-            </Button>
-          </li>
-        ))}
-      </ul>
     </>
   );
 }
