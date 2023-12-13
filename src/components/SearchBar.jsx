@@ -42,6 +42,10 @@ export default function SearchBar(){
     const [juguetesToggled, setJuguetes] = useState(false);
     const [figurasToggled, setFiguras] = useState(false);
     const [mecanismosToggled, setMecanismos] = useState(false);
+
+    const [text, setText] = useState("Buscar en Volume");
+
+    const toggleAllDisabled = !(accesoriosToggled || herramientasToggled || complementosToggled || juguetesToggled || figurasToggled || mecanismosToggled);
     
 
     const handleToggle = (toggledValue, label) => {
@@ -60,13 +64,14 @@ export default function SearchBar(){
             setMecanismos(toggledValue);
         }
         if(toggledValue){
-
+            const localText = text + "  {" + label + "}";
+            setText(localText)
         } else {
+            const localText = text.replace("  {" + label + "}","");
+            setText(localText);
             
         }
     }
-
-    const toggleAllDisabled = !(accesoriosToggled || herramientasToggled || complementosToggled || juguetesToggled || figurasToggled || mecanismosToggled);
   
     
       function handleKeyPress(e) {
@@ -257,7 +262,7 @@ export default function SearchBar(){
         setPagesButtons(lista);
 
     }, [shownModels, numMod]);
-const text = "Buscar en " ;
+
     return(
         <div className="overflow-y-hidden mt-12">
             <div onMouseLeave={closeDrawer}>
