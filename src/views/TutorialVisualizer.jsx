@@ -2,24 +2,38 @@ import { useParams, useNavigate } from "react-router-dom";
 import TutorialItemComponent from "../components/TutorialItemComponent.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import SimpleImageSlider from "react-simple-image-slider";
 
-export default function TutorialsUI() {
+export default function TutorialVisualizer() {
     const [tutorialDetails, setTutorialDetails] = useState({});
     const [mostPopularTutorials, setMostPopularTutorials] = useState([]);
+    const [imageNum, setImageNum] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+
     const tutorialId = parseInt(useParams().id);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
         try {
+            setIsLoading(true);
+
             const tutorialDetailsResponse = await axios.get(
             `http://localhost:8080/tutorials/getDetails/${tutorialId}`
             );
+
             await axios.post(
             `http://localhost:8080/tutorials/enter/${tutorialId}`
             );
+
             setTutorialDetails(tutorialDetailsResponse.data);
         } catch (error) {
             console.error("Error fetching data:", error);
+        } finally {
+            setIsLoading(false);
+            scrollToTop();
         }
         };
 
@@ -33,36 +47,46 @@ export default function TutorialsUI() {
             "http://localhost:8080/tutorials/mostPopular"
             );
             setMostPopularTutorials(response.data);
-            console.log(m)
         } catch (error) {
             console.error("Error fetching most popular tutorials:", error);
         }
         };
 
         fetchMostPopularTutorials();
-    }, []); // Empty dependency array ensures it runs only once on component mount
-
-    const navigate = useNavigate();
-    useEffect(() => {
-        window.scroll(0, 0);
     }, []);
 
-    const handleTutorialClick = (tutorial) => {
-        navigate(`/Volume/tutorials/${tutorial.id}`);
+    const scrollToTop = () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth',
+            behavior: "smooth",
         });
     };
 
-    return(        
+    const handleTutorialClick = (tutorial) => {
+        navigate(`/Volume/tutorials/${tutorial.id}`);
+        scrollToTop();
+    };
+
+    const photoArray = [
+        tutorialDetails.photo1,
+        tutorialDetails.photo2,
+        tutorialDetails.photo3,
+    ].filter(Boolean);
+
+    return (
         <div id="mainTutorialsViewContainer" className="max-w-4xl animate-fade">
+        {isLoading ? (
+            <div className="flex items-center justify-center mb-2">
+            <img className="w-32 h-32" src="../loading.gif" alt="Loading" />
+            </div>
+        ) : (
+            <>
             <div id="mainLabelContainer" className="mt-12">
                 <p className="LoosFont max-w-4xl text-8xl">
-                    {tutorialDetails.title}
+                {tutorialDetails.title}
                 </p>
                 <p className="LoosFont text-2xl mt-4">
-                    Vistas: {tutorialDetails.views}
+                Vistas: {tutorialDetails.views}
                 </p>
             </div>
             <div className="mt-8">
@@ -97,10 +121,23 @@ export default function TutorialsUI() {
                 </div>
             </div>
 
-            {/* TODO: Do better styling */}
-            {tutorialDetails.photo1 && <img src={tutorialDetails.photo1} className="max-w-full mt-4"/>}
-            {tutorialDetails.photo2 && <img src={tutorialDetails.photo2} className="max-w-full mt-4" />}
-            {tutorialDetails.photo3 && <img src={tutorialDetails.photo3} className="max-w-full mt-4" />}
+            {photoArray.length > 0 && (
+                <div className="py-20 flex justify-center">
+                    <SimpleImageSlider className="flex w-full overflow-x-auto"
+                        width={850}
+                        height={750}
+                        images={photoArray}
+                        showBullets={true}
+                        showNavs={true}
+                        autoPlay={true} 
+                        onStartSlide = {(index) => {
+                            setImageNum(index);
+                        }}
+                        autoPlayDelay = {4}
+                        startIndex = {0}
+                    />
+                </div>
+            )}
 
             {mostPopularTutorials.length > 0 && (
                 <div className="mt-8 py-8" >
@@ -118,6 +155,10 @@ export default function TutorialsUI() {
                 </div>
                 </div>
             )}
+
+
+            </>
+        )}
         </div>
-    )
-}
+        );
+    }

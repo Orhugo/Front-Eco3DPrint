@@ -24,7 +24,7 @@ const Tutorial = ({onClick, tutorialName, tutorialImage}) => {
     }
 
     return(
-        <div className="w-full mx-auto h-96  flex flex-shrink flex-col relative overflow-y-hidden cursor-pointer  border border-gray-400" onMouseEnter={openInfo} onMouseLeave={closeInfo} onClick={onClick}>
+        <div className="w-80 mx-auto h-80  flex flex-shrink flex-col relative overflow-y-hidden cursor-pointer  border border-gray-400" onMouseEnter={openInfo} onMouseLeave={closeInfo} onClick={onClick}>
             <div id="imageContainer" className="w-full h-full  flex items-center justify-center">
 
             <img src={tutorialImage} className="w-full h-full object-cover" />
