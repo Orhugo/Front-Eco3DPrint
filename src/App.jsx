@@ -9,8 +9,6 @@ import NavBar from "./components/NavBar";
 import Catalog from "./views/Catalog";
 import UserLogin from "./views/UserLogin";
 import Comment from "./views/Comment";
-import Tutorials from "./views/TutorialsCatalog";
-import TutorialHandler from "./views/TutorialHandler";
 import Profile from "./views/Profile";
 import Budget from "./views/Budget";
 import InfoModel from "./views/InfoModel";
@@ -21,10 +19,11 @@ import VolumeNavBar from "./components/VolumeNavBar.jsx"
 import UploadFileUI from "./views/UploadFileUI.jsx";
 import ModelViewUI from "./views/ModelViewUI.jsx";
 import UserLoginUI from "./views/UserLoginUI.jsx";
-import TutorialsUI from "./views/TutorialsUI.jsx";
 import CatalogUI from "./views/CatalogUI.jsx";
 import ProfileUI from "./views/ProfileUI.jsx";
 import UserRegistrationUI from "./views/UserRegistrationUI.jsx";
+import TutorialsCatalog from "./views/TutorialsCatalog.jsx";
+import TutorialVisualizer from "./views/TutorialVisualizer.jsx";
 
 
 function App() {
@@ -47,8 +46,8 @@ function App() {
                         <Route path="/volume/comment" element={<Comment/>}/>
                         <Route path="/volume/profile" element={<ProfileUI/>}/>
                         <Route path="/volume/calcularpresupuesto" element={<Budget/>}/>
-                        <Route path="/volume/tutorials" element={<TutorialsUI/>}/>
-                        <Route path="/volume/tutorials/:id" element={<TutorialHandler/>}/>
+                        <Route path="/volume/tutorials" element={<TutorialsCatalog/>}/>
+                        <Route path="/volume/tutorials/:id" element={<TutorialVisualizer/>}/>
                         <Route path="/volume/authors/:username" element={<ProfileUI/>}/>
                         <Route path="/Front-Eco3DPrint/InfoModel" element={<InfoModel/>}/>
                         <Route path="/volume/AboutUs" element={<AboutUs/>}/>
