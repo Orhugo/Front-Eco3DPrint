@@ -8,6 +8,9 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import React, { useState, useEffect } from "react";
 import { StlViewer } from "react-stl-viewer";
+import { useEffect } from "react";
+import { StlViewer } from "react-stl-viewer";
+import { WidthFull } from "@mui/icons-material";
 
 const style = {
     width: "972.8px",
@@ -324,3 +327,4 @@ export default function ModelViewUI(){
         </div>
     )
 }
+

@@ -72,9 +72,8 @@ export default function SearchBar(){
             
         }
     }
-  
     
-      function handleKeyPress(e) {
+    function handleKeyPress(e) {
         if (e.key === "Enter") {
             closeDrawer();
             if ((searchTerm == null || searchTerm == "")) {
@@ -125,7 +124,7 @@ export default function SearchBar(){
             } else {
                 if(toggleAllDisabled){
                     const searchModels = catalogModels.filter((model) => 
-                       model.title.toLowerCase().includes(searchTerm.toLowerCase())
+                        model.title.toLowerCase().includes(searchTerm.toLowerCase())
                     );
                     setShownModels(searchModels);
                 } else {
@@ -170,7 +169,7 @@ export default function SearchBar(){
                     }
 
                     const searchModels = shownModels.filter((model) => 
-                       model.title.toLowerCase().includes(searchTerm.toLowerCase())
+                        model.title.toLowerCase().includes(searchTerm.toLowerCase())
                     );
                     setShownModels(searchModels);
                 }
@@ -184,13 +183,13 @@ export default function SearchBar(){
     const handleModelClick = async (model) => {
         console.log("id:  ", model.id);
         if (model.mainUrl == null) {
-          navigate("/volume/visualizarstl", {
+            navigate("/volume/visualizarstl", {
             state: "thinker.stl",
-          });
+            });
         } else if (model.mainUrl.length < 1) {
-          navigate("/volume/visualizarstl", {
+            navigate("/volume/visualizarstl", {
             state: "thinker.stl",
-          });
+            });
         } else {
             try {
                 //Make a GET request to fetch URLs for the given model ID
@@ -272,7 +271,6 @@ export default function SearchBar(){
         setPagesButtons(lista);
 
     }, [shownModels, numMod]);
-
     return(
         <div className="overflow-y-hidden mt-12">
             <div onMouseLeave={closeDrawer}>
