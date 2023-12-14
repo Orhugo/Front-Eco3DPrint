@@ -8,7 +8,7 @@ import '../styles/VisualizarSTL.css';
 
 const style = {
   width: "900px",
-  height: "600px",
+  height: "400px",
 };
 export function VisualizarSTL() {
   const { state } = useLocation();
@@ -17,7 +17,7 @@ export function VisualizarSTL() {
   const modelId = 4; //Should retrieve it from DB
 
   const handleButtonClick = () => {
-    navigate(`/Front-Eco3DPrint/InfoModel?id=${modelId}`);
+    navigate(`/Volume/InfoModel?id=${modelId}`);
   };
 
   const downloadSTL = () => {

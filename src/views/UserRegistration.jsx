@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from "react";
+//import {login} from "./UserLoginUI"
 
 function UserRegistration() {
 
@@ -36,6 +37,7 @@ function UserRegistration() {
             const response = await axios.post('http://localhost:8080/users/add', data);
             if (response.status === 200) {
                 alert("Registration successful");
+                
             } else {
                 alert("Registration failed");
             }
