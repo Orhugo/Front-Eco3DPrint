@@ -92,15 +92,15 @@ export default function ProfileUI() {
           id="notificationsContainer"
           className="mt-2 flex flex-col flex-1 overflow-y-scroll overflow-x-visible max-h-[370px] no-scrollbar px-4 justify-start"
         >
-          <NotificationItem text="Oye tienes un comprador maricon el que lo lea maricon el que lo lea" />
-          <NotificationItem text="Oye tienes un comprador maricon el que lo lea maricon el que lo lea" />
-          <NotificationItem text="Oye tienes un comprador maricon el que lo lea maricon el que lo lea" />
-          <NotificationItem text="Oye tienes un comprador maricon el que lo lea maricon el que lo lea" />
-          <NotificationItem text="Oye tienes un comprador maricon el que lo lea maricon el que lo lea" />
-          <NotificationItem text="Oye tienes un comprador maricon el que lo lea maricon el que lo lea" />
-          <NotificationItem text="Oye tienes un comprador maricon el que lo lea maricon el que lo lea" />
-          <NotificationItem text="Oye tienes un comprador maricon el que lo lea maricon el que lo lea" />
-          <NotificationItem text="Oye tienes un comprador maricon el que lo lea maricon el que lo lea" />
+          <NotificationItem text="Oye tienes un comprador " />
+          <NotificationItem text="Oye tienes un comprador " />
+          <NotificationItem text="Oye tienes un comprador " />
+          <NotificationItem text="Oye tienes un comprador " />
+          <NotificationItem text="Oye tienes un comprador " />
+          <NotificationItem text="Oye tienes un comprador " />
+          <NotificationItem text="Oye tienes un comprador " />
+          <NotificationItem text="Oye tienes un comprador " />
+          <NotificationItem text="Oye tienes un comprador " />
         </div>
       </div>
       <div id="profileCatalogContainer" className="w-full">
