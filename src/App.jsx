@@ -26,7 +26,6 @@ import TutorialsCatalog from "./views/TutorialsCatalog.jsx";
 import TutorialVisualizer from "./views/TutorialVisualizer.jsx";
 
 
-
 function App() {
     return (
         <div id="MainAppContainer" className="w-full justify-center bg-neutral-100 no-scrollbar">
