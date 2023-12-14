@@ -56,7 +56,7 @@ export default function Footer(){
                 </div>
             </div>
             <div className="sm:flex items-end gap-10 mt-24">
-                <img className="max-w-[747px] w-full object-contain" src="../../public/VolumeLogoXL.svg" alt="Volume logo"/>
+                <img className="max-w-[747px] w-full object-contain" src="../../VolumeLogoXL.svg" alt="Volume logo"/>
                 <div className="flex md:flex-row flex-col  w-full justify-between">
                     <p className="cursor-pointer hover:underline hidden sm:block">
                       Back to menu
