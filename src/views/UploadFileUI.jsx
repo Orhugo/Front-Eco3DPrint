@@ -16,10 +16,10 @@ function UploadFileUI() {
   return (
     <div>
       {user !== null ? (
-        <div className="md:w-[80%] w-full mt-14 font-loos animate-fade">
+        <div className="w-full mt-14 font-loos animate-fade">
           <div className="mainLabelContainer">
             <svg
-              className="max-w-[1440px] mx-auto w-full object-contain"
+              className="max-w-[1440px] mx-auto w-[90%] object-contain"
               width="1047"
               height="90"
               viewBox="0 0 1047 90"
@@ -80,7 +80,7 @@ function UploadFileUI() {
               />
             </svg>
           </div>
-          <div className="flex w-full max-w-[1000px] mx-auto mt-16 min-h-[400px]">
+          <div className="flex w-full mx-auto mt-16 min-h-[400px]">
             <PrintSettings />
           </div>
         </div>
