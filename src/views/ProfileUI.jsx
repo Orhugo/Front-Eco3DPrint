@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfileUI() {
-  //const user = JSON.parse(localStorage.getItem('user'));
+  const selfUser = JSON.parse(localStorage.getItem('user'));
   const { state } = useLocation();
   const user = state.user;
   const [catalogModels, setAllModels] = useState([]);
@@ -74,13 +74,19 @@ export default function ProfileUI() {
             <p className="LoosFont text-center text-sm">Siguiendo</p>
           </div>
         </div>
-        <div id="buttonsContainer" className="flex justify-between gap-6 mt-8">
-          <button className="LoosFont w-44 px-8 py-2 text-md border-[1px] border-black rounded-full bg-transparent hover:bg-black hover:text-white cursor-pointer transition duration-300">
+        <div id="buttonsContainer" className="flex justify-center gap-6 mt-8">
+          {selfUser.username === user && (<button className="LoosFont w-44 px-8 py-2 text-md border-[1px] border-black rounded-full bg-transparent hover:bg-black hover:text-white cursor-pointer transition duration-300">
             Editar
-          </button>
+          </button>)}
           <button className="LoosFont w-44 px-8 py-2 text-md border-[1px] border-black rounded-full bg-transparent hover:bg-black hover:text-white cursor-pointer transition duration-300">
             Compartir
           </button>
+        </div>
+        <div>
+          {selfUser.username === user && (<div className="mt-3">
+            <p>Descripción</p>
+            <p>Soy un diseñador 3D que le gusta hacer modelos de todo tipo</p>
+          </div>)}
         </div>
         <div className="flex">
           <p className="text-sm mt-8 relative">
