@@ -15,7 +15,7 @@ export default function NotificationItem({text}){
     }
 
     return(
-        <div className={`${choosenBg()} px-4 py-2 rounded-xl max-w-xl mt-2 hover:drop-shadow-lg transition duration-300`}>
+        <div className={`${choosenBg()} px-4 py-2 rounded-xl max-w-xl mt-2 hover:drop-shadow-md transition duration-300`}>
             <div className="flex justify-between">
                 <p className="text-slate-600 text-sm">Figura Marvel</p>
                 <p className="text-slate-600 text-sm">21 Nov</p>

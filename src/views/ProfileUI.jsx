@@ -90,7 +90,7 @@ export default function ProfileUI() {
         </div>
         <div
           id="notificationsContainer"
-          className="mt-2 flex flex-col flex-1 overflow-y-scroll overflow-x-visible max-h-[370px] no-scrollbar px-4 justify-start"
+          className="mt-2 flex flex-col flex-1 overflow-y-scroll overflow-x-visible max-h-[370px] no-scrollbar justify-start"
         >
           <NotificationItem text="Oye tienes un comprador " />
           <NotificationItem text="Oye tienes un comprador " />
