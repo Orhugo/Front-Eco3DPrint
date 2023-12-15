@@ -68,9 +68,13 @@ export default function VolumeNavBar(){
                     </svg>
 
                     <NavigationButton name="Catalogo" urlNavigate={catalogUrl}/>
-                    <NavigationButton name="3D Of the day"/>
+                    <div className="hidden">
+                        <NavigationButton name="3D Of the day"/>
+                    </div>
                     <NavigationButton name="Tutoriales" urlNavigate={tutorialsUrl}/>
-                    <NavigationButton name="Foro"/>
+                    <div className="hidden">
+                        <NavigationButton name="Foro"/>
+                    </div>
                     <NavigationButton name="Presupuesto" urlNavigate={budgetUrl}/>
                 </div>
             </div>

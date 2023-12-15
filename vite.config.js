@@ -7,6 +7,7 @@ export default defineConfig({
   base: "/volume",
   test: {
     globals: true,
+    base: "/volume",
     environment: "happy-dom",
   },
 });

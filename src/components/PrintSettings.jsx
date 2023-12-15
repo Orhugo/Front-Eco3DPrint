@@ -87,7 +87,7 @@ function PrintSettings() {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
-  const [defaultImage, setdefaultImage] = useState("./default_image.png");
+  const [defaultImage, setdefaultImage] = useState("../default_image.png");
 
   const handleFileChange = (e) => {
     const image = e.target.files[0];
@@ -329,7 +329,6 @@ function PrintSettings() {
             <img
               className="w-full h-full object-cover"
               src={imageUrl || defaultImage}
-              alt="Uploaded"
             />
           }
         </div>
@@ -338,12 +337,7 @@ function PrintSettings() {
           type="file"
           onChange={handleFileChange}
         />
-        {/* <button className="w-36 h-12 ml-2 border-2 border-black bg-green-300 rounded" onClick={handleUpload} disabled={uploading}>
-          Subir Imagen
-        </button> */}
-
         {uploading && <p>Subiendo...</p>}
-        {/* {imageUrl && <p>URL de la imagen: {imageUrl}</p>} */}
       </div>
     </div>
   );

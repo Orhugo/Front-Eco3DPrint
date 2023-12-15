@@ -12,6 +12,7 @@ export default function SearchBar(){
         setDrawerIsOpen(true)
         handleDrawer()
     }
+    const loading = '../loading.gif';
 
     const closeDrawer = ()=>{
         setDrawerIsOpen(false)
@@ -41,6 +42,10 @@ export default function SearchBar(){
     const [juguetesToggled, setJuguetes] = useState(false);
     const [figurasToggled, setFiguras] = useState(false);
     const [mecanismosToggled, setMecanismos] = useState(false);
+
+    const [text, setText] = useState("Buscar en Volume");
+
+    const toggleAllDisabled = !(accesoriosToggled || herramientasToggled || complementosToggled || juguetesToggled || figurasToggled || mecanismosToggled);
     
 
     const handleToggle = (toggledValue, label) => {
@@ -58,9 +63,15 @@ export default function SearchBar(){
         }else if(label == "Mecanismos"){
             setMecanismos(toggledValue);
         }
+        if(toggledValue){
+            const localText = text + "  {" + label + "}";
+            setText(localText)
+        } else {
+            const localText = text.replace("  {" + label + "}","");
+            setText(localText);
+            
+        }
     }
-
-    const toggleAllDisabled = !(accesoriosToggled || herramientasToggled || complementosToggled || juguetesToggled || figurasToggled || mecanismosToggled);
   
     
       function handleKeyPress(e) {
@@ -203,7 +214,20 @@ export default function SearchBar(){
         setSelectedButton(buttonNumber);
     };
 
-    const [numMod, setNumMod] = useState(10);
+    const handleNextPage = ()=>{
+        if(selectedButton < pagesButtons.length){
+            handleButtonClick(selectedButton+1)
+        }
+
+    }
+
+    const handlePreviousPage = ()=>{
+        if(selectedButton > 1){
+            handleButtonClick(selectedButton - 1)
+        }
+    }
+
+    const [numMod, setNumMod] = useState(8);
     
     const setNumModMostrados = (event) => {
         setNumMod(event.target.value);
@@ -212,14 +236,35 @@ export default function SearchBar(){
 
     const getButtonStyle = (buttonNumber) => {
         return {
-        backgroundColor: selectedButton === buttonNumber ? '#4D82DF' : 'white'
+        backgroundColor: selectedButton === buttonNumber ? '#7EBDC3' : ''
         };
     };
 
     const [pagesButtons, setPagesButtons] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const maxPage = ()=>{
+        if(selectedButton == pagesButtons.length){
+            return 'opacity-0 cursor-default'
+        }else{
+            return 'block'
+        }
+    }
+
+    const minPage = ()=>{
+        if(selectedButton == 1){
+            return 'opacity-0 cursor-default'
+        }else{
+            return 'block'
+        }
+    }
  
 
     useEffect(() => {
+        if(shownModels.length == 0){
+            setIsLoading(true);
+        }
+
         axios
         .get("http://localhost:8080/models/getAll")
         .then((response) => {
@@ -232,6 +277,9 @@ export default function SearchBar(){
         })
         .catch((error) => {
             console.error("Error fetching models data:", error);
+        })
+        .finally(() => {
+            setIsLoading(false); 
         });
 
         const lista = [];
@@ -253,7 +301,7 @@ export default function SearchBar(){
                     </svg>
                     <div className="w-full">
                         <input 
-                            placeholder="Buscar en Volume" 
+                            placeholder={text}
                             onClick={openDrawer}  
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
@@ -285,14 +333,18 @@ export default function SearchBar(){
                     </div>
                 </div>
             </div>
+            {isLoading ? (
+                <div className="flex items-center justify-center mb-2">
+                    <img className="w-32 h-32" src={loading} />
+                </div>
+            ) : (
             <div id="catalogItemsContainer" className={`${blurOnSearch()} -mt-32 transition duration-300 relative z-0`}>
                 Número de modelos:
             <select className="mb-4 ml-2" value={numMod} onChange={setNumModMostrados}>
-                <option value="2">2</option>
-                <option value="4">4</option>
-                <option value="6">6</option>
                 <option value="8">8</option>
-                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="16">16</option>
+                <option value="20">20</option>
             </select>
 
                 <div id="catalogGrid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -306,18 +358,21 @@ export default function SearchBar(){
                         />
                     ))}
                 </div>
-                <div className="mt-8 flex items-center justify-center">
+                <div className="mt-8 flex items-center justify-center gap-4">
+                    <button onClick={handlePreviousPage} className={`${minPage()} w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300`}>{"<"}</button>
                     {pagesButtons.map((buttonNumber) => (
-                        <button className="w-8 h-8 mx-2 rounded-full border border-black"
-                        key={buttonNumber}
-                        style={getButtonStyle(buttonNumber)}
-                        onClick={() => handleButtonClick(buttonNumber)}
+                        <button className="w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300"
+                                key={buttonNumber}
+                                style={getButtonStyle(buttonNumber)}
+                                onClick={() => handleButtonClick(buttonNumber)}
                         >
-                        {buttonNumber}
+                            {buttonNumber}
                         </button>
                     ))}
+                    <button onClick={handleNextPage} className={`${maxPage()} w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300`}>{">"}</button>
                 </div>
             </div>
+            )}
         </div>
     )
 }
