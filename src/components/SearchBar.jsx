@@ -242,6 +242,22 @@ export default function SearchBar(){
 
     const [pagesButtons, setPagesButtons] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    const maxPage = ()=>{
+        if(selectedButton == pagesButtons.length){
+            return 'opacity-0 cursor-default'
+        }else{
+            return 'block'
+        }
+    }
+
+    const minPage = ()=>{
+        if(selectedButton == 1){
+            return 'opacity-0 cursor-default'
+        }else{
+            return 'block'
+        }
+    }
  
 
     useEffect(() => {
@@ -343,7 +359,7 @@ export default function SearchBar(){
                     ))}
                 </div>
                 <div className="mt-8 flex items-center justify-center gap-4">
-                    <button onClick={handlePreviousPage} className="w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300">{"<"}</button>
+                    <button onClick={handlePreviousPage} className={`${minPage()} w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300`}>{"<"}</button>
                     {pagesButtons.map((buttonNumber) => (
                         <button className="w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300"
                                 key={buttonNumber}
@@ -353,7 +369,7 @@ export default function SearchBar(){
                             {buttonNumber}
                         </button>
                     ))}
-                    <button onClick={handleNextPage} className="w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300">{">"}</button>
+                    <button onClick={handleNextPage} className={`${maxPage()} w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300`}>{">"}</button>
                 </div>
             </div>
             )}
