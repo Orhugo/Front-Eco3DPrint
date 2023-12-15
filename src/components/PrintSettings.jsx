@@ -106,7 +106,7 @@ function PrintSettings() {
       <Dropzone info={info} />
       <h1 className="font-extrabold text-3xl mt-[10px]">File details</h1>
       <div className="fileDetails">
-        Title (required){" "}
+        Título (requerido){" "}
         <input
           type="text"
           id="resolucion"
@@ -115,7 +115,7 @@ function PrintSettings() {
         />
       </div>
       <div className="fileDetails">
-        Description (required){" "}
+        Descripción (requerido){" "}
         <input
           type="text"
           id="resolucion"
