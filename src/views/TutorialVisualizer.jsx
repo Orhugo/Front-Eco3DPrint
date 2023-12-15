@@ -90,12 +90,12 @@ export default function TutorialVisualizer() {
                 </p>
             </div>
             <div className="mt-8">
-                <div id="tutorialsFirstDiv" className="bg-azulVolume px-14 py-10">
+                <div id="tutorialsFirstDiv" className="bg-azulVolume px-14 py-20">
                     {tutorialDetails.subtitle1 && <p className="LoosFont text-3xl">1</p>}
                     <p className="LoosFont text-2xl">{tutorialDetails.subtitle1}</p>
                     <p className="LoosFont text-sm max-w-xs mt-8">{tutorialDetails.content1}</p>
                 </div>
-                <div id="tutorialsSecondDiv" className="bg-greenFooter px-14 pb-20 pt-16 flex justify-end -my-20">
+                <div id="tutorialsSecondDiv" className="bg-greenFooter px-14 pb-24 pt-16 flex justify-end -my-20">
                     <div className="w-fit">
                         {tutorialDetails.subtitle2 && <p className="LoosFont text-3xl">2</p>}
                         <p className="LoosFont text-2xl">{tutorialDetails.subtitle2}</p>
@@ -105,16 +105,16 @@ export default function TutorialVisualizer() {
                 <div id="tutorialsThirdDiv" className="bg-marronPocho px-14 pt-14 pb-20 -my-28">
                     {tutorialDetails.subtitle3 && <p className="LoosFont text-3xl">3</p>}
                     <p className="LoosFont text-2xl">{tutorialDetails.subtitle3}</p>
-                    <p className="LoosFont text-sm max-w-xs mt-8">{tutorialDetails.content3}</p>
+                    <p className="LoosFont text-sm max-w-xs mt-6">{tutorialDetails.content3}</p>
                 </div>
-                <div id="tutorialsFourthDiv" className="px-14 pt-10 pb-16 flex justify-end bg-pinkVolume">
+                <div id="tutorialsFourthDiv" className="px-14 pt-14 pb-16 flex justify-end bg-pinkVolume">
                     <div className="w-fit">
                         {tutorialDetails.subtitle4 && <p className="LoosFont text-3xl">4</p>}
                         <p className="LoosFont text-2xl">{tutorialDetails.subtitle4}</p>
-                        <p className="mt-4 max-w-xs">{tutorialDetails.content4}</p>
+                        <p className="LoosFont text-sm max-w-xs mt-6">{tutorialDetails.content4}</p>
                     </div>
                 </div>
-                <div id="tutorialsFifthDiv" className="bg-azulVolume px-14 py-10 -my-10">
+                <div id="tutorialsFifthDiv" className="bg-azulVolume px-14 py-10 -my-14">
                     {tutorialDetails.subtitle5 && <p className="LoosFont text-3xl">5</p>}
                     <p className="LoosFont text-2xl max-w-md">{tutorialDetails.subtitle5}</p>
                     <p className="LoosFont text-sm max-w-xs mt-8">{tutorialDetails.content5}</p>    

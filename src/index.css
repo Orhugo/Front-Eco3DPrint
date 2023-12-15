@@ -36,7 +36,7 @@
 }
 
 #tutorialsSecondDiv{
-    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 75%);
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 75%);
 }
 
 #tutorialsThirdDiv{
