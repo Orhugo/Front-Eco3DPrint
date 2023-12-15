@@ -214,6 +214,19 @@ export default function SearchBar(){
         setSelectedButton(buttonNumber);
     };
 
+    const handleNextPage = ()=>{
+        if(selectedButton < pagesButtons.length){
+            handleButtonClick(selectedButton+1)
+        }
+
+    }
+
+    const handlePreviousPage = ()=>{
+        if(selectedButton > 1){
+            handleButtonClick(selectedButton - 1)
+        }
+    }
+
     const [numMod, setNumMod] = useState(8);
     
     const setNumModMostrados = (event) => {
@@ -223,7 +236,7 @@ export default function SearchBar(){
 
     const getButtonStyle = (buttonNumber) => {
         return {
-        backgroundColor: selectedButton === buttonNumber ? '#4D82DF' : 'white'
+        backgroundColor: selectedButton === buttonNumber ? '#7EBDC3' : ''
         };
     };
 
@@ -329,16 +342,18 @@ export default function SearchBar(){
                         />
                     ))}
                 </div>
-                <div className="mt-8 flex items-center justify-center">
+                <div className="mt-8 flex items-center justify-center gap-4">
+                    <button onClick={handlePreviousPage} className="w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300">{"<"}</button>
                     {pagesButtons.map((buttonNumber) => (
-                        <button className="w-8 h-8 mx-2 rounded-full border border-black"
-                        key={buttonNumber}
-                        style={getButtonStyle(buttonNumber)}
-                        onClick={() => handleButtonClick(buttonNumber)}
+                        <button className="w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300"
+                                key={buttonNumber}
+                                style={getButtonStyle(buttonNumber)}
+                                onClick={() => handleButtonClick(buttonNumber)}
                         >
-                        {buttonNumber}
+                            {buttonNumber}
                         </button>
                     ))}
+                    <button onClick={handleNextPage} className="w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300">{">"}</button>
                 </div>
             </div>
             )}
