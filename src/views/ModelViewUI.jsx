@@ -347,19 +347,19 @@ export default function ModelViewUI() {
                     >
                         <img
                             className="hover:drop-shadow-2xl hover:scale-[1.02] transition duration-300 cursor-pointer"
-                            src="../../public/GaleryItem1.svg"
+                            src="../../GaleryItem1.svg"
                         />
                         <img
                             className="hover:drop-shadow-2xl hover:scale-[1.02] transition duration-300 cursor-pointer"
-                            src="../../public/GaleryItem2.svg"
+                            src="../../GaleryItem2.svg"
                         />
                         <img
                             className="hover:drop-shadow-2xl hover:scale-[1.02] transition duration-300 cursor-pointer"
-                            src="../../public/GaleryItem3.svg"
+                            src="../../GaleryItem3.svg"
                         />
                         <img
                             className="hover:drop-shadow-2xl hover:scale-[1.02] transition duration-300 cursor-pointer"
-                            src="../../public/GaleryItem4.svg"
+                            src="../../GaleryItem4.svg"
                         />
                     </div>
                     <div className="mt-4 flex justify-end">

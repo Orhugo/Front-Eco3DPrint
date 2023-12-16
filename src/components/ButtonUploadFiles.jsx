@@ -134,13 +134,6 @@ function ButtonUploadFiles({ files, info }) {
           </div>
         </div>
       )}
-      <button
-        onClick={() => {
-          console.log(info);
-        }}
-      >
-        imprimir info
-      </button>
     </>
   );
 }
