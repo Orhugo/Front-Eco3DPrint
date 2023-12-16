@@ -50,6 +50,8 @@ export default function ProfileUI() {
         state: {
           modelID: model.id,
           modelName: model.title,
+          mainUrl: model.mainUrl,
+          author: model.author,
         },
       });
     }
