@@ -123,22 +123,23 @@ export default function ProfileUI() {
   return (
     <div className="flex w-[80%] mt-12 gap-6 h-full animate-fade">
       <div id="sideBarContainer" className="max-w-sm flex flex-col">
-        <div
-          id="profilePicContainer"
-          className="w-32 h-32 bg-slate-400 rounded-full mx-auto"
-        >
-        <label htmlFor="filePicker">
-          <img className="w-full h-full object-cover rounded-full hover:bg-slate-300 cursor-pointer transition duration-300" src={selfUser.imageUrl || defaultImage}/>
-        </label>
-        <input
-            id="filePicker"
-            className=" border-2 border-black rounded"
-            type="file"
-            style={{visibility:"hidden"}}
-            onChange={handleFileChange}
-            />
-              
+        <div id="profilePicContainer" className="group relative w-32 h-32 bg-slate-400 rounded-full mx-auto">
+          <label htmlFor="filePicker" className="cursor-pointer block w-full h-full">
+              <img className="w-32 h-32 rounded-full group-hover:opacity-50" src={selfUser.imageUrl || defaultImage}/>
+              <div className="absolute bottom-0 right-0 p-2 bg-white rounded-full hidden group-hover:flex">
+                  <img src="./lapiz.png" alt="Edit" className="h-6 w-6"/>
+              </div>
+          </label>
+          <input
+              id="filePicker"
+              className="hidden"
+              type="file"
+              onChange={handleFileChange}
+          />
         </div>
+
+
+
         <div id="profileNameContainer" className="mt-8">
           <p className="LoosFont text-4xl text-center">{user}</p>
         </div>
