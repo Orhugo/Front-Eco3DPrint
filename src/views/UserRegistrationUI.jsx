@@ -80,7 +80,8 @@ export default function UserRegistrationUI(){
             name: nameValue,
             lastname: lastnameValue,
             email: emailValue,
-            password: passwordValue
+            password: passwordValue,
+            imageUrl: null
         };
 
         try {
