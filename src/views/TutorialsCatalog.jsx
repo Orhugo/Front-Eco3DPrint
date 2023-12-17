@@ -13,7 +13,7 @@ export default function TutorialsCatalog() {
     const navigate = useNavigate();
 
     const handleTutorialClick = (tutorial) => {
-        navigate(`/Volume/tutorials/${tutorial.id}`);
+        navigate(`/volume/tutorials/${tutorial.id}`);
     };
 
     const handleButtonClick = (buttonNumber) => {

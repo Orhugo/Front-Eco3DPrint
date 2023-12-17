@@ -13,7 +13,7 @@ import { WidthFull } from "@mui/icons-material";
 const style = {
     width: "972.8px",
     height: "400px",
-  };
+};
 
 export default function ModelViewUI(){
     const navigate = useNavigate()
@@ -81,13 +81,24 @@ export default function ModelViewUI(){
             setAuthorID(author.id);
     
         } catch (error) {
-          console.error('Error fetching model information:', error);
+            console.error('Error fetching model information:', error);
+        }
+    };
+
+    const fetchComments = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/comments/get/${objectID}`);
+            setComments(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching comments:', error);
         }
     };
     
     useEffect(() => {
         const fetchData = async () => {
-            await GetModelInfo();  
+            await GetModelInfo();
+            await fetchComments();
         };
 
         fetchData();
@@ -129,17 +140,19 @@ export default function ModelViewUI(){
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
 
-    const postComment = (comment) => {
-        axios
-        .post("http://localhost:8080/comments/create", {
-            user: { id: loggedUser },
-            model: { id: objectID },
-            content: comment,
-        })
-        .then((response) => {
+    const postComment = async (comment) => {
+        try {
+            const response = await axios.post("http://localhost:8080/comments/create", {
+                user: { id: loggedUser },
+                model: { id: objectID },
+                content: comment,
+            });
+    
             setComments([...comments, response.data]);
             setComment("");
-        });
+        } catch (error) {
+            console.error('Error posting comment:', error);
+        }
     };
 
     return(
@@ -299,12 +312,9 @@ export default function ModelViewUI(){
                         </div>
                     </div>
                     <div id="commentsContainer" className="gap-12 flex flex-col mt-14">
-                        <CommentItem name="carlos"/>
-                        <CommentItem name="fer"/>
-                        <CommentItem name="iván"/>
-                        <CommentItem name="orhugo"/>
-                        <CommentItem name="carla"/>
-                        <CommentItem name="elena"/>
+                        {comments.map((comment, index) => (
+                            <CommentItem key={comment.id} name={comment.user.name} content={comment.content} index={index} lastname={comment.user.lastname}/>
+                        ))}
                     </div>
                 </div>
                 <div id="exploreContainer" className="mt-24">

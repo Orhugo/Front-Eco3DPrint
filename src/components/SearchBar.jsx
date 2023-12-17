@@ -197,7 +197,7 @@ export default function SearchBar(){
                 const urls = response.data;
         
                 //Use the fetched data in the navigation state
-                navigate("/Volume/visualizarSTL", {
+                navigate("/volume/visualizarSTL", {
                     state: {
                         modelID: model.id,
                         modelName: model.title,
