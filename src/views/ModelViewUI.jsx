@@ -28,6 +28,7 @@ export default function ModelViewUI(){
     const [modelLikes, setModelLikes] = useState(0);
     const [authorUsername, setAuthorUsername] = useState('');
     const [authorID, setAuthorID] = useState('');
+    const [modelViews, setModelViews] = useState(0);
 
     const [currentSTL, setCurrentSTL] = useState(state ? state.modelSTL : "");
     const [URLindex, setURLindex] = useState(0);
@@ -71,7 +72,7 @@ export default function ModelViewUI(){
         try {
             //Make a GET request to fetch model information
             const response = await axios.get(`http://localhost:8080/models/getModel?id=${objectID}`);
-            const { imageUrl, description, category, tags, likeCounter, author } = response.data;
+            const { imageUrl, description, category, tags, likeCounter, author, views } = response.data;
     
             //Get the informsation needed and save them in the variables
             setModelCategory(category);
@@ -79,6 +80,7 @@ export default function ModelViewUI(){
             setModelLikes(likeCounter);
             setAuthorUsername(author.username);
             setAuthorID(author.id);
+            setModelViews(views);
     
         } catch (error) {
             console.error('Error fetching model information:', error);
@@ -89,7 +91,6 @@ export default function ModelViewUI(){
         try {
             const response = await axios.get(`http://localhost:8080/comments/get/${objectID}`);
             setComments(response.data);
-            console.log(response.data);
         } catch (error) {
             console.error('Error fetching comments:', error);
         }
@@ -97,6 +98,9 @@ export default function ModelViewUI(){
     
     useEffect(() => {
         const fetchData = async () => {
+            await axios.post(
+                `http://localhost:8080/models/enter/${objectID}`
+            );
             await GetModelInfo();
             await fetchComments();
         };
@@ -175,7 +179,7 @@ export default function ModelViewUI(){
                             <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        <p>2,6k</p>
+                        <p>{modelViews}</p>
                     </div>
                 </div>
                 <div className="h-[400px] w-full mx-auto inline-flex bg-slate-300 justify-center items-center relative">
@@ -249,19 +253,24 @@ export default function ModelViewUI(){
                     </div>
                 </div>
                 <div id="columnContainer" className="max-w-xl">
-                    <div id="makeCommentContainer" className="flex items-center mt-8 gap-2">
+                    {loggedUser !== 0 && (
+                        <div id="makeCommentContainer" className="flex items-center mt-8 gap-2">
                         <div className="w-12 h-12 bg-slate-400 rounded-full"></div>
                         <div id="commentTextField" className="w-fit flex-grow">
-                            <input className="px-4 py-2 bg-pinkVolume placeholder-neutral-500 w-full rounded-full focus:outline-none focus:ring focus:ring-pink-200" placeholder="Escribe un comentario..."
+                            <input
+                            className="px-4 py-2 bg-pinkVolume placeholder-neutral-500 w-full rounded-full focus:outline-none focus:ring focus:ring-pink-200"
+                            placeholder="Escribe un comentario..."
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter') {
-                                    postComment(e.target.value);
-                                    setComment(""); 
-                                    e.target.value = "";
+                                postComment(e.target.value);
+                                setComment("");
+                                e.target.value = "";
                                 }
-                            }}/>
+                            }}
+                            />
                         </div>
-                    </div>
+                        </div>
+                    )}
                     <div id="reviewsContainer" className="mt-24">
                         <div id="label">
                             <p className="text-4xl">Valoraciones y reseñas</p>

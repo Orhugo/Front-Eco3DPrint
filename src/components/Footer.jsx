@@ -1,14 +1,18 @@
+import { useNavigate } from "react-router-dom";
+
 
 export default function Footer(){
+
+    const navigate = useNavigate();
 
     return(
         <div id="footerClipContainer" className="bg-greenFooter pt-32 px-12 pb-12">
             <div className="grid grid-cols-2 gap-14 lg:flex justify-between md:px-20 mt-40">
                 <div className="order-2 lg:order-1">
-                    <p className="hover:underline cursor-pointer w-fit text-md md:text-xl">
+                    <p className="hover:underline cursor-pointer w-fit text-md md:text-xl" onClick={() => navigate("/volume/catalogo")}>
                         Catálogo
                     </p>
-                    <p className="hover:underline cursor-pointer mt-2 w-fit text-md md:text-xl">
+                    <p className="hover:underline cursor-pointer mt-2 w-fit text-md md:text-xl" onClick={() => navigate("/volume/tutorials")}>
                         Tutoriales
                     </p>
                     <p className="hover:underline cursor-pointer mt-2 w-fit text-md md:text-xl">
@@ -58,8 +62,8 @@ export default function Footer(){
             <div className="sm:flex items-end gap-10 mt-24">
                 <img className="max-w-[747px] w-full object-contain" src="../../VolumeLogoXL.svg" alt="Volume logo"/>
                 <div className="flex md:flex-row flex-col  w-full justify-between">
-                    <p className="cursor-pointer hover:underline hidden sm:block">
-                      Back to menu
+                    <p className="cursor-pointer hover:underline hidden sm:block" onClick={() => navigate("/volume")}>
+                        Back to menu
                     </p>
                     <p className="text-xs mt-4 sm:mt-0">
                         Copyright © Volume 2023
