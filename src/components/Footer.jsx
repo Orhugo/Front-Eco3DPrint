@@ -1,7 +1,36 @@
 import { useNavigate } from "react-router-dom";
 
-
 export default function Footer(){
+    const navigate = useNavigate()
+    const navigateCatalog = ()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'  // Agrega un desplazamiento suave
+        });
+        navigate('/volume/catalogo')
+    }
+
+    const navigateTutorials = ()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'  // Agrega un desplazamiento suave
+        });
+        navigate('/volume/tutorials')
+    }
+
+    const mailToTech = ()=>{
+        const direccion = "volumetecnico@gmail.com"
+        const asunto = "Asistencia técnica"
+        const enlaceMailto = "mailto:" + direccion + "?subject=" + encodeURIComponent(asunto) + "&body=" + encodeURIComponent("");
+        window.location.href = enlaceMailto;
+    }
+
+    const mailToJobs = ()=>{
+        const direccion = "volumetecnico@gmail.com"
+        const asunto = "Empleo"
+        const enlaceMailto = "mailto:" + direccion + "?subject=" + encodeURIComponent(asunto) + "&body=" + encodeURIComponent("");
+        window.location.href = enlaceMailto;
+    }
 
     const navigate = useNavigate();
 
@@ -15,7 +44,7 @@ export default function Footer(){
                     <p className="hover:underline cursor-pointer mt-2 w-fit text-md md:text-xl" onClick={() => navigate("/volume/tutorials")}>
                         Tutoriales
                     </p>
-                    <p className="hover:underline cursor-pointer mt-2 w-fit text-md md:text-xl">
+                    <p className="hover:underline cursor-pointer mt-2 w-fit text-md md:text-xl hidden">
                         Foro
                     </p>
                 </div>
@@ -26,7 +55,7 @@ export default function Footer(){
                     <p className="max-w-[240px] mt-2 text-sm text-slate-600">
                         Ponle fin a los problemas tecnicos sobre tu impresora 3D
                     </p>
-                    <p className="hover:underline cursor-pointer mt-2 w-fit text-sm md:text-base">
+                    <p onClick={mailToTech} className="hover:underline cursor-pointer mt-2 w-fit text-sm md:text-base">
                         volumetecnico@gmail.com
                     </p>
                 </div>
@@ -54,7 +83,7 @@ export default function Footer(){
                     <p className="hover:underline cursor-pointer mt-2 w-fit">
                         900 676 283
                     </p>
-                    <p className="hover:underline cursor-pointer mt-2 w-fit text-sm md:text-base">
+                    <p onClick={mailToJobs} className="hover:underline cursor-pointer mt-2 w-fit text-sm md:text-base">
                         volume@gmail.com
                     </p>
                 </div>

@@ -8,14 +8,26 @@ export default function HomeUI(){
     }, []);
 
     const navigateTutorials = ()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'  // Agrega un desplazamiento suave
+        });
         navigate('/volume/tutorials')
     }
 
     const navigateCatalog = ()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'  // Agrega un desplazamiento suave
+        });
         navigate('/volume/catalogo')
     }
 
     const navigateUpload = ()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'  // Agrega un desplazamiento suave
+        });
         navigate('/volume/subirarchivo')
     }
 

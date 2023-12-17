@@ -223,6 +223,19 @@ export default function SearchBar(){
         setSelectedButton(buttonNumber);
     };
 
+    const handleNextPage = ()=>{
+        if(selectedButton < pagesButtons.length){
+            handleButtonClick(selectedButton+1)
+        }
+
+    }
+
+    const handlePreviousPage = ()=>{
+        if(selectedButton > 1){
+            handleButtonClick(selectedButton - 1)
+        }
+    }
+
     const [numMod, setNumMod] = useState(8);
     
     const setNumModMostrados = (event) => {
@@ -232,12 +245,28 @@ export default function SearchBar(){
 
     const getButtonStyle = (buttonNumber) => {
         return {
-        backgroundColor: selectedButton === buttonNumber ? '#4D82DF' : 'white'
+        backgroundColor: selectedButton === buttonNumber ? '#7EBDC3' : ''
         };
     };
 
     const [pagesButtons, setPagesButtons] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    const maxPage = ()=>{
+        if(selectedButton == pagesButtons.length){
+            return 'opacity-0 cursor-default'
+        }else{
+            return 'block'
+        }
+    }
+
+    const minPage = ()=>{
+        if(selectedButton == 1){
+            return 'opacity-0 cursor-default'
+        }else{
+            return 'block'
+        }
+    }
  
 
     useEffect(() => {
@@ -271,6 +300,7 @@ export default function SearchBar(){
         setPagesButtons(lista);
 
     }, [shownModels, numMod]);
+
     return(
         <div className="overflow-y-hidden mt-12">
             <div onMouseLeave={closeDrawer}>
@@ -337,16 +367,18 @@ export default function SearchBar(){
                         />
                     ))}
                 </div>
-                <div className="mt-8 flex items-center justify-center">
+                <div className="mt-8 flex items-center justify-center gap-4">
+                    <button onClick={handlePreviousPage} className={`${minPage()} w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300`}>{"<"}</button>
                     {pagesButtons.map((buttonNumber) => (
-                        <button className="w-8 h-8 mx-2 rounded-full border border-black"
-                        key={buttonNumber}
-                        style={getButtonStyle(buttonNumber)}
-                        onClick={() => handleButtonClick(buttonNumber)}
+                        <button className="w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300"
+                                key={buttonNumber}
+                                style={getButtonStyle(buttonNumber)}
+                                onClick={() => handleButtonClick(buttonNumber)}
                         >
-                        {buttonNumber}
+                            {buttonNumber}
                         </button>
                     ))}
+                    <button onClick={handleNextPage} className={`${maxPage()} w-8 h-auto rounded-full flex justify-center align-middle LoosFont hover:bg-azulVolume transition duration-300`}>{">"}</button>
                 </div>
             </div>
             )}
