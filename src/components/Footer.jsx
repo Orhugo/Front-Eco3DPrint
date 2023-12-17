@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
 export default function Footer(){
-    const navigate = useNavigate()
     const navigateCatalog = ()=>{
         window.scrollTo({
             top: 0,
