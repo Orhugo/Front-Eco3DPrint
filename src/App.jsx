@@ -35,7 +35,6 @@ function App() {
                 </div>
                 <div id="MainViewContainer" className="w-full relative flex justify-center items-center z-0">
                     <Routes>
-                        {/* <Route path="/" element={<HomeUI/>}/> */}
                         <Route path="/volume" element={<HomeUI/>}/>
                         <Route path="/volume/subirArchivo" element={<UploadFileUI/>}/>
                         <Route path="/volume/visualizarstl" element={<ModelViewUI/>}/>
