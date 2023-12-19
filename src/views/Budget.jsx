@@ -29,23 +29,13 @@ const precioPorCalidad = {
   0.4: 1.5,
   0.8: 1,
   1: 0.5,
-}
+};
 
 const precioPorAcabado = {
   Sin: 0,
   Bajo: 2,
   Medio: 4,
   Alto: 6,
-}
-
-//En cm^3
-const volumenPorKilo = {
-  PLA: 805,
-  ABS: 962,
-  PETG: 789,
-  TPU: 827,
-  Carbon: 770,
-  Nylon: 660,
 };
 
 function Budget() {
@@ -76,7 +66,7 @@ function Budget() {
       if (geometry) {
         const dimensions = getDimensions(geometry);
         setModelDimensions(dimensions);
-        setOriginalDimensions(dimensions)
+        setOriginalDimensions(dimensions);
         console.log("Dimensiones del modelo:", dimensions);
       }
       processStl(acceptedFiles[0]);
@@ -127,17 +117,17 @@ function Budget() {
   const handleMaterial = (e) => {
     const mat = e.target.value;
     setMaterial(mat);
-  }
+  };
 
   const handleQuality = (e) => {
     const qual = e.target.value;
     setQuality(qual);
-  }
+  };
 
   const handleFinish = (e) => {
     const fin = e.target.value;
     setFinish(fin);
-  }
+  };
 
   const handleCalculate = () => {
     const precioMaterial = calculatePrice(material, modelVolume);
@@ -145,14 +135,14 @@ function Budget() {
     const precioAcabado = precioPorAcabado[finish];
     const precio = precioMaterial + precioCalidad + precioAcabado;
     setPrice(precio);
-  }
+  };
 
   return (
-    <div className="flex h-screen w-[90%] pt-[7%]">
-      <div className="w-[600px] h-[700px] bg-blue-400 mr-5">
-        <div className="mt-5">
+    <div className="flex h-screen w-[90%] mt-5">
+      <div className="w-[600px] h-[700px] bg-azulVolume mr-5 rounded-xl">
+        <div>
           {uploadedFiles.length > 0 && (
-            <div className="w-[512px] h-[400px] bg-white">
+            <div className="w-[512px] h-[400px] bg-azulVolume rounded-t-xl">
               <StlViewer
                 className="w-[512px] h-[400px]"
                 url={URL.createObjectURL(uploadedFiles[0])}
@@ -169,36 +159,36 @@ function Budget() {
         </div>
 
         {uploadedFiles.length > 0 && modelDimensions && (
-          <div>
-            <p>Información del modelo:</p>
+          <div className="flex flex-col items-center gap-4">
+            <p className="LoosFont font-[50px]">Información del modelo</p>
             <div>
-              <p>Ancho: {modelDimensions.x.toFixed(2)}</p>
-              <p>Alto: {modelDimensions.y.toFixed(2)}</p>
-              <p>Profundidad: {modelDimensions.z.toFixed(2)}</p>
+              <p className="LoosFont">Ancho: {modelDimensions.x.toFixed(2)}</p>
+              <p className="LoosFont">Alto: {modelDimensions.y.toFixed(2)}</p>
+              <p className="LoosFont">
+                Profundidad: {modelDimensions.z.toFixed(2)}
+              </p>
             </div>
 
             {modelVolume !== null && (
-              <p>Volumen del modelo: {modelVolume.toFixed(2)}</p>
+              <p className="LoosFont">
+                Volumen del modelo: {modelVolume.toFixed(2)}
+              </p>
             )}
-
-            <label>
-              Cambiar tamaño:
-              <input
-                type="number"
-                step="0.01"
-                value={modelScale}
-                onChange={handleScaleChange}
-              />
-            </label>
+              <div className="LoosFont flex flex-col items-center">
+                Cambiar tamaño:
+                <input
+                  type="number"
+                  step="0.01"
+                  value={modelScale}
+                  onChange={handleScaleChange}
+                />
+              </div>
           </div>
         )}
       </div>
 
-      <div className="flex flex-col h-[700px] w-[1400px] bg-red-500 justify-center items-center">
-        <div
-          {...getRootProps()}
-          className="w-[550px] h-[75px]"
-        >
+      <div className="flex flex-col h-[700px] w-[1400px] bg-greenFooter justify-center items-center rounded-xl">
+        <div {...getRootProps()} className="w-[550px] h-[75px] mb-10">
           <input {...getInputProps()} />
           {isDragActive ? (
             <p className="bg-blue-200 rounded w-[550px] h-[75px] border-4 border-dashed border-blue-500">
@@ -213,26 +203,50 @@ function Budget() {
         <div>Material</div>
         <div className="flex justify-center items-center mb-[50px]">
           <div className="flex flex-col items-center mr-5">
-            <button value="PLA" onClick={handleMaterial} className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="PLA"
+              onClick={handleMaterial}
+              className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               PLA
             </button>
-            <button value="ABS" onClick={handleMaterial} className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="ABS"
+              onClick={handleMaterial}
+              className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               ABS
             </button>
           </div>
           <div className="flex flex-col items-center mr-5">
-            <button value="PETG" onClick={handleMaterial} className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="PETG"
+              onClick={handleMaterial}
+              className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               PETG
             </button>
-            <button value="TPU" onClick={handleMaterial} className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="TPU"
+              onClick={handleMaterial}
+              className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               TPU
             </button>
           </div>
           <div className="flex flex-col items-center mr-5">
-            <button value="Carbon" onClick={handleMaterial} className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="Carbon"
+              onClick={handleMaterial}
+              className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               Carbon
             </button>
-            <button value="Nylon" onClick={handleMaterial} className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="Nylon"
+              onClick={handleMaterial}
+              className="inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               Nylon
             </button>
           </div>
@@ -240,16 +254,32 @@ function Budget() {
         <div className="flex flex-col justify-center items-center mb-[50px]">
           Calidad
           <div className="flex-col">
-            <button value="0.2" onClick={handleQuality} className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="0.2"
+              onClick={handleQuality}
+              className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               0.2
             </button>
-            <button value="0.4" onClick={handleQuality} className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="0.4"
+              onClick={handleQuality}
+              className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               0.4
             </button>
-            <button value="0.8" onClick={handleQuality} className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="0.8"
+              onClick={handleQuality}
+              className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               0.8
             </button>
-            <button value="1" onClick={handleQuality} className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="1"
+              onClick={handleQuality}
+              className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               1
             </button>
           </div>
@@ -257,22 +287,40 @@ function Budget() {
         <div className="flex flex-col justify-center items-center mb-[60px]">
           Acabado
           <div className="flex-col">
-            <button value="Sin" onClick={handleFinish} className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="Sin"
+              onClick={handleFinish}
+              className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               Sin Procesar
             </button>
-            <button value="Bajo" onClick={handleFinish} className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="Bajo"
+              onClick={handleFinish}
+              className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               Procesado Bajo
             </button>
-            <button value="Medio" onClick={handleFinish} className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="Medio"
+              onClick={handleFinish}
+              className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               Procesado Medio
             </button>
-            <button value="Alto" onClick={handleFinish} className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+            <button
+              value="Alto"
+              onClick={handleFinish}
+              className="mr-5 inline-block w-[200px] rounded border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            >
               Procesado Alto
             </button>
           </div>
         </div>
-        <button onClick={handleCalculate} className="bg-blue-500">Calcular</button>
-        {price != null && (<p>Precio: {price.toFixed(2)}</p>)}
+        <button onClick={handleCalculate} className="bg-blue-500">
+          Calcular
+        </button>
+        {price != null && <p>Precio: {price.toFixed(2)}</p>}
       </div>
     </div>
   );

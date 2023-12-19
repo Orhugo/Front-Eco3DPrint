@@ -73,9 +73,8 @@ export default function SearchBar(){
             
         }
     }
-  
     
-      function handleKeyPress(e) {
+    function handleKeyPress(e) {
         if (e.key === "Enter") {
             closeDrawer();
             if ((searchTerm == null || searchTerm == "")) {
@@ -126,7 +125,7 @@ export default function SearchBar(){
             } else {
                 if(toggleAllDisabled){
                     const searchModels = catalogModels.filter((model) => 
-                       model.title.toLowerCase().includes(searchTerm.toLowerCase())
+                        model.title.toLowerCase().includes(searchTerm.toLowerCase())
                     );
                     setShownModels(searchModels);
                 } else {
@@ -171,7 +170,7 @@ export default function SearchBar(){
                     }
 
                     const searchModels = shownModels.filter((model) => 
-                       model.title.toLowerCase().includes(searchTerm.toLowerCase())
+                        model.title.toLowerCase().includes(searchTerm.toLowerCase())
                     );
                     setShownModels(searchModels);
                 }
@@ -182,25 +181,35 @@ export default function SearchBar(){
 
     const navigate = useNavigate();
 
-    const handleModelClick = (model) => {
+    const handleModelClick = async (model) => {
         console.log("id:  ", model.id);
         if (model.mainUrl == null) {
-          navigate("/volume/visualizarstl", {
+            navigate("/volume/visualizarstl", {
             state: "thinker.stl",
-          });
+            });
         } else if (model.mainUrl.length < 1) {
-          navigate("/volume/visualizarstl", {
+            navigate("/volume/visualizarstl", {
             state: "thinker.stl",
-          });
+            });
         } else {
-          navigate("/volume/visualizarstl", {
-            state: {
-              modelID: model.id,
-              modelName: model.title,
-              mainUrl: model.mainUrl,
-              author: model.author,
-            },
-          });
+            try {
+                //Make a GET request to fetch URLs for the given model ID
+                const response = await axios.get(`http://localhost:8080/url/getByModel?idModel=${model.id}`);
+                const urls = response.data;
+        
+                //Use the fetched data in the navigation state
+                navigate("/volume/visualizarSTL", {
+                    state: {
+                        modelID: model.id,
+                        modelName: model.title,
+                        modelSTL: model.mainUrl,
+                        modelURLs: urls,
+                    },
+                });
+        
+            } catch (error) {
+                console.error('Error fetching model URLs:', error);
+            }
         }
     };
 

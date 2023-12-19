@@ -65,6 +65,10 @@ export default function TutorialsCatalog() {
     }
 
     useEffect(() => {
+        window.scroll(0, 0);
+    }, []); 
+
+    useEffect(() => {
         if (shownTutorials.length === 0) {
             setIsLoading(true);
         }
