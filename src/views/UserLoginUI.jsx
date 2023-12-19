@@ -134,9 +134,14 @@ export default function UserLoginUI(){
                 <div className="mt-8 flex justify-center max-w-md mx-auto">
                     <button onClick={checkFields} className="LoosFont px-6 py-2 rounded-full text-lg bg-greenFooter hover:bg-green-900 hover:text-white transition duration-300">Entrar</button>
                 </div>
-                <div className="mt-8 flex justify-center max-w-md mx-auto">
-                    <p>
-                        Aún no tienes una cuenta? <span className="hover:underline cursor-pointer" onClick={handleClick}>Regístrate</span>
+                <div className="mt-8 flex flex-col justify-center max-w-md mx-auto gap-4">
+                    <p className="text-center">
+                        Aún no tienes una cuenta? <span className="hover:underline cursor-pointer"
+                                                        onClick={handleClick}>Regístrate</span>
+                    </p>
+                    <p className="text-center">
+                        Has olvidado tu contraseña? <span className="hover:underline cursor-pointer"
+                                                        onClick={handleClick}>Recuperar</span>
                     </p>
                 </div>
             </div>

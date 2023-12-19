@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import CatalogItem from "./CatalogItem.jsx";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import CircularProgress from '@mui/material-next/CircularProgress';
 
 export default function SearchBar(){
     const [drawerIsOpen, setDrawerIsOpen] = useState(false)
@@ -335,7 +336,7 @@ export default function SearchBar(){
             </div>
             {isLoading ? (
                 <div className="flex items-center justify-center mb-2">
-                    <img className="w-32 h-32" src={loading} />
+                    <CircularProgress color="secondary"/>
                 </div>
             ) : (
             <div id="catalogItemsContainer" className={`${blurOnSearch()} -mt-32 transition duration-300 relative z-0`}>

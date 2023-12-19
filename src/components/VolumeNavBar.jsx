@@ -67,7 +67,7 @@ export default function VolumeNavBar(){
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
 
-                    <NavigationButton name="Catalogo" urlNavigate={catalogUrl}/>
+                    <NavigationButton name="Catálogo" urlNavigate={catalogUrl}/>
                     <div className="hidden">
                         <NavigationButton name="3D Of the day"/>
                     </div>
