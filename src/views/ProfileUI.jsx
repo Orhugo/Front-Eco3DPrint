@@ -42,7 +42,7 @@ export default function ProfileUI() {
             });
     }, []);
 
-    const handleModelClick = (model) => {
+    const handleModelClick = async (model) => {
         console.log("id:  ", model.id);
         if (model.mainUrl == null) {
             navigate("/volume/visualizarstl", {
@@ -53,14 +53,18 @@ export default function ProfileUI() {
                 state: "thinker.stl",
             });
         } else {
-            navigate("/volume/visualizarstl", {
-                state: {
-                    modelID: model.id,
-                    modelName: model.title,
-                    mainUrl: model.mainUrl,
-                    author: model.author,
-                },
-            });
+          const response = await axios.get(`http://localhost:8080/url/getByModel?idModel=${model.id}`);
+          const urls = response.data;
+
+          //Use the fetched data in the navigation state
+          navigate("/volume/visualizarSTL", {
+              state: {
+                  modelID: model.id,
+                  modelName: model.title,
+                  modelSTL: model.mainUrl,
+                  modelURLs: urls,
+              },
+          });
         }
     };
 
