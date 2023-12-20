@@ -52,6 +52,16 @@ function Budget() {
     const [tpuToggled, setTpu] = useState(false)
     const [carbonToggled, setCarbon] = useState(false)
     const [nylonToggled, setNylon] = useState(false)
+    //Quality button references group
+    const [quality02Toggled, setQuality02] = useState(false)
+    const [quality04Toggled, setQuality04] = useState(false)
+    const [quality08Toggled, setQuality08] = useState(false)
+    const [quality1Toggled, setQuality1] = useState(false)
+    //Acabado button references group
+    const [sinProcesarToggled, setSinProcesar] = useState(false)
+    const [procesadoBajoToggled, setProcesadoBajo] = useState(false)
+    const [procesadoMedioToggled, setProcesadoMedio] = useState(false)
+    const [procesadoAltoToggled, setProcesadoAlto] = useState(false)
 
     const [material, setMaterial] = useState(null);
     const [quality, setQuality] = useState(null);
@@ -60,9 +70,7 @@ function Budget() {
     const [price, setPrice] = useState(null);
 
     const calculatePrice = (material, volumen) => {
-        const precio =
-            (volumen / 1000) * densidades[material] * precioPorKilo[material];
-        return precio;
+        return (volumen / 1000) * densidades[material] * precioPorKilo[material];
     };
 
     const onDrop = useCallback((acceptedFiles) => {
@@ -255,10 +263,184 @@ function Budget() {
         setMaterial(mat);
     };
 
+    const handleQuality02 = (e)=>{
+        if(quality02Toggled){
+            setQuality02(!quality02Toggled)
+            handleQuality02Toggle()
+        }else{
+            handleQualityGroupToggle()
+            setQuality02(!quality02Toggled)
+            handleQuality02Toggle()
+        }
+        handleQuality(e)
+    }
+
+    const handleQuality02Toggle = ()=>{
+        if(quality02Toggled){
+            return "bg-black text-white"
+        }else{
+            return ""
+        }
+    }
+
+    const handleQuality04 = (e)=>{
+        if(quality04Toggled){
+            setQuality04(!quality04Toggled)
+            handleQuality04Toggle()
+        }else{
+            handleQualityGroupToggle()
+            setQuality04(!quality04Toggled)
+            handleQuality04Toggle()
+        }
+        handleQuality(e)
+    }
+
+    const handleQuality04Toggle = ()=>{
+        if(quality04Toggled){
+            return "bg-black text-white"
+        }else{
+            return ""
+        }
+    }
+
+    const handleQuality08 = (e)=>{
+        if(quality08Toggled){
+            setQuality08(!quality08Toggled)
+            handleQuality08Toggle()
+        }else{
+            handleQualityGroupToggle()
+            setQuality08(!quality08Toggled)
+            handleQuality08Toggle()
+        }
+        handleQuality(e)
+    }
+
+    const handleQuality08Toggle = ()=>{
+        if(quality08Toggled){
+            return "bg-black text-white"
+        }else{
+            return ""
+        }
+    }
+
+    const handleQuality1 = (e)=>{
+        if(quality1Toggled){
+            setQuality1(!quality1Toggled)
+            handleQuality1Toggle()
+        }else{
+            handleQualityGroupToggle()
+            setQuality1(!quality1Toggled)
+            handleQuality1Toggle()
+        }
+        handleQuality(e)
+    }
+
+    const handleQuality1Toggle = ()=>{
+        if(quality1Toggled){
+            return "bg-black text-white"
+        }else{
+            return ""
+        }
+    }
+
+    const handleQualityGroupToggle = ()=>{
+        setQuality02(false)
+        setQuality04(false)
+        setQuality08(false)
+        setQuality1(false)
+    }
+
     const handleQuality = (e) => {
         const qual = e.target.value;
         setQuality(qual);
     };
+
+    const handleSinProcesar = (e)=>{
+        if(sinProcesarToggled){
+            setSinProcesar(!sinProcesarToggled)
+            handleSinProcesarToggle()
+        }else{
+            handleFinishGroupToggle()
+            setSinProcesar(!sinProcesarToggled)
+            handleSinProcesarToggle()
+        }
+        handleFinish(e)
+    }
+
+    const handleSinProcesarToggle = ()=>{
+        if(sinProcesarToggled){
+            return "bg-black text-white"
+        }else{
+            return ""
+        }
+    }
+
+    const handleProcesadoBajo = (e)=>{
+        if(procesadoBajoToggled){
+            setProcesadoBajo(!procesadoBajoToggled)
+            handleProcesadoBajoToggle()
+        }else{
+            handleFinishGroupToggle()
+            setProcesadoBajo(!procesadoBajoToggled)
+            handleProcesadoBajoToggle()
+        }
+        handleFinish(e)
+    }
+
+    const handleProcesadoBajoToggle = ()=>{
+        if(procesadoBajoToggled){
+            return "bg-black text-white"
+        }else{
+            return ""
+        }
+    }
+
+    const handleProcesadoMedio = (e)=>{
+        if(procesadoMedioToggled){
+            setProcesadoMedio(!procesadoMedioToggled)
+            handleProcesadoMedioToggle()
+        }else{
+            handleFinishGroupToggle()
+            setProcesadoMedio(!procesadoMedioToggled)
+            handleProcesadoMedioToggle()
+        }
+        handleFinish(e)
+    }
+
+    const handleProcesadoMedioToggle = ()=>{
+        if(procesadoMedioToggled){
+            return "bg-black text-white"
+        }else{
+            return ""
+        }
+    }
+
+    const handleProcesadoAlto = (e)=>{
+        if(procesadoAltoToggled){
+            setProcesadoAlto(!procesadoAltoToggled)
+            handleProcesadoAltoToggle()
+        }else{
+            handleFinishGroupToggle()
+            setProcesadoAlto(!procesadoAltoToggled)
+            handleProcesadoAltoToggle()
+        }
+        handleFinish(e)
+    }
+
+    const handleProcesadoAltoToggle = ()=>{
+        if(procesadoAltoToggled){
+            return "bg-black text-white"
+        }else{
+            return ""
+        }
+    }
+
+    const handleFinishGroupToggle = ()=>{
+        setSinProcesar(false)
+        setProcesadoBajo(false)
+        setProcesadoMedio(false)
+        setProcesadoAlto(false)
+    }
 
     const handleFinish = (e) => {
         const fin = e.target.value;
@@ -272,6 +454,13 @@ function Budget() {
         const precio = precioMaterial + precioCalidad + precioAcabado;
         setPrice(precio);
     };
+
+    const borrarSeleccion = ()=>{
+        handleFinishGroupToggle()
+        handleQualityGroupToggle()
+        handleMaterialGroupToggle()
+        setPrice(null)
+    }
 
     return (
         <div id="mainBudgetContainer" className="flex w-[90%] mt-5 gap-4">
@@ -404,29 +593,29 @@ function Budget() {
                     <div className="grid grid-cols-2 gap-4 mt-4">
                         <button
                             value="0.2"
-                            onClick={handleQuality}
-                            className="LoosFont border border-black w-44 py-1 hover:bg-slate-400 transition duration-300"
+                            onClick={handleQuality02}
+                            className={`${handleQuality02Toggle()} LoosFont border border-black w-44 py-1 transition duration-300`}
                         >
                             0.2
                         </button>
                         <button
                             value="0.4"
-                            onClick={handleQuality}
-                            className="LoosFont border border-black w-44 py-1 hover:bg-slate-400 transition duration-300"
+                            onClick={handleQuality04}
+                            className={`${handleQuality04Toggle()} LoosFont border border-black w-44 py-1 transition duration-300`}
                         >
                             0.4
                         </button>
                         <button
                             value="0.8"
-                            onClick={handleQuality}
-                            className="LoosFont border border-black w-44 py-1 hover:bg-slate-400 transition duration-300"
+                            onClick={handleQuality08}
+                            className={`${handleQuality08Toggle()} LoosFont border border-black w-44 py-1 transition duration-300`}
                         >
                             0.8
                         </button>
                         <button
                             value="1"
-                            onClick={handleQuality}
-                            className="LoosFont border border-black w-44 py-1 hover:bg-slate-400 transition duration-300"
+                            onClick={handleQuality1}
+                            className={`${handleQuality1Toggle()} LoosFont border border-black w-44 py-1 transition duration-300`}
                         >
                             1
                         </button>
@@ -438,38 +627,44 @@ function Budget() {
                     <div className="grid grid-cols-2 gap-4 mt-4">
                         <button
                             value="Sin"
-                            onClick={handleFinish}
-                            className="LoosFont border border-black w-44 py-1 hover:bg-slate-400 transition duration-300"
+                            onClick={handleSinProcesar}
+                            className={`${handleSinProcesarToggle()} LoosFont border border-black w-44 py-1 transition duration-300`}
                         >
                             Sin Procesar
                         </button>
                         <button
                             value="Bajo"
-                            onClick={handleFinish}
-                            className="LoosFont border border-black w-44 py-1 hover:bg-slate-400 transition duration-300"
+                            onClick={handleProcesadoBajo}
+                            className={`${handleProcesadoBajoToggle()} LoosFont border border-black w-44 py-1 transition duration-300`}
                         >
                             Procesado Bajo
                         </button>
                         <button
                             value="Medio"
-                            onClick={handleFinish}
-                            className="LoosFont border border-black w-44 py-1 hover:bg-slate-400 transition duration-300"
+                            onClick={handleProcesadoMedio}
+                            className={`${handleProcesadoMedioToggle()} LoosFont border border-black w-44 py-1 transition duration-300`}
                         >
                             Procesado Medio
                         </button>
                         <button
                             value="Alto"
-                            onClick={handleFinish}
-                            className="LoosFont border border-black w-44 py-1 hover:bg-slate-400 transition duration-300"
+                            onClick={handleProcesadoAlto}
+                            className={`${handleProcesadoAltoToggle()} LoosFont border border-black w-44 py-1 transition duration-300`}
                         >
                             Procesado Alto
                         </button>
                     </div>
                 </div>
-                <button onClick={handleCalculate}
-                        className="LoosFont bg-azulVolume px-12 py-1 border border-black mt-4 hover:bg-pinkVolume transition duration-300">
-                    Calcular
-                </button>
+                <div className="flex gap-4">
+                    <button onClick={handleCalculate}
+                            className="LoosFont bg-azulVolume px-12 py-1 border border-black mt-4 hover:bg-pinkVolume transition duration-300">
+                        Calcular
+                    </button>
+                    <button onClick={borrarSeleccion}
+                            className="LoosFont px-12 py-1 border border-black mt-4 hover:bg-red-300 transition duration-300">
+                        Borrar
+                    </button>
+                </div>
                 <div className="mt-4">
                     {price != null && <p className="LoosFont text-xl">Precio: {price.toFixed(2)}€</p>}
                 </div>
