@@ -527,14 +527,14 @@ function Budget() {
             </div>
 
             <div id="rightSidePanel" className="flex flex-col w-full bg-greenFooter justify-center items-center border border-slate-600 py-4">
-                <div {...getRootProps()} className="w-[550px] h-[75px]">
+                <div {...getRootProps()} className="w-[550px] h-[75px] bg-white border-dotted border-2 border-slate-600 flex items-center">
                     <input {...getInputProps()} />
                     {isDragActive ? (
                         <p>
                             Drop the files here ...
                         </p>
                     ) : (
-                        <p className="bg-white h-full mx-auto border-2 border-dotted border-slate-600 text-center items-center">
+                        <p className="LoosFont mx-auto text-center items-center">
                             Drag 'n' drop some files here, or click to select files
                         </p>
                     )}

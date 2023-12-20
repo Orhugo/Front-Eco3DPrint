@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Tutorial from "../components/Tutorial.jsx";
 import {useNavigate} from "react-router-dom";
+import CircularProgress from "@mui/material-next/CircularProgress";
 
 export default function TutorialsCatalog() {
     const [shownTutorials, setShownTutorials] = useState([]);
@@ -99,7 +100,7 @@ export default function TutorialsCatalog() {
         <div className="overflow-y-hidden mt-12">
             {isLoading ? (
                 <div className="flex items-center justify-center mb-2">
-                    <img className="w-32 h-32" src="../loading.gif" alt="Loading"/>
+                    <CircularProgress color="secondary"/>
                 </div>
             ) : (
                 <div id="catalogItemsContainer">
