@@ -655,13 +655,13 @@ function Budget() {
                         </button>
                     </div>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-4 justify-center w-full">
                     <button onClick={handleCalculate}
-                            className="LoosFont bg-azulVolume px-12 py-1 border border-black mt-4 hover:bg-pinkVolume transition duration-300">
+                            className="LoosFont bg-azulVolume w-44 py-1 border border-black mt-4 hover:bg-cyan-200 transition duration-300">
                         Calcular
                     </button>
                     <button onClick={borrarSeleccion}
-                            className="LoosFont px-12 py-1 border border-black mt-4 hover:bg-red-300 transition duration-300">
+                            className="LoosFont bg-red-300 w-44 py-1 border border-black mt-4 hover:bg-red-500 transition duration-300">
                         Borrar
                     </button>
                 </div>
