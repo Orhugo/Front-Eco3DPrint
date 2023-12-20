@@ -16,8 +16,11 @@ export default function ProfileUI() {
   const [imageUrl, setImageUrl] = useState(null);
   const [defaultImage, setdefaultImage] = useState("../default_image.png");
   const [file, setFile] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    if (catalogModels.length === 0) {
+      setIsLoading(true);
+    }
     window.scroll(0, 0);
     axios
       .get("http://localhost:8080/models/getAuthorModels", {
@@ -32,6 +35,9 @@ export default function ProfileUI() {
       })
       .catch((error) => {
         console.error("Error fetching models data:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -240,7 +246,13 @@ export default function ProfileUI() {
             Colecciones
           </p>
         </div>
-        <div id="catalogProfileGrid" className="grid grid-cols-3 gap-4 mt-6">
+        
+        {isLoading ? (
+                <div className="mt-20 flex items-center justify-center mb-2">
+                    <img className="w-32 h-32" src="../loading.gif" alt="Loading"/>
+                </div>
+            ) : (
+              <div id="catalogProfileGrid" className="grid grid-cols-3 gap-4 mt-6">
           {catalogModels.map((model) => (
             <CatalogItem
               key={model.id}
@@ -250,7 +262,9 @@ export default function ProfileUI() {
               modelAuthor={model.author}
             />
           ))}
-        </div>
+          </div>
+            )}
+        
       </div>
     </div>
   );
