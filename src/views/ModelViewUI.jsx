@@ -18,7 +18,11 @@ const style = {
 export default function ModelViewUI(){
     const navigate = useNavigate()
     const navigateProfile = ()=>{
-        navigate("/Volume/Profile");
+        navigate('/volume/profile', {
+            state: {
+                user: authorUsername
+            },
+        })
     }
 
     const { state, setState } = useLocation();
