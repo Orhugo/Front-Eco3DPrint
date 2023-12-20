@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .LoosFont{
     font-family: loos-extrawide, sans-serif;
     font-style: normal;
