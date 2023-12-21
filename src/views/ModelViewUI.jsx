@@ -187,7 +187,7 @@ export default function ModelViewUI(){
                     </div>
                 </div>
                 <div className="h-[400px] w-full mx-auto inline-flex bg-slate-300 justify-center items-center relative">
-                <div id="carrouselContainer" className="h-[400px] w-full mx-auto inline-flex bg-slate-300 justify-center items-center">                    
+                <div id="carrouselContainer" className="h-[400px] w-full mx-auto inline-flex bg-slate-300 justify-center items-center border border-slate-600">
                 <StlViewer
                     style={style}
                     orbitControls
@@ -200,16 +200,25 @@ export default function ModelViewUI(){
                     }}
                 />
                 </div>
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-gray-500 px-4 py-2 rounded-md">
+                <div className="LoosFont absolute top-2 left-1/2 transform text-2xl -translate-x-1/2 px-4 py-2 rounded-md">
                     {STLname}
                 </div>
-                <button className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-500 px-4 py-2 rounded-md" onClick={handlePrev}>
-                    Prev
+                    <button
+                        className="LoosFont absolute left-2 top-1/2 transform -translate-y-1/2 px-2 py-2 text-2xl hover:text-white hover:bg-black rounded-full transistion duration-300"
+                        onClick={handlePrev}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" data-slot="icon" className="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
+                        </svg>
+                    </button>
+                    <button
+                        className="LoosFont absolute right-2 top-1/2 transform -translate-y-1/2 px-2 py-2 text-2xl hover:text-white hover:bg-black rounded-full transistion duration-300"
+                        onClick={handleNext}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
                 </button>
-                <button className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-500 px-4 py-2 rounded-md" onClick={handleNext}>
-                    Next
-                </button>
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-gray-500 px-4 py-2 rounded-md">
+                <div className="LoosFont absolute bottom-2 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-md">
                     {URLindex + 1} / {numURLs}
                 </div>
                 </div>
